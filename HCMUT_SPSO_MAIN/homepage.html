@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCMUT_SPSS - Trang Chủ</title>
+    <style>
+        /* CSS của trang chủ */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #0F6CBF;
+            padding: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+            color: white;
+            background-color: #004787;
+            padding: 10px;
+            z-index: 2;
+        }
+        .header h1 img {
+            width: 60px;
+            height: auto;
+        }
+        .header .logo-box {
+            background-color: #004787;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 270px;
+            z-index: 1;
+        }
+        
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 30px 30px;
+        }
+        .rectangle-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F6CBF;
+            color: white;
+            padding: 15px 30px; /* Tăng kích thước hộp "In" */
+            border-radius: 8px; /* Bo góc mềm mại hơn */
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu .status-box {
+            background-color: #ffffff;
+            color: #0F6CBF;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+        }
+        .content {
+            position: relative;
+            color: white;
+            background-image: url('best-photo-printer.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-left: 5%;
+        }
+        .text-box {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-align: left;
+            max-width:40%;
+        }
+        .text-box h2 {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+        .start-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .info-cards {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #ffffff;
+            color: #333;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+        .footer p {
+            margin: 6px 0;
+        }
+        .user-info {
+            display: flex;
+            font-weight: bold;
+            font-size: 20px;
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            gap: 15px;
+            margin-left: auto; /* Đẩy phần user-info về bên phải */
+            text-align: center; /* Căn giữa văn bản */
+            transform: translateX(-15px); /* Dịch phần tử qua trái */
+        }
+        .user-info span {
+            transform: translateY(3px); /* Dịch tên "User" lên 5px */
+        }
+        .user-info img {
+            width: 60px;
+            height: auto;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto; /* Căn giữa theo chiều ngang */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-box"></div>
+        <h1>
+            <img src="Logo BK.png" alt="BK Logo"> HCMUT_SPSS
+        </h1>
+        
+        <!-- Gộp tất cả vào cùng một menu ở bên trái -->
+        <div class="menu">
+            <a href="#" class="rectangle-button">In</a>
+            <a href="#">Mua trang</a>
+            <a href="#">Lịch sử in</a>
+            <span class="status-box">Trang còn lại: 15</span>
+        </div>
+        
+        <div class="user-info">
+            <span>Bảo Long</span>
+            <img src="user_icon.svg" alt="User Icon">
+        </div>
+    </div>
+    
+
+<div class="content">
+    <div class="text-box">
+        <h2>Dịch vụ in ấn thông minh, tiện lợi, nhanh chóng và dễ dàng</h2>
+        <button class="start-button">Bắt đầu in</button>
+    </div>
+</div>
+
+<div class="info-cards">
+    <div class="card">
+        <img src="printer-88 1.svg" alt="Print Icon">
+        <h3>In</h3>
+        <p>Bắt đầu in tài liệu của bạn ngay!</p>
+    </div>
+    <div class="card">
+        <img src="paper 1.png" alt="Buy Pages Icon">
+        <h3>Mua trang</h3>
+        <p>Mua thêm trang với giá rẻ phù hợp với nhu cầu.</p>
+    </div>
+    <div class="card">
+        <img src="lichsuin.png" alt="History Icon">
+        <h3>Lịch sử in</h3>
+        <p>Xem lại những lần in trước đó của bản thân.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Thông tin liên hệ: Email: pdt@hcmut.edu.vn | Số điện thoại: 028 73004183 | Địa chỉ: 268 Lý Thường Kiệt, P.14, Q.10, TPHCM</p>
+    <p>Nhóm 5 công nghệ phần mềm</p>
+</div>
+
+</body>
+</html>
