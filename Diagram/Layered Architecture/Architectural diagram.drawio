@@ -1,0 +1,142 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 OPR/114.0.0.0" version="24.8.3">
+  <diagram name="Trang-1" id="8Mras6FpHB4ZghiM-MaQ">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fnhc681IdKwq8b5LlcNP-6" value="Presentation Layer" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-8" value="Business Layer" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="440" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-10" value="&amp;nbsp;&amp;nbsp;&lt;div&gt;Persistence Layer&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1160" width="440" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-11" value="Service Layer" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="980" width="440" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-16" value="Student UI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-17" value="&amp;nbsp; Printing Service" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="140" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-21" value="SPSO UI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-22" value="Print document" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="160" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-23" value="Upload document" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="160" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-24" value="Select printing properties" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="210" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-25" value="Select printer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="210" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-26" value="&amp;nbsp; Purchase Page" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="280" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-27" value="Make payment" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="290" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-28" value="Choose number of page" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="290" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-29" value="&amp;nbsp; &amp;nbsp;Printing Log" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="360" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-30" value="View printing history" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="370" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-31" value="Filtering printing history" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="370" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-32" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Report" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="440" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-33" value="View report" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="450" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-34" value="Filtering report" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="450" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-38" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Login/Logout" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="740" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-39" value="Authentication" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="750" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-41" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Resources&amp;nbsp;&lt;div&gt;&amp;nbsp; &amp;nbsp;management&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="820" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-43" value="Manage printers" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="830" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-44" value="Manage students" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="830" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-45" value="Manage SPSO" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="890" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-47" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Login API" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="360" y="990" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-48" value="HCMUT_SSO" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1000" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-49" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Payment API" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1070" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-50" value="BKPay" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1080" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-51" value="Students mapping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1169" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-52" value="SPSO mapping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="1169" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-53" value="Printing history mapping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1169" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-54" value="Report mapping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1230" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-55" value="Printers mapping" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1230" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-62" value="&amp;nbsp; &amp;nbsp; Printing&amp;nbsp;&lt;div&gt;Configuration&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="520" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-63" value="Modify permitted file type" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="530" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-64" value="Modify default page limit" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="530" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-65" value="Set default page count date" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="584" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-66" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Printer&amp;nbsp;&lt;div&gt;Configuration&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="330" y="660" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-67" value="Enable/Disable printers" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="670" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-68" value="Add printer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="670" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-69" value="Database Layer" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1300" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fnhc681IdKwq8b5LlcNP-70" value="Database" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1310" width="100" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
