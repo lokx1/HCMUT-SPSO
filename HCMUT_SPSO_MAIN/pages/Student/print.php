@@ -214,6 +214,7 @@
                 <label>Kích thước giấy</label>
                 <select>
                     <option>A4</option>
+                    <option>A3</option>
                 </select>
             </div>
         </div>
@@ -227,6 +228,7 @@
                 <label>Trang</label>
                 <select>
                     <option>Một mặt</option>
+                    <option>Hai mặt</option>
                 </select>
             </div>
         </div>
