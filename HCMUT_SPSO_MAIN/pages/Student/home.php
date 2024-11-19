@@ -16,7 +16,10 @@
             position: relative;
             width: 100%;
             height: 622px;
-            margin-top: 100px;
+            margin-top: 0px;
+            background: url('../../css/assets/hero_3_cropped.webp');
+            background-size: 100%;
+            background-repeat: no-repeat;
         }
 
         .hero-image {
@@ -32,16 +35,23 @@
             left: 53px;
             top: 73px;
             background: rgba(0, 0, 0, 0.5);
-            padding: 40px;
         }
 
-        .advertisement h1 {
+        .advertisement span {
+            position: absolute;
+            margin-top: 38px;
+            margin-left: 14px;
             width: 845px;
             font-weight: 700;
             font-size: 64px;
             line-height: 77px;
+            text-shadow:
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
             color: #FFFFFF;
-            border: 1px solid #000000;
+            /* border: 1px solid #000000; */
         }
 
         .start-print-btn {
@@ -49,7 +59,7 @@
             width: 246px;
             height: 69px;
             left: 53px;
-            top: 553px;
+            top: 453px;
             background: #0F6CBF;
             border-radius: 30px;
             border: none;
@@ -63,9 +73,10 @@
         .action-buttons {
             display: grid;
             grid-template-columns: repeat(3, 418px);
-            gap: 100px;
+            gap: 0px;
             justify-content: center;
-            margin: 50px auto;
+            margin-top: 200px;
+            cursor: pointer;
         }
 
         .action-card {
@@ -77,11 +88,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 27px;
         }
 
-        .action-card h2 {
-            margin: 19px 0;
+        .action-card span {
             font-weight: 700;
             font-size: 36.1046px;
             line-height: 44px;
@@ -91,15 +101,15 @@
         .action-card img {
             width: 127px;
             height: 127px;
-            margin: 20px 0;
+            margin: 32px 0;
         }
 
         .action-card p {
-            width: 341px;
+            width: 365px;
             font-weight: 400;
             font-size: 24px;
             line-height: 29px;
-            text-align: center;
+            /* text-align: center; */
             color: #000000;
             margin-top: auto;
         }
@@ -112,26 +122,26 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="advertisement">
-                <h1>Dịch vụ in ấn thông minh, tiện lợi, nhanh chóng và dễ dàng</h1>
+                <span>Dịch vụ in ấn thông minh, tiện lợi, nhanh chóng và dễ dàng</span>
             </div>
-            <button class="start-print-btn">Bắt đầu in</button>
+            <button class="start-print-btn" onclick="window.location.href='print.php'">Bắt đầu in</button>
         </section>
 
         <!-- Action Cards -->
         <section class="action-buttons">
             <div class="action-card" onclick="window.location.href='print.php'">
-                <h2>In</h2>
-                <img src="../../assets/printer-88.png" alt="Print">
+                <span>In</span>
+                <img src="../../css/assets/printer-88.svg" alt="Print">
                 <p>Bắt đầu in tài tiệu của bạn ngay!</p>
             </div>
             <div class="action-card" onclick="window.location.href='buy_pages.php'">
-                <h2>Mua trang</h2>
-                <img src="../../assets/paper.png" alt="Buy Pages">
+                <span>Mua trang</span>
+                <img src="../../css/assets/paper.png" alt="Buy Pages">
                 <p>Mua thêm trang với giá rẻ phù hợp với nhu cầu.</p>
             </div>
             <div class="action-card" onclick="window.location.href='buy_pages.php'">
-                <h2>Lịch sử in</h2>
-                <img src="../../assets/transaction-history.png" alt="Print History">
+                <span>Lịch sử in</span>
+                <img src="../../css/assets/transaction-history.png" alt="Print History">
                 <p>Xem lại những lần in trước đó của bản thân.</p>
             </div>
         </section>
