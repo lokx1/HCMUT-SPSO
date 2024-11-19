@@ -76,7 +76,7 @@
             gap: 0px;
             justify-content: center;
             margin-top: 200px;
-            cursor: pointer;
+            /* cursor: pointer; */
         }
 
         .action-card {
@@ -89,6 +89,7 @@
             flex-direction: column;
             align-items: center;
             padding: 27px;
+            cursor: pointer;
         }
 
         .action-card span {

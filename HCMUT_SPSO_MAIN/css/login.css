@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    
+}
+
+.login-container {
+    position: absolute;
+    width: 818px;
+    height: 975px;  /* Original height */
+    left: 311px;
+    top: 74px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    padding-bottom: 60px; /* Add padding to ensure content fits */
+}
+
+
+.logo {
+    position: absolute;
+    width: 300px;
+    height: 286px;
+    left: calc(50% - 150px);
+    top: 171px;
+    background: url('assets/logoBK.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.title {
+    position: absolute;
+    width: 514px;
+    height: 58px;
+    left: calc(50% - 257px);
+    top: 477px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+    color: #000000;
+}
+
+.input-field {
+    position: absolute;
+    width: 578px;
+    height: 55px;
+    left: calc(50% - 289px);
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    font-size: 23.9674px;
+    padding: 0 20px;
+}
+
+#username {
+    top: 577px;
+}
+
+#password {
+    top: 661px;
+}
+
+.button {
+    position: absolute;
+    width: 245px;
+    height: 97.2px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23.9674px;
+    line-height: 29px;
+    color: #FFFFFF;
+    background: #0F6CBF;
+    border-radius: 33.288px;
+    border: none;
+    cursor: pointer;
+}
+
+.login-btn {
+    width: 245px;
+    height: 97.2px;
+    left: calc(50% - 289px); /* Align with the input field's left edge */
+    top: 759px;
+}
+
+.login-btn span {
+    position: absolute;
+    width: 123px;
+    height: 29px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.admin-btn {
+    width: 245px;
+    height: 97.2px;
+    left: calc(50% + 44px); /* 289px - 245px to align with input field's right edge */
+    top: 759px;
+}
+
+.admin-btn span {
+    position: absolute;
+    width: 72px;
+    height: 29px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.forgot-password {
+    position: absolute;
+    width: 221px;
+    height: 29px;
+    left: calc(50% - 277px); /* Same alignment as login button */
+    bottom: 50px; /* Position from bottom of container instead of top */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23.9674px;
+    line-height: 29px;
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.decoration {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: #0F6CBF;
+    border-radius: 50%;
+}
+
+.decoration-top {
+    right: -160px;
+    top: 74px;
+}
+
+.decoration-bottom {
+    left: -160px;
+    bottom: 74px;
+}
