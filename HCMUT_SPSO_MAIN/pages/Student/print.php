@@ -28,7 +28,7 @@
             width: 816px;
             height: 736px;
             left: calc(50% - 816px/2);
-            top: 232px;
+            top: 132px;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
@@ -64,7 +64,7 @@
         }
 
         .file-name {
-            margin-left: 20px;
+            margin-left: 21px;
             color: #FFFFFF;
             font-family: 'Inter';
             font-size: 24.2541px;
@@ -72,7 +72,7 @@
 
         .form-row {
             width: 696px;
-            margin: 40px auto;
+            margin: 49px auto;
             display: flex;
             align-items: center;
         }
@@ -85,14 +85,16 @@
         }
 
         .form-row select {
+            position: relative;
             width: 540px;
             height: 55px;
-            margin-left: 25px;
+            margin-left: 26px;
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
-            padding: 0 20px;
+            padding: 0 21px;
             font-size: 21.98px;
+            opacity: 50%;
         }
 
         .option-row {
@@ -141,7 +143,7 @@
         }
 
         .decoration {
-            position: fixed;
+            position: absolute;
             width: 320px;
             height: 320px;
             background: #0F6CBF;
@@ -173,20 +175,37 @@
             font-size: 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 7px;
             padding: 0 20px;
             cursor: pointer;
         }
+
+        .back-to-home img {
+            width: 17px;
+            height: 24px;
+        }
+
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <script>
+        const printBtn = document.querySelector(".nav-buttons .nav-btn-print");
+        printBtn.style.background = "#004787";
+        printBtn.style.pointerEvents = "none";
+        printBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
 
     <div class="decoration decoration-top"></div>
     <div class="decoration decoration-bottom"></div>
 
     <button onclick="window.location.href='home.php'" class="back-to-home">
-        <span>←</span>
+        <!-- <span>←</span> -->
+        <img src="../../css/assets/back_arrow.svg" alt="go back arrow">
         <span>Back to home</span>
     </button>
 
@@ -201,7 +220,13 @@
         <div class="form-row">
             <label>Chọn máy in</label>
             <select>
-                <option value="" disabled selected>Máy in...</option>
+                <option value="0" selected disabled hidden>Máy in...</option>
+                <option value="1">Máy in tòa nhà A1-302</option>
+                <option value="2">Máy in tòa nhà A2-209</option>
+                <option value="3">Máy in tòa nhà A3-208</option>
+                <option value="4">Máy in tòa nhà A4-101</option>
+                <option value="5">Máy in tòa nhà A5-212</option>
+                <option value="6">Máy in tòa nhà B1-410</option>
             </select>
         </div>
 

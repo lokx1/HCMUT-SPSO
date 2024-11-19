@@ -135,7 +135,7 @@ body {
 }
 
 .decoration {
-    position: fixed;
+    position: absolute;
     width: 320px;
     height: 320px;
     background: #0F6CBF;
