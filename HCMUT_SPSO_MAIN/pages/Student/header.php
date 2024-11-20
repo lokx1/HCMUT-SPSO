@@ -1,3 +1,4 @@
+
 <nav class="header">
     <a href="home.php" class="hcmut-spss">
         <div class="logo"></div>
@@ -12,7 +13,7 @@
 
     <div class="page-count">
         <div class="count-box">
-            <span>Trang còn lại: 15</span>
+        <span>Trang còn lại: <?php echo getRemainingPages(); ?></span>
             <img src="../../css/assets/availablePaper.png" alt="Paper Icon">
         </div>
     </div>

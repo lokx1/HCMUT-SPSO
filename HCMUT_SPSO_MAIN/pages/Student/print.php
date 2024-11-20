@@ -1,5 +1,27 @@
 <?php
 /* Session checks here */
+session_start();
+include 'functions.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ensure all form fields have 'name' attributes
+    $copies = intval($_POST['copies']);
+    $pages = intval($_POST['pages']);
+    $printer = $_POST['printer'];
+
+    // Validate inputs
+    if ($copies <= 0 || $pages <= 0 || $printer == '0') {
+        $message = "Please enter valid values for all fields.";
+    } else {
+        if (storePrintJob($copies, $pages, $printer)) {
+            $message = "Print job stored successfully!";
+            $remainingPages = getRemainingPages(); // Update remaining pages
+        } else {
+            $message = "Not enough pages. Please buy more pages.";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,12 +30,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In tài liệu - Student</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
         body {
-            /* position: relative;
+            position: relative;
             width: 100%;
             min-height: 100vh;
             background: #FFFFFF;
@@ -21,7 +42,7 @@
             padding-top: 100px;
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh + 800px); */
+            min-height: calc(100vh + 800px); /* Increase minimum height */
         }
 
         .print-form {
@@ -90,6 +111,12 @@
             width: 540px;
             height: 55px;
             margin-left: 26px;
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+            border-radius: 10px;
+            padding: 0 21px;
+            font-size: 21.98px;
+            opacity: 50%;
         }
 
         .option-row {
@@ -111,14 +138,15 @@
             margin-bottom: 16px;
         }
 
+        .option-group input,
         .option-group select {
             width: 100%;
             height: 55px;
-            /* background: #FFFFFF;
+            background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             padding: 0 20px;
-            font-size: 21.98px; */
+            font-size: 21.98px;
         }
 
         .print-btn {
@@ -135,11 +163,54 @@
             color: #000000;
             cursor: pointer;
         }
+
+        .decoration {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: #0F6CBF;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .decoration-top {
+            right: -160px;
+            top: 185px;
+        }
+
+        .decoration-bottom {
+            left: -160px;
+            top: 648px;
+        }
+
+        .back-to-home {
+            position: absolute;
+            width: 224px;
+            height: 57px;
+            left: 37px;
+            top: 153px;
+            background: #FFFFFF;
+            border: 1px solid #000000;
+            border-radius: 30px;
+            font-family: 'Inter';
+            font-weight: 400;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .back-to-home img {
+            width: 17px;
+            height: 24px;
+        }
+
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <?php include 'background.php'; ?>
     <script>
         const printBtn = document.querySelector(".nav-buttons .nav-btn-print");
         printBtn.style.background = "#004787";
@@ -150,6 +221,15 @@
         hcmutBtn.style.cursor = "pointer";
         hcmutBtn.style.background = "transparent";
     </script>
+
+    <div class="decoration decoration-top"></div>
+    <div class="decoration decoration-bottom"></div>
+
+    <button onclick="window.location.href='home.php'" class="back-to-home">
+        <!-- <span>←</span> -->
+        <img src="/css/assets/left-arrow.png" alt="go back arrow">
+        <span>Back to home</span>
+    </button>   
 
     <form class="print-form">
         <div class="file-select">
@@ -217,6 +297,9 @@
 
         <button type="submit" class="print-btn">In</button>
     </form>
+    <?php if (isset($message)): ?>
+        <p><?php echo $message; ?></p>
+    <?php endif; ?>
 
     <?php include 'footer.php'; ?>
 </body>

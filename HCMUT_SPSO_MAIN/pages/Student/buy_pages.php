@@ -1,5 +1,56 @@
 <?php
 /* Session checks here */
+session_start();
+include 'functions.php';
+
+if (!isset($_SESSION['remaining_pages'])) {
+    $_SESSION['remaining_pages'] = 0;
+}
+
+class Paper {
+    public $size;
+    public $pricePerPage;
+    public $quantity;
+    public $totalPrice;
+
+    public function __construct($size, $pricePerPage, $quantity = 1) {
+        $this->size = $size;
+        $this->pricePerPage = $pricePerPage;
+        $this->quantity = $quantity;
+        $this->updateTotalPrice();
+    }
+
+    public function updateTotalPrice() {
+        $this->totalPrice = $this->pricePerPage * $this->quantity;
+    }
+
+    public function setQuantity($quantity) {
+        $this->quantity = $quantity;
+        $this->updateTotalPrice();
+    }
+}
+
+$papers = [
+    new Paper('A4', 1000),
+    new Paper('A3', 2000)
+];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $size = $_POST['size'];
+    $quantity = intval($_POST['quantity']);
+
+    foreach ($papers as $paper) {
+        if ($paper->size == $size) {
+            $paper->setQuantity($quantity);
+            break;
+        }
+    }
+    // Update remaining pages
+    $remainingPages = getRemainingPages();
+    $remainingPages += $quantity;
+    setRemainingPages($remainingPages);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,7 +291,7 @@
             <div class="info-label">Tổng:</div>
         </div>
         
-        <div class="paper-card paper-a4">
+        <!-- <div class="paper-card paper-a4">
             <span class="paper-size">A4</span>
             <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
             <p class="price">Giá: 1.000 VND</p>
@@ -264,7 +315,26 @@
             </div>
             <p class="total">Tổng: 8.000 VND</p>
             <button class="buy-btn">Mua</button>
+        </div> -->
+        <?php foreach ($papers as $paper): ?>
+        <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
+            <span class="paper-size"><?php echo $paper->size; ?></span>
+            <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
+            <p class="price">Giá: <?php echo number_format($paper->pricePerPage, 0, ',', '.'); ?> VND</p>
+            <div class="quantity-control">
+                <button type="button" class="quantity-btn left"></button>
+                <div class="quantity-display"><?php echo $paper->quantity; ?></div>
+                <button type="button" class="quantity-btn right"></button>
+            </div>
+            <p class="total">Tổng: <?php echo number_format($paper->totalPrice, 0, ',', '.'); ?> VND</p>
+            <form action="buy_pages.php" method="post">
+                <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
+                <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
+                <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
+                <button type="submit" class="buy-btn">Mua</button>
+            </form>
         </div>
+        <?php endforeach; ?>
 
         <div class="divider divider-top"></div>
         <div class="divider divider-bottom"></div>
@@ -272,7 +342,7 @@
 
     <?php include 'footer.php'; ?>
 
-    <script>
+    <!-- <script>
         // Add quantity control functionality
         const quantityControls = document.querySelectorAll('.quantity-control');
         quantityControls.forEach(control => {
@@ -300,6 +370,43 @@
             const total = price * quantity;
             card.querySelector('.total').textContent = `Tổng: ${total.toLocaleString()} VND`;
         }
+    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paperCards = document.querySelectorAll('.paper-card');
+
+            paperCards.forEach(card => {
+                const pricePerPage = parseInt(card.getAttribute('data-price'));
+                const quantityDisplay = card.querySelector('.quantity-display');
+                const totalDisplay = card.querySelector('.total');
+                const minusButton = card.querySelector('.quantity-btn.left');
+                const plusButton = card.querySelector('.quantity-btn.right');
+                const quantityInput = card.querySelector('.quantity-input');
+                const totalInput = card.querySelector('.total-input');
+
+                minusButton.addEventListener('click', () => {
+                    let quantity = parseInt(quantityDisplay.textContent);
+                    if (quantity > 1) {
+                        quantity--;
+                        updateDisplay(quantity);
+                    }
+                });
+
+                plusButton.addEventListener('click', () => {
+                    let quantity = parseInt(quantityDisplay.textContent);
+                    quantity++;
+                    updateDisplay(quantity);
+                });
+
+                function updateDisplay(quantity) {
+                    quantityDisplay.textContent = quantity;
+                    const totalPrice = pricePerPage * quantity;
+                    totalDisplay.textContent = `Tổng: ${totalPrice.toLocaleString()} VND`;
+                    quantityInput.value = quantity;
+                    totalInput.value = totalPrice;
+                }
+            });
+        });
     </script>
 </body>
 </html>
