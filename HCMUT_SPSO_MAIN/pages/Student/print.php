@@ -34,7 +34,7 @@
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            margin-bottom: 400px; /* Increase margin to prevent footer overlap */
+            margin-bottom: 200px; /* Increase margin to prevent footer overlap */
         }
 
         .file-select {

@@ -12,4 +12,4 @@ log icon: https://www.flaticon.com/free-icon/logs_2721273
 report icon: https://www.freepik.com/icon/report_11176291#fromView=keyword&page=1&position=11&uuid=56e38a1a-2e69-4bc8-a4e1-f8b3ffda2a69
 plus black symbol icon: https://www.flaticon.com/free-icon/plus-black-symbol_25304
 setting icon: https://www.pngegg.com/en/png-fbvvv/download
-left down right up arrow icon: https://www.flaticon.com/search?author_id=42&style_id=1182&type=standard&word=arrow
+left down right up double arrow icon: https://www.flaticon.com/search?author_id=42&style_id=1182&type=standard&word=arrow

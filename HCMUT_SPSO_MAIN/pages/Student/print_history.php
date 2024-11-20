@@ -25,20 +25,21 @@
         }
 
         .history-container {
-            position: relative;
+            /* position: relative; */
             width: 100%;
             max-width: 1308px;
-            margin: 183px 0px 0px 66px;
+            /* margin: 183px 0px 0px 66px; */
+            margin: 183px auto;
+            margin-bottom: 0px;
+            text-align: center
             /* padding-top: 0px; */
         }
 
         .page-count-display {
             /* position: absolute; */
             display: flex;
-            align-items: center;
-            gap: 0px;
-            left: 0px;
-            margin-right: px;
+            /* align-items: center; */
+            /* gap: 0px; */
             /* margin-bottom: 20px; */
         }
 
@@ -58,17 +59,17 @@
         }
 
         .search-filters {
-            display: flex;
+            display: flex; 
             /* justify-content: space-between; */
-            width: 100%;
-            
+            /* width: 100%; */
             /* margin: 40px 0px 0px 20px; */
             /* padding: 0 20px; */
         }
 
         .filter-group {
-            display: flex;
-            align-items: center;
+            /* display: flex; */
+            margin-left: auto;
+            /* align-items: center; */
             /* gap: 25px; */
         }
 
@@ -81,9 +82,6 @@
             margin-right: 25px;
         }
         
-        .filter-group .time-label {
-            margin-left: 49px;
-        }
 
         .filter-group .MSMI {
             width: 60px; /* width is already 41px when set to 0px */
@@ -98,22 +96,27 @@
         }
 
         .log-table {
-            width: 1307px;
-            margin: 40px auto;
+            width: 100%;
+            margin: 0px auto;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            padding: 44px;
+            /* padding: 44px; */
+            
         }
 
         .table-header {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
-            padding: 0 20px;
-            margin-bottom: 44px;
+            /* padding-left: 51px; */
+            /* margin-bottom: 44px; */
+            /* padding-left: 51px; */
             border-bottom: 1px solid #D9D9D9;
-            padding-bottom: 20px;
+            text-align: center;
+            /* padding-bottom: 20px; */
+            padding: 40px 20px 40px 20px;
+            
         }
 
         .table-header span {
@@ -143,15 +146,22 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin: 50px 0;
+            margin: 50px 0px;
+            margin-bottom: 0px;
         }
 
         .pagination button {
             width: 31.15px;
             height: 26.98px;
-            background: #FFBF00;
+            /* background: #FFBF00; */
+            background: transparent;
             border: none;
             cursor: pointer;
+        }
+        
+        .pagination button img {
+            width: 17px;
+            height: 17px;
         }
 
         .pagination .page-number {
@@ -237,14 +247,83 @@
                     <span>0470</span>
                     <span>OhYeah.doc</span>
                 </div>
+                <div class="table-row">
+                    <span>12:58:03 01/11/2024</span>
+                    <span>A3</span>
+                    <span>208</span>
+                    <span>8 x A4</span>
+                    <span>0650</span>
+                    <span>AnkaraMessi.docx</span>
+                </div>
+                <div class="table-row">
+                    <span>13:02:46 29/10/2024</span>
+                    <span>A5</span>
+                    <span>212</span>
+                    <span>5 x A4</span>
+                    <span>0953</span>
+                    <span>Siuuuuuuuuuuu.pdf</span>
+                </div>
+                <div class="table-row">
+                    <span>14:30:15 18/10/2024</span>
+                    <span>B5</span>
+                    <span>306</span>
+                    <span>2 x A4 & 5 x A3</span>
+                    <span>0470</span>
+                    <span>OhYeah.doc</span>
+                </div>
+                <div class="table-row">
+                    <span>12:58:03 01/11/2024</span>
+                    <span>A3</span>
+                    <span>208</span>
+                    <span>8 x A4</span>
+                    <span>0650</span>
+                    <span>AnkaraMessi.docx</span>
+                </div>
+                <div class="table-row">
+                    <span>13:02:46 29/10/2024</span>
+                    <span>A5</span>
+                    <span>212</span>
+                    <span>5 x A4</span>
+                    <span>0953</span>
+                    <span>Siuuuuuuuuuuu.pdf</span>
+                </div>
+                <div class="table-row">
+                    <span>14:30:15 18/10/2024</span>
+                    <span>B5</span>
+                    <span>306</span>
+                    <span>2 x A4 & 5 x A3</span>
+                    <span>0470</span>
+                    <span>OhYeah.doc</span>
+                </div>
+                <div class="table-row">
+                    <span>14:30:15 18/10/2024</span>
+                    <span>B5</span>
+                    <span>306</span>
+                    <span>2 x A4 & 5 x A3</span>
+                    <span>0470</span>
+                    <span>OhYeah.doc</span>
+                </div>
             </div>
 
             <div class="pagination">
-                <button class="first-page">⟪</button>
+                <!-- <button class="first-page">⟪</button>
                 <button class="prev-page">⟨</button>
                 <div class="page-number">1 / 3</div>
                 <button class="next-page">⟩</button>
-                <button class="last-page">⟫</button>
+                <button class="last-page">⟫</button> -->
+                <button class="first-page">
+                    <img src="../../css/assets/left-two-arrows.png" alt="first page">
+                </button>
+                <button class="prev-page">
+                    <img src="../../css/assets/left-arrow.png" alt="prev page">
+                </button>
+                <div class="page-number">1 / 3</div>
+                <button class="next-page">
+                    <img src="../../css/assets/right-arrow.png" alt="next page">
+                </button>
+                <button class="last-page">
+                    <img src="../../css/assets/right-two-arrows.png" alt="last page">
+                </button>
             </div>
         </div>
     </div>
