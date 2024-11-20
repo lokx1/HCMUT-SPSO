@@ -140,7 +140,7 @@
                 <img src="../../css/assets/paper.png" alt="Buy Pages">
                 <p>Mua thêm trang với giá rẻ phù hợp với nhu cầu.</p>
             </div>
-            <div class="action-card" onclick="window.location.href='buy_pages.php'">
+            <div class="action-card" onclick="window.location.href='print_history.php'">
                 <span>Lịch sử in</span>
                 <img src="../../css/assets/transaction-history.png" alt="Print History">
                 <p>Xem lại những lần in trước đó của bản thân.</p>

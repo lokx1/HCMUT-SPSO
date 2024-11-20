@@ -243,26 +243,26 @@
         <div class="paper-card paper-a4">
             <span class="paper-size">A4</span>
             <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-            <p class="price">Giá: 1.000 VND</p>
+            <p class="price">1.000 VND</p>
             <div class="quantity-control">
                 <button class="quantity-btn left"></button>
                 <div class="quantity-display">4</div>
                 <button class="quantity-btn right"></button>
             </div>
-            <p class="total">Tổng: 4.000 VND</p>
+            <p class="total">4.000 VND</p>
             <button class="buy-btn">Mua</button>
         </div>
 
         <div class="paper-card paper-a3">
             <span class="paper-size">A3</span>
             <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-            <p class="price">Giá: 2.000 VND</p>
+            <p class="price">2.000 VND</p>
             <div class="quantity-control">
                 <button class="quantity-btn left"></button>
                 <div class="quantity-display">4</div>
                 <button class="quantity-btn right"></button>
             </div>
-            <p class="total">Tổng: 8.000 VND</p>
+            <p class="total">8.000 VND</p>
             <button class="buy-btn">Mua</button>
         </div>
 
