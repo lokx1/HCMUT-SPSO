@@ -10,8 +10,12 @@
             <span class="icon"></span>
         </button>
         <div class="dropdown-content">
-            <a href="printer_info.php">Thông tin máy in</a>
-            <a href="printer_config.php">Tùy chọn in</a>
+            <a href="printer_info.php">Thông tin máy in
+                <span></span>
+            </a>
+            <a href="printer_config.php">Tùy chọn in
+                <span></span>
+            </a>
         </div>
     </div>
 
@@ -21,13 +25,17 @@
             <span class="icon"></span>
         </button>
         <div class="dropdown-content">
-            <a href="print_history.php">Lịch sử in</a>
-            <a href="reports.php">Báo cáo</a>
+            <a href="print_history.php">Lịch sử in
+                <span></span>
+            </a>
+            <a href="reports.php">Báo cáo
+                <span></span>
+            </a>
         </div>
     </div>
 
     <div class="user-info">
         <span class="spso">SPSO</span>
-        <img src="../../assets/default_pfp.png" alt="Profile" class="profile-pic">
+        <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
     </div>
 </nav>

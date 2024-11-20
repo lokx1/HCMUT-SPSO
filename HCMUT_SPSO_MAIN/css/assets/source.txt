@@ -13,3 +13,5 @@ report icon: https://www.freepik.com/icon/report_11176291#fromView=keyword&page=
 plus black symbol icon: https://www.flaticon.com/free-icon/plus-black-symbol_25304
 setting icon: https://www.pngegg.com/en/png-fbvvv/download
 left down right up double arrow icon: https://www.flaticon.com/search?author_id=42&style_id=1182&type=standard&word=arrow
+white-down-arrow icon: https://commons.wikimedia.org/wiki/File:Chevron-icon-drop-down-menu-WHITE.png 
+gray-right-arrow icon: https://icons8.com/icons/set/arrow 
