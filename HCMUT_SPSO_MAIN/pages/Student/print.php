@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            margin-bottom: 400px; /* Increase margin to prevent footer overlap */
+            margin-bottom: 200px; /* Increase margin to prevent footer overlap */
         }
 
         .file-select {
@@ -234,23 +234,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form class="print-form">
         <div class="file-select">
             <div class="file-select-container">
-            <input type="file" id="fileSelector" style="display: none;" accept=".pdf">
-            <button type="button" class="select-btn" onclick="document.getElementById('fileSelector').click();">Chọn tài liệu</button>
-            <span class="file-name">Chưa có tài liệu được chọn</span>
-        <script>
-        document.getElementById('fileSelector').addEventListener('change', function() {
-            const fileInput = this;
-            const filePath = fileInput.value;
-            const allowedExtensions = /(\.pdf)$/i;
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Vui lòng chọn tệp PDF.');
-                fileInput.value = '';
-            } else {
-                const fileName = fileInput.files[0].name;
-                document.querySelector('.file-name').textContent = fileName;
-            }
-        });
-</script>
+                <button type="button" class="select-btn">Chọn tài liệu</button>
+                <span class="file-name">Chưa có tài liệu được chọn</span>
             </div>
         </div>
 
