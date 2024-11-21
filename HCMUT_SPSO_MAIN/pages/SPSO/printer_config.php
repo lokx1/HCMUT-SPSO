@@ -27,14 +27,16 @@
         .config-form {
             position: relative;
             width: 816px;
-            margin: 158px auto;
+            height: 548px;
+            /* margin: 158px auto; */
+            margin: 158px auto 0px;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
             /* padding: 40px; */
             /* Add margin bottom to create space above footer */
-            margin-bottom: 320px;
+            /* margin-bottom: 320px; */
         }
 
         .form-group,
@@ -50,33 +52,41 @@
             font-weight: 400;
             font-size: 21.98px;
             color: #000000;
-            margin-bottom: 8px; /* Reduced from 16px */
+            margin-bottom: 16px; /* Reduced from 16px */
         }
 
-        /* .form-group input {
-            width: 89%;
+        .form-group input {
+            width: 656px;
             height: 55px;
-            background: #FFFFFF;
+            /* background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             padding: 0 20px;
-            font-size: 21.98px;
-        } */
+            font-size: 21.98px; */
+        }
 
         .form-row {
             display: flex;
-            gap: 40px;
-            margin-top: 10px; /* Added to create better spacing */
+            gap: 60px;
+            margin-top: 42px; /* Added to create better spacing */
         }
 
-        .form-col {
+        /* .form-col {
             flex: 1;
+        } */
+
+        .form-col input {
+            width: 278px;
         }
 
         .save-btn {
+            position: absolute;
+            bottom: 76px;
+            left: 245px;
             width: 327px;
             height: 92px;
-            margin: 20px auto;
+            /* margin: 20px auto; */
+            /* margin: 152px auto; */
             display: block;
             background: #D9D9D9;
             border-radius: 50px;
@@ -113,7 +123,8 @@
         <div class="form-row">
             <div class="form-col">
                 <label>Số trang giới hạn mặc định</label>
-                <input type="number" value="0" placeholder="Nhập số trang">
+                <!-- <input type="number" value="0" placeholder="Nhập số trang"> -->
+                <input type="number" placeholder="0">
             </div>
             <div class="form-col">
                 <label>Thời điểm phân phát</label>
@@ -123,6 +134,6 @@
         <button type="submit" class="save-btn">Lưu</button>
     </form>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 </body>
 </html>

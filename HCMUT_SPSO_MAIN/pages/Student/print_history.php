@@ -246,13 +246,21 @@ $printHistory = [
             height: 26.98px;
             /* background: #FFBF00; */
             background: transparent;
+            transition-duration: 0.3s;
             border: none;
             cursor: pointer;
         }
-        
+
+        .pagination button:hover {
+            background-color: #FFBF00;
+        }
+
         .pagination button img {
+            display: block;
             width: 17px;
             height: 17px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .pagination .page-number {

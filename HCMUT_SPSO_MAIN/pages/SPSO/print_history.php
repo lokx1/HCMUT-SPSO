@@ -9,47 +9,36 @@
     <title>Lịch sử in - SPSO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/background.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
         .history-container {
-            position: relative;
+            /* position: relative; */
             width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding-top: 153px;
-        }
-
-        .back-to-home {
-            position: absolute;
-            width: 224px;
-            height: 57px;
-            left: 37px;
-            top: 153px;
-            background: #FFFFFF;
-            border: 1px solid #000000;
-            border-radius: 30px;
-            font-family: 'Inter';
-            font-weight: 400;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 20px;
-            cursor: pointer;
+            max-width: 1308px;
+            /* margin: 183px 0px 0px 66px; */
+            margin: 176px auto;
+            margin-bottom: 0px;
+            text-align: center
+            /* padding-top: 0px; */
         }
 
         .search-filters {
             display: flex;
-            justify-content: space-between;
-            width: 1307px; /* Match table width */
+            /* justify-content: space-between;
+            width: 1307px; 
             margin: 133px auto 36px;
-            padding: 0 20px;
+            padding: 0 20px; */
+            margin-bottom: 16px;
         }
 
         .filter-group {
-            display: flex;
+            /* display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 25px; */
+            margin-left: auto;
         }
 
         .filter-group label {
@@ -58,25 +47,26 @@
             font-size: 21.98px;
             color: #000000;
             white-space: nowrap;
+            margin-right: 25px;
         }
 
         .filter-group input {
-            height: 55px;
+            /* height: 55px;
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             padding: 0 20px;
-            font-size: 21.98px;
+            font-size: 21.98px; */
         }
 
         /* MSSV filter */
         .filter-group:nth-child(1) input {
-            width: 137px;
+            width: 97px;
         }
 
         /* MSMI filter */
         .filter-group:nth-child(2) input {
-            width: 101px;
+            width: 61px;
         }
 
         /* Date range filter */
@@ -85,24 +75,29 @@
         }
 
         .filter-group:nth-child(3) input {
-            width: 186px;
+            width: 146px;
         }
 
         .log-table {
-            width: 1307px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0px auto;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            padding: 44px;
+            /* padding: 44px; */
         }
 
         .table-header {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1.5fr;
-            padding: 0 20px;
-            margin-bottom: 44px;
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr;
+            /* padding-left: 51px; */
+            /* margin-bottom: 44px; */
+            /* padding-left: 51px; */
+            border-bottom: 1px solid #D9D9D9;
+            text-align: center;
+            /* padding-bottom: 20px; */
+            padding: 40px 20px 40px 20px;
         }
 
         .table-header span {
@@ -114,7 +109,7 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1.5fr;
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr;
             padding: 20px;
             border-top: 1px solid #D9D9D9;
         }
@@ -124,6 +119,7 @@
             font-weight: 400;
             font-size: 21.98px;
             color: #000000;
+            text-align: center;
         }
 
         .pagination {
@@ -132,14 +128,29 @@
             align-items: center;
             gap: 10px;
             margin: 50px 0;
+            margin-bottom: 0px;
         }
 
         .pagination button {
             width: 31.15px;
             height: 26.98px;
-            background: #FFBF00;
+            /* background: #FFBF00; */
+            background: transparent;
+            transition-duration: 0.3s;
             border: none;
             cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #FFBF00;
+        }
+
+        .pagination button img {
+            display: block;
+            width: 17px;
+            height: 17px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .pagination .page-number {
@@ -154,39 +165,24 @@
             text-align: center;
             line-height: 31px;
         }
-
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .decoration-top {
-            right: -160px;
-            top: 200px;
-        }
-
-        .decoration-bottom {
-            left: -193px;
-            top: 664px;
-        }
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <?php include '../background.php'; ?>
 
-    <div class="decoration decoration-top"></div>
-    <div class="decoration decoration-bottom"></div>
+    <script>
+        const editBtn = document.querySelector(".xem .dropdown-btn");
+        editBtn.style.background = "#004787";
+        editBtn.style.pointerEvents = "none";
+        editBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
 
     <div class="history-container">
-        <button onclick="window.location.href='home.php'" class="back-to-home">
-            <span>←</span>
-            <span>Back to home</span>
-        </button>
-
         <div class="search-filters">
             <div class="filter-group">
                 <label>Mã số sinh viên:</label>
@@ -230,18 +226,90 @@
                 <span>0953</span>
                 <span>Siuuuuuuuuuuu.pdf</span>
             </div>
+            <div class="table-row">
+                <span>12:58:03 01/11/2024</span>
+                <span>2252416</span>
+                <span>Lionel Messi</span>
+                <span>8 x A4</span>
+                <span>0650</span>
+                <span>AnkaraMessi.docx</span>
+            </div>
+            <div class="table-row">
+                <span>13:02:46 29/10/2024</span>
+                <span>2252932</span>
+                <span>Cristiano Ronaldo</span>
+                <span>5 x A4</span>
+                <span>0953</span>
+                <span>Siuuuuuuuuuuu.pdf</span>
+            </div>
+            <div class="table-row">
+                <span>12:58:03 01/11/2024</span>
+                <span>2252416</span>
+                <span>Lionel Messi</span>
+                <span>8 x A4</span>
+                <span>0650</span>
+                <span>AnkaraMessi.docx</span>
+            </div>
+            <div class="table-row">
+                <span>13:02:46 29/10/2024</span>
+                <span>2252932</span>
+                <span>Cristiano Ronaldo</span>
+                <span>5 x A4</span>
+                <span>0953</span>
+                <span>Siuuuuuuuuuuu.pdf</span>
+            </div>
+            <div class="table-row">
+                <span>12:58:03 01/11/2024</span>
+                <span>2252416</span>
+                <span>Lionel Messi</span>
+                <span>8 x A4</span>
+                <span>0650</span>
+                <span>AnkaraMessi.docx</span>
+            </div>
+            <div class="table-row">
+                <span>13:02:46 29/10/2024</span>
+                <span>2252932</span>
+                <span>Cristiano Ronaldo</span>
+                <span>5 x A4</span>
+                <span>0953</span>
+                <span>Siuuuuuuuuuuu.pdf</span>
+            </div>
+            <div class="table-row">
+                <span>12:58:03 01/11/2024</span>
+                <span>2252416</span>
+                <span>Lionel Messi</span>
+                <span>8 x A4</span>
+                <span>0650</span>
+                <span>AnkaraMessi.docx</span>
+            </div>
+            <div class="table-row">
+                <span>13:02:46 29/10/2024</span>
+                <span>2252932</span>
+                <span>Cristiano Ronaldo</span>
+                <span>5 x A4</span>
+                <span>0953</span>
+                <span>Siuuuuuuuuuuu.pdf</span>
+            </div>
             <!-- Add more rows as needed -->
         </div>
 
         <div class="pagination">
-            <button class="first-page">⟪</button>
-            <button class="prev-page">⟨</button>
-            <div class="page-number">1 / 3</div>
-            <button class="next-page">⟩</button>
-            <button class="last-page">⟫</button>
-        </div>
+                <button class="first-page">
+                    <img src="../../css/assets/left-two-arrows.png" alt="first page">
+                </button>
+                <button class="prev-page">
+                    <img src="../../css/assets/left-arrow.png" alt="prev page">
+                </button>
+                <div class="page-number">1 / 3</div>
+                <button class="next-page">
+                    <img src="../../css/assets/right-arrow.png" alt="next page">
+                </button>
+                <button class="last-page">
+                    <img src="../../css/assets/right-two-arrows.png" alt="last page">
+                </button>
+            </div>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 </body>
 </html>

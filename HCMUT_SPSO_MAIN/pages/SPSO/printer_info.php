@@ -152,7 +152,7 @@
     <?php include '../background.php'; ?>
 
     <script>
-        const editBtn = document.querySelector(".dropdown .dropdown-btn");
+        const editBtn = document.querySelector(".chinh-sua .dropdown-btn");
         editBtn.style.background = "#004787";
         editBtn.style.pointerEvents = "none";
         editBtn.style.cursor = "default";
