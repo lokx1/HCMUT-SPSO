@@ -4,6 +4,7 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden ;
     margin: 0;
     padding-top: 100px;
     background: #FFFFFF;
@@ -13,12 +14,12 @@ body {
 }
 
 .main-content {
-    position: relative;
+   /* position: relative;
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
-    flex: 1;
+    flex: 1;*/
     min-height: calc(100vh - 556px); /* 100vh - (header + footer height) */
 }
 
@@ -28,31 +29,42 @@ body {
     width: 100%;
     height: 622px;
     margin-top: 100px;
+    margin-top: 0px;
+    background: url('../../css/assets/hero_3_cropped.webp');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
-.hero img {
+.hero-imgage {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.advertisement {
+.advertisement  {
     position: absolute;
     width: 874px;
     height: 307px;
     left: 53px;
     top: 73px;
     background: rgba(0, 0, 0, 0.5);
-    padding: 40px;
 }
 
-.advertisement h1 {
+.advertisement span {
+    position: absolute;
+    margin-top: 38px;
+    margin-left: 14px;
     width: 845px;
     font-weight: 700;
     font-size: 64px;
     line-height: 77px;
+    text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
     color: #FFFFFF;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
 }
 
 .view-report-btn {
@@ -76,7 +88,8 @@ body {
     position: relative;
     width: 100%;
     height: 77px;
-    margin: 161px 0;
+    margin-top: 161px;
+    margin-bottom: 161px;
     text-align: center;
 }
 
@@ -110,22 +123,22 @@ body {
 .action-buttons {
     display: grid;
     grid-template-columns: repeat(2, 518px);
-    gap: 100px;
+    /* gap: 100px; */
     justify-content: center;
-    margin: 50px 0;
+    /* margin: 50px auto; */
 }
 
 .action-card {
     box-sizing: border-box;
-    position: relative;
     width: 518px;
     height: 389px;
     background: #FFFFFF;
     border: 1px solid #000000;
-    padding: 27px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 27px;
+    cursor: pointer;
 }
 
 .action-card .card-title {
@@ -133,19 +146,19 @@ body {
     font-size: 36.1046px;
     line-height: 44px;
     color: #000000;
-    cursor: pointer;
-    margin-bottom: 28px;
+    /* cursor: pointer;
+    margin-bottom: 28px; */
 }
 
 .action-card img {
     width: 127px;
     height: 127px;
-    margin: 0 auto;
+    margin: 28px 0;
 }
 
 .action-card p {
     width: 466px;
-    margin-top: auto;
+    /* margin-top: auto; */
     font-weight: 400;
     font-size: 24px;
     line-height: 29px;
@@ -175,13 +188,13 @@ body {
     gap: 10px;
 }
 
-/* Footer */
+/* Footer
 .footer {
     position: relative;
     width: 100%;
     margin-top: auto;
     background: #000000;
-    min-height: 456px; /* 400px content + 56px copyright */
+    min-height: 456px; /* 400px content + 56px copyright 
 }
 
 .footer-content {
@@ -216,4 +229,4 @@ body {
     justify-content: center;
     font-size: 24px;
     line-height: 24px;
-}
+} */

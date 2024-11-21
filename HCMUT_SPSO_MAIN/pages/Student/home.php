@@ -1,7 +1,7 @@
 <?php
 /* Session checks here */
 session_start();
-include 'functions.php';
+include '../../js/controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,7 @@ include 'functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Homepage</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
@@ -112,7 +113,7 @@ include 'functions.php';
             font-weight: 400;
             font-size: 24px;
             line-height: 29px;
-            /* text-align: center; */
+           text-align: center; 
             color: #000000;
             margin-top: auto;
         }
@@ -150,6 +151,6 @@ include 'functions.php';
         </section>
     </main>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 </body>
 </html>

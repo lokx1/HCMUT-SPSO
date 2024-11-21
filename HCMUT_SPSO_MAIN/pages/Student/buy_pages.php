@@ -1,39 +1,12 @@
 <?php
 /* Session checks here */
 session_start();
-include 'functions.php';
+include '../../js/controller.php';
 
 if (!isset($_SESSION['remaining_pages'])) {
     $_SESSION['remaining_pages'] = 0;
+    resetRemainingPages();
 }
-
-class Paper {
-    public $size;
-    public $pricePerPage;
-    public $quantity;
-    public $totalPrice;
-
-    public function __construct($size, $pricePerPage, $quantity = 1) {
-        $this->size = $size;
-        $this->pricePerPage = $pricePerPage;
-        $this->quantity = $quantity;
-        $this->updateTotalPrice();
-    }
-
-    public function updateTotalPrice() {
-        $this->totalPrice = $this->pricePerPage * $this->quantity;
-    }
-
-    public function setQuantity($quantity) {
-        $this->quantity = $quantity;
-        $this->updateTotalPrice();
-    }
-}
-
-$papers = [
-    new Paper('A4', 1000),
-    new Paper('A3', 2000)
-];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $size = $_POST['size'];
@@ -45,11 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         }
     }
-    // Update remaining pages
+
+    // Update remaining pages based on paper size
     $remainingPages = getRemainingPages();
-    $remainingPages += $quantity;
+    
+    if ($size == 'A3') {
+        $remainingPages += 2 * $quantity;
+    } else if ($size == 'A4') {
+        $remainingPages += $quantity;
+    }
+
     setRemainingPages($remainingPages);
 }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -59,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mua trang - Student</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
@@ -89,12 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             position: absolute;
             width: 428px;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            transition: background 0.3s ease;
+            /* transition: background 0.3s ease;     */
             display: flex;
             flex-direction: column;
             align-items: center;
             color: #FFFFFF;
+         
             
             /*padding-bottom: 41px; /* Add padding to fit button */
         }
@@ -104,7 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } */
 
         .paper-a4 {
+            background: rgba(0, 0, 0, 0.8);
             right: 441px; /* Align with right side of info sidebar */
+   
         }
 
         .paper-a3 {
@@ -316,25 +301,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="total">8.000 VND</p>
             <button class="buy-btn">Mua</button>
         </div> -->
-        <?php foreach ($papers as $paper): ?>
-        <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
-            <span class="paper-size"><?php echo $paper->size; ?></span>
-            <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-            <p class="price">Giá: <?php echo number_format($paper->pricePerPage, 0, ',', '.'); ?> VND</p>
-            <div class="quantity-control">
-                <button type="button" class="quantity-btn left"></button>
-                <div class="quantity-display"><?php echo $paper->quantity; ?></div>
-                <button type="button" class="quantity-btn right"></button>
-            </div>
-            <p class="total">Tổng: <?php echo number_format($paper->totalPrice, 0, ',', '.'); ?> VND</p>
-            <form action="buy_pages.php" method="post">
-                <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
-                <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
-                <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
-                <button type="submit" class="buy-btn">Mua</button>
-            </form>
+
+
+<?php foreach ($papers as $paper): ?>
+    
+    <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
+        <span class="paper-size"><?php echo $paper->size; ?></span>
+        <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
+        <p class="price">Giá: <?php echo number_format($paper->pricePerPage, 0, ',', '.'); ?> VND</p>
+        <div class="quantity-control">
+            <button type="button" class="quantity-btn left"></button>
+            <div class="quantity-display"><?php echo $paper->quantity; ?></div>
+            <button type="button" class="quantity-btn right"></button>
         </div>
-        <?php endforeach; ?>
+        <p class="total">Tổng: <?php echo number_format($paper->totalPrice, 0, ',', '.'); ?> VND</p>
+        <form action="buy_pages.php" method="post">
+            <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
+            <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
+            <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
+            <button type="submit" class="buy-btn">Mua</button>
+        </form>
+    </div>
+<?php endforeach; ?>
 
         <div class="divider divider-top"></div>
         <div class="divider divider-bottom"></div>

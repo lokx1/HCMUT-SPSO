@@ -9,8 +9,15 @@
     <title>Thêm máy in - SPSO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/background.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
+      .back-to-home {
+            width: 123px;
+            height: 57px;
+        }
         body {
             position: relative;
             width: 100%;
@@ -26,12 +33,12 @@
             position: relative;
             width: 816px;
             height: fit-content;
-            margin: 232px auto 200px;
+            margin: 132px auto 200px;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            padding: 40px;
+            /* padding: 40px; */
         }
 
         .form-row {
@@ -57,8 +64,8 @@
             height: 55px;
         }
 
-        .form-group {
-            margin-bottom: 40px;
+        .placement {
+            flex-direction: column;
         }
 
         .location-container {
@@ -66,7 +73,7 @@
             position: relative;
             width: 714px;
             height: 266px;
-            margin: 38px auto;
+            /* margin: 38px auto; */
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 30px;
@@ -119,37 +126,32 @@
             margin-top: auto;
         }
 
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
+        .form-group{
+            margin-bottom: 40px;
+            display: flex;
+            gap: 25px;
+            margin-left: 60px;
         }
-
-        .decoration-top {
-            right: -160px;
-            top: 200px;
+        .brand {
+            margin-top: 76px;
         }
-
-        .decoration-bottom {
-            left: -193px;
-            top: 664px;
-        }
-
         .form-group label {
             display: block;
+            transform: translateY(25%);
             font-family: 'Inter';
             font-weight: 400;
             font-size: 21.98px;
-            line-height: 100%;
+            /* line-height: 100%; */
             color: #000000;
-            margin-bottom: 16px;
+            /* margin-bottom: 16px; */
+        }
+        .brand input {
+            width: 354px;
         }
 
-        .form-group input, 
-        .form-group select, 
+        .model input {
+            width: 505px;
+        }
         .form-group textarea {
             width: 100%;
             max-width: 714px; /* Prevent touching edges */
@@ -168,27 +170,37 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    
+    <script>
+        const editBtn = document.querySelector(".dropdown .dropdown-btn");
+        editBtn.style.background = "#004787";
+        editBtn.style.pointerEvents = "none";
+        editBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
     <div class="decoration decoration-top"></div>
     <div class="decoration decoration-bottom"></div>
     
     <button onclick="window.location.href='printer_info.php'" class="back-to-home">
-        <span>←</span>
+        <!-- <span>←</span> -->
+        <img src="../../css/assets/left-arrow.png" alt="go back arrow">
         <span>Back</span>
     </button>
 
     <form class="add-printer-form">
-        <div class="form-group">
+    <div class="form-group brand">
             <label>Thương hiệu/nhà sản xuất:</label>
             <input type="text" placeholder="Epson">
         </div>
 
-        <div class="form-group">
+        <div class="form-group model">
             <label>Mẫu máy in:</label>
             <input type="text" placeholder="WorkForce Pro WF-3730">
         </div>
 
-        <div class="form-group">
+        <div class="form-group placement">
             <label>Vị trí lắp đặt máy in:</label>
             <div class="location-container">
                 <div class="form-group">

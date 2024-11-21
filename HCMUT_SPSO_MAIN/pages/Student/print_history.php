@@ -1,7 +1,34 @@
 <?php
 /* Session checks here */
 session_start();
-include 'functions.php';
+include '../../js/controller.php';
+$printHistory = [
+    [
+        'time' => '12:58:03 01/11/2024',
+        'building' => 'A3',
+        'room' => '208',
+        'pages' => '8 x A4',
+        'printerId' => '0650',
+        'fileName' => 'AnkaraMessi.docx'
+    ],
+    [
+        'time' => '13:02:46 29/10/2024',
+        'building' => 'A5',
+        'room' => '212',
+        'pages' => '5 x A4',
+        'printerId' => '0953',
+        'fileName' => 'Siuuuuuuuuuuu.pdf'
+    ],
+    [
+        'time' => '14:30:15 18/10/2024',
+        'building' => 'B5',
+        'room' => '306',
+        'pages' => '2 x A4 & 5 x A3',
+        'printerId' => '0470',
+        'fileName' => 'OhYeah.doc'
+    ]
+    // Add more entries as needed
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +40,8 @@ include 'functions.php';
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
-        body {
-            position: relative;
+       body {
+            /* position: relative;
             width: 100%;
             min-height: 100vh;
             background: #FFFFFF;
@@ -22,15 +49,12 @@ include 'functions.php';
             padding-top: 100px;
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh + 1200px);
+            min-height: calc(100vh + 1200px); */
         }
 
         .history-container {
             /* position: relative; */
             width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding-top: 153px;
             max-width: 1308px;
             /* margin: 183px 0px 0px 66px; */
             margin: 183px auto;
@@ -40,36 +64,32 @@ include 'functions.php';
         }
 
         .page-count-display {
-            position: relative;
+            /* position: absolute; */
             display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-left: 131px;
-            margin-bottom: 20px;
             /* align-items: center; */
             /* gap: 0px; */
             /* margin-bottom: 20px; */
         }
 
         .page-count-display img {
+            
             width: 65px;
             height: 64px;
         }
 
-        .page-count-display p {
+        .page-count-display span {
+            width: 198px;
             font-family: 'Inter';
             font-style: italic;
             font-weight: 700;
             font-size: 24px;
+            line-height: 24px;
             color: #F31260;
+            text-align: left;
+            padding-top: 7px;
         }
 
         .search-filters {
-            display: flex;
-            justify-content: space-between;
-            width: 1307px;
-            margin: 40px auto 20px;
-            padding: 0 20px;
             display: flex; 
             /* justify-content: space-between; */
             /* width: 100%; */
@@ -78,9 +98,6 @@ include 'functions.php';
         }
 
         .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 25px;
             /* display: flex; */
             margin-left: auto;
             /* align-items: center; */
@@ -108,6 +125,7 @@ include 'functions.php';
         .filter-group span {
             margin: 0px 9.5px 0px 9.5px;
         }
+
 
         .log-table {
             width: 100%;
@@ -190,52 +208,24 @@ include 'functions.php';
             line-height: 31px;
         }
 
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .decoration-top {
-            right: -160px;
-            top: 185px;
-        }
-
-        .decoration-bottom {
-            left: -160px;
-            top: 648px;
-        }
-
-        .back-to-home {
-            position: absolute;
-            width: 224px;
-            height: 57px;
-            left: 37px;
-            top: 153px;
-            background: #FFFFFF;
-            border: 1px solid #000000;
-            border-radius: 30px;
-            font-family: 'Inter';
-            font-weight: 400;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 20px;
-            cursor: pointer;
-        }
-
-        .content-wrapper {
-            margin-top: 133px;
-        }
+        /* .content-wrapper {
+            margin-top: 131px;
+        } */
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
-
+    <?php include 'background.php'; ?>
+    <script>
+        const printBtn = document.querySelector(".nav-buttons .nav-btn-history");
+        printBtn.style.background = "#004787";
+        printBtn.style.pointerEvents = "none";
+        printBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
     <div class="decoration decoration-top"></div>
     <div class="decoration decoration-bottom"></div>
 
@@ -273,94 +263,19 @@ include 'functions.php';
                     <span>MSMI</span>
                     <span>Tên tệp</span>
                 </div>
-                <div class="table-row">
-                    <span>12:58:03 01/11/2024</span>
-                    <span>A3</span>
-                    <span>208</span>
-                    <span>8 x A4</span>
-                    <span>0650</span>
-                    <span>AnkaraMessi.docx</span>
-                </div>
-                <div class="table-row">
-                    <span>13:02:46 29/10/2024</span>
-                    <span>A5</span>
-                    <span>212</span>
-                    <span>5 x A4</span>
-                    <span>0953</span>
-                    <span>Siuuuuuuuuuuu.pdf</span>
-                </div>
-                <div class="table-row">
-                    <span>14:30:15 18/10/2024</span>
-                    <span>B5</span>
-                    <span>306</span>
-                    <span>2 x A4 & 5 x A3</span>
-                    <span>0470</span>
-                    <span>OhYeah.doc</span>
-                </div>
-                <div class="table-row">
-                    <span>12:58:03 01/11/2024</span>
-                    <span>A3</span>
-                    <span>208</span>
-                    <span>8 x A4</span>
-                    <span>0650</span>
-                    <span>AnkaraMessi.docx</span>
-                </div>
-                <div class="table-row">
-                    <span>13:02:46 29/10/2024</span>
-                    <span>A5</span>
-                    <span>212</span>
-                    <span>5 x A4</span>
-                    <span>0953</span>
-                    <span>Siuuuuuuuuuuu.pdf</span>
-                </div>
-                <div class="table-row">
-                    <span>14:30:15 18/10/2024</span>
-                    <span>B5</span>
-                    <span>306</span>
-                    <span>2 x A4 & 5 x A3</span>
-                    <span>0470</span>
-                    <span>OhYeah.doc</span>
-                </div>
-                <div class="table-row">
-                    <span>12:58:03 01/11/2024</span>
-                    <span>A3</span>
-                    <span>208</span>
-                    <span>8 x A4</span>
-                    <span>0650</span>
-                    <span>AnkaraMessi.docx</span>
-                </div>
-                <div class="table-row">
-                    <span>13:02:46 29/10/2024</span>
-                    <span>A5</span>
-                    <span>212</span>
-                    <span>5 x A4</span>
-                    <span>0953</span>
-                    <span>Siuuuuuuuuuuu.pdf</span>
-                </div>
-                <div class="table-row">
-                    <span>14:30:15 18/10/2024</span>
-                    <span>B5</span>
-                    <span>306</span>
-                    <span>2 x A4 & 5 x A3</span>
-                    <span>0470</span>
-                    <span>OhYeah.doc</span>
-                </div>
-                <div class="table-row">
-                    <span>14:30:15 18/10/2024</span>
-                    <span>B5</span>
-                    <span>306</span>
-                    <span>2 x A4 & 5 x A3</span>
-                    <span>0470</span>
-                    <span>OhYeah.doc</span>
-                </div>
+                <?php foreach ($printHistory as $entry): ?>
+                    <div class="table-row">
+                        <span><?php echo $entry['time']; ?></span>
+                        <span><?php echo $entry['building']; ?></span>
+                        <span><?php echo $entry['room']; ?></span>
+                        <span><?php echo $entry['pages']; ?></span>
+                        <span><?php echo $entry['printerId']; ?></span>
+                        <span><?php echo $entry['fileName']; ?></span>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
             <div class="pagination">
-                <!-- <button class="first-page">⟪</button>
-                <button class="prev-page">⟨</button>
-                <div class="page-number">1 / 3</div>
-                <button class="next-page">⟩</button>
-                <button class="last-page">⟫</button> -->
                 <button class="first-page">
                     <img src="../../css/assets/left-two-arrows.png" alt="first page">
                 </button>
@@ -377,6 +292,7 @@ include 'functions.php';
             </div>
         </div>
     </div>
+
 
     <?php include 'footer.php'; ?>
 </body>
