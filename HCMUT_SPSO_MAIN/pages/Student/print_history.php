@@ -80,8 +80,7 @@ $printHistory = [
             height: 64px;
         }
 
-        .page-count-display span {
-            width: 198px;
+      
         .page-count-display span {
             width: 198px;
             font-family: 'Inter';
