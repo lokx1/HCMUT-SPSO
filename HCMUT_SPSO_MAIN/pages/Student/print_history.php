@@ -26,6 +26,62 @@ $printHistory = [
         'pages' => '2 x A4 & 5 x A3',
         'printerId' => '0470',
         'fileName' => 'OhYeah.doc'
+    ],
+    [
+        'time' => '12:58:03 01/11/2024',
+        'building' => 'A3',
+        'room' => '208',
+        'pages' => '8 x A4',
+        'printerId' => '0650',
+        'fileName' => 'AnkaraMessi.docx'
+    ],
+    [
+        'time' => '13:02:46 29/10/2024',
+        'building' => 'A5',
+        'room' => '212',
+        'pages' => '5 x A4',
+        'printerId' => '0953',
+        'fileName' => 'Siuuuuuuuuuuu.pdf'
+    ],
+    [
+        'time' => '14:30:15 18/10/2024',
+        'building' => 'B5',
+        'room' => '306',
+        'pages' => '2 x A4 & 5 x A3',
+        'printerId' => '0470',
+        'fileName' => 'OhYeah.doc'
+    ],
+    [
+        'time' => '12:58:03 01/11/2024',
+        'building' => 'A3',
+        'room' => '208',
+        'pages' => '8 x A4',
+        'printerId' => '0650',
+        'fileName' => 'AnkaraMessi.docx'
+    ],
+    [
+        'time' => '13:02:46 29/10/2024',
+        'building' => 'A5',
+        'room' => '212',
+        'pages' => '5 x A4',
+        'printerId' => '0953',
+        'fileName' => 'Siuuuuuuuuuuu.pdf'
+    ],
+    [
+        'time' => '14:30:15 18/10/2024',
+        'building' => 'B5',
+        'room' => '306',
+        'pages' => '2 x A4 & 5 x A3',
+        'printerId' => '0470',
+        'fileName' => 'OhYeah.doc'
+    ],
+    [
+        'time' => '14:30:15 18/10/2024',
+        'building' => 'B5',
+        'room' => '306',
+        'pages' => '2 x A4 & 5 x A3',
+        'printerId' => '0470',
+        'fileName' => 'OhYeah.doc'
     ]
     // Add more entries as needed
 ];
@@ -38,6 +94,7 @@ $printHistory = [
     <title>Lịch sử in - Student</title>
  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/background.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
@@ -264,7 +321,7 @@ $printHistory = [
                         <span><?php echo $entry['room']; ?></span>
                         <span><?php echo $entry['pages']; ?></span>
                         <span><?php echo $entry['printerId']; ?></span>
-                        <span><?php echo $entry['fileName']; ?></span>
+                        <span><?php echo $entry['fileName']; ?></span>  
                     </div>
                 <?php endforeach; ?>
             </div>

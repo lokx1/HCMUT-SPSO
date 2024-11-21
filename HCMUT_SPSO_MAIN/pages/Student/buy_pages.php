@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Mua trang - Student</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/background.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
@@ -313,8 +314,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
                 <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
                 <!-- <button type="submit" class="buy-btn">Mua</button> -->
-                <button type="submit" class="buy-btn">Mua</button>
             </form>
+            <button type="submit" class="buy-btn">Mua</button>
         </div>
         <?php endforeach; ?>
 
