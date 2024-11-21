@@ -34,7 +34,8 @@
             position: relative;
             width: 816px;
             height: fit-content;
-            margin: 132px auto 200px;
+            /* height: 1118px; */
+            margin: 132px auto 0px;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
@@ -42,22 +43,33 @@
             /* padding: 40px; */
         }
 
+        .form-group{
+            margin-bottom: 40px;
+            display: flex;
+            gap: 25px;
+            margin-left: 60px;
+        }
+
         .form-row {
             display: flex;
-            justify-content: space-between;
-            margin: 57px 30px 0 30px;
-            gap: 40px;
+            /* justify-content: space-between; */
+            /* margin: 57px 30px 0 30px; */
+            /* gap: 40px;   */
+            margin-top: 42px;
+            gap: 18px;
         }
 
         .form-row .form-group {
+            display: flex;
+            flex-direction: column;
             width: 318px;
             margin: 0;
             padding: 0;
         }
 
         .form-row .form-group label {
-            position: relative;
-            margin-bottom: 16px;
+            /* position: relative; */
+            /* margin-bottom: 16px; */
         }
 
         .form-row .form-group .dropdown-list {
@@ -65,7 +77,8 @@
             height: 55px;
         }
 
-        .placement {
+        .placement, 
+        .description {
             flex-direction: column;
         }
 
@@ -78,20 +91,31 @@
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 30px;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .location-container .form-group:first-child {
-            width: 654px;
+            /* width: 654px;
             height: 55px;
-            margin: 18px auto;
+            margin: 18px auto; */
+            margin-left: 30px;
+            /* margin-top: 38px; */
+            /* margin-bottom: 0px; */
+            
         }
 
         .location-container .form-group {
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
+            /* margin-left: 30px; */
+            margin-top: 38px;
+            /* margin-bottom: 42px; */
         }
 
-        .dropdown-list {
+        .location-container .form-row .form-group {
+            margin-top: -12px;
+        }
+
+        /* .dropdown-list {
             box-sizing: border-box;
             width: 100%;
             height: 55px;
@@ -100,11 +124,12 @@
             border-radius: 10px;
             padding: 16px;
             font-size: 21.98px;
-        }
+        } */
 
         .campus-dropdown {
             width: 548px;
-            height: 110px;
+            height: 55px;
+            /* height: 110px; */
         }
 
         .add-btn {
@@ -122,17 +147,10 @@
             color: #000000;
             cursor: pointer;
         }
-
+/* 
         .footer {
             margin-top: auto;
-        }
-
-        .form-group{
-            margin-bottom: 40px;
-            display: flex;
-            gap: 25px;
-            margin-left: 60px;
-        }
+        } */
 
         .brand {
             margin-top: 76px;
@@ -159,17 +177,15 @@
  
         .form-group textarea {
             width: 100%;
-            max-width: 714px; /* Prevent touching edges */
+            max-width: 682px; /* Prevent touching edges */
+            height: 220px;
+            resize: none;
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
-            padding: 16px;
+            /* padding: 16px; */
+            padding: 16px 0px 0px 21px;
             font-size: 21.98px;
-        }
-
-        .form-group textarea {
-            height: 220px;
-            resize: none;
         }
     </style>
 </head>
@@ -177,7 +193,7 @@
     <?php include 'header.php'; ?>
 
     <script>
-        const editBtn = document.querySelector(".dropdown .dropdown-btn");
+        const editBtn = document.querySelector(".chinh-sua .dropdown-btn");
         editBtn.style.background = "#004787";
         editBtn.style.pointerEvents = "none";
         editBtn.style.cursor = "default";
@@ -242,7 +258,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group description">
             <label>Mô tả:</label>
             <textarea placeholder="Đây là máy in."></textarea>
         </div>
@@ -250,6 +266,6 @@
         <button type="submit" class="add-btn">Thêm máy in</button>
     </form>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 </body>
 </html>

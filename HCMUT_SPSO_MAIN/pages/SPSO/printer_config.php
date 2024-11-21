@@ -9,6 +9,9 @@
     <title>Tùy chọn in - SPSO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/background.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
         body {
@@ -21,59 +24,27 @@
             padding-top: 100px;
         }
 
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .decoration-top {
-            right: -160px;
-            top: 185px;
-        }
-
-        .decoration-bottom {
-            left: -160px;
-            top: 648px;
-        }
-
-        .back-to-home {
-            position: relative;
-            width: 224px;
-            height: 57px;
-            margin: 40px 0 0 37px;
-            background: #FFFFFF;
-            border: 1px solid #000000;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
         .config-form {
             position: relative;
             width: 816px;
-            margin: 40px auto;
+            margin: 158px auto;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            padding: 40px;
+            /* padding: 40px; */
             /* Add margin bottom to create space above footer */
             margin-bottom: 320px;
         }
 
-        .form-group {
-            margin-bottom: 20px; /* Reduced from 40px */
+        .form-group,
+        .form-row {
+            /*margin-bottom: 20px; /* Reduced from 40px */
+            margin: 76px 0px 0px 60px;
         }
 
-        .form-group label {
+        .form-group label,
+        .form-row label {
             display: block;
             font-family: 'Inter';
             font-weight: 400;
@@ -82,7 +53,7 @@
             margin-bottom: 8px; /* Reduced from 16px */
         }
 
-        .form-group input {
+        /* .form-group input {
             width: 89%;
             height: 55px;
             background: #FFFFFF;
@@ -90,7 +61,7 @@
             border-radius: 10px;
             padding: 0 20px;
             font-size: 21.98px;
-        }
+        } */
 
         .form-row {
             display: flex;
@@ -120,19 +91,24 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-    
-    <div class="decoration decoration-top"></div>
-    <div class="decoration decoration-bottom"></div>
-    
-    <button onclick="window.location.href='home.php'" class="back-to-home">
-        <span>←</span>
-        <span>Back to home</span>
-    </button>
+    <?php include '../background.php'; ?>
+
+    <script>
+        const editBtn = document.querySelector(".chinh-sua .dropdown-btn");
+        editBtn.style.background = "#004787";
+        editBtn.style.pointerEvents = "none";
+        editBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
 
     <form class="config-form">
         <div class="form-group">
             <label>Định dạng tập tin cho phép</label>
-            <input type="text" value="PDF;DOCX;DOC;PNG" placeholder="Nhập định dạng tập tin">
+            <!-- <input type="text" value="PDF;DOCX;DOC;PNG" placeholder="Nhập định dạng tập tin"> -->
+            <input type="text" placeholder="PDF;DOCX;DOC;PNG">
         </div>
         <div class="form-row">
             <div class="form-col">

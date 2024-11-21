@@ -9,19 +9,27 @@
     <title>Thay đổi trạng thái máy in - SPSO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/background.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
+        .back-to-home {
+            width: 123px;
+            height: 57px;
+        }
+
         .printer-state-form {
             position: relative;
             width: 816px;
             height: 736px;
             left: calc(50% - 816px/2);
-            top: 232px;
+            top: 132px;
             background: #FFFFFF;
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            padding: 40px;
+            /* padding: 40px; */
             margin-bottom: 400px; /* Increase margin to prevent footer overlap */
             display: flex;
             flex-direction: column;
@@ -29,20 +37,22 @@
         }
 
         .printer-image {
-            width: 417px;
-            height: 291px;
-            margin: 37px auto;
+            width: 400px;
+            height: 400px;
+            /* margin: 37px auto */
         }
 
         .printer-select {
             width: 696px;
-            margin: 40px auto;
+            gap: 25px;
+            /* margin: 40px auto; */
+            margin-top: 40px;
             display: flex;
             align-items: center;
         }
 
         .printer-select label {
-            width: 130.66px;
+            width: 138px;
             font-family: 'Inter';
             font-weight: 400;
             font-size: 21.98px;
@@ -52,17 +62,17 @@
         .printer-select select {
             width: 540px;
             height: 55px;
-            margin-left: 25px;
+            /* margin-left: 25px;
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             padding: 0 20px;
-            font-size: 21.98px;
+            font-size: 21.98px; */
         }
 
         .printer-status {
             width: 696px;
-            margin: 40px auto;
+            margin: 20px auto;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -70,7 +80,7 @@
 
         .status-label {
             font-family: 'Inter';
-            font-style: italic;
+            /* font-style: italic; */
             font-weight: 400;
             font-size: 21.98px;
             color: #000000;
@@ -95,7 +105,8 @@
         .state-btn {
             width: 696px;
             height: 92px;
-            margin: 126px auto 0;
+            /* margin: 126px auto 0; */
+            margin-top: 34px;
             border-radius: 50px;
             border: none;
             font-family: 'Inter';
@@ -111,25 +122,6 @@
 
         .btn-enable {
             background: #56F000;
-        }
-
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .decoration-top {
-            right: -160px;
-            top: 185px;
-        }
-
-        .decoration-bottom {
-            left: -160px;
-            top: 648px;
         }
         
         body {
@@ -155,16 +147,28 @@
 <body>
     <?php include 'header.php'; ?>
 
+    <script>
+        const editBtn = document.querySelector(".chinh-sua .dropdown-btn");
+        editBtn.style.background = "#004787";
+        editBtn.style.pointerEvents = "none";
+        editBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
+
     <div class="decoration decoration-top"></div>
     <div class="decoration decoration-bottom"></div>
 
     <button onclick="window.location.href='printer_info.php'" class="back-to-home">
-        <span>←</span>
+        <!-- <span>←</span> -->
+        <img src="../../css/assets/left-arrow.png" alt="go back arrow">
         <span>Back</span>
     </button>
 
     <div class="printer-state-form">
-        <img src="../../assets/2396.jpg" alt="Printer" class="printer-image">
+        <img src="../../css/assets/printer-state.png" alt="Printer" class="printer-image">
         
         <div class="printer-select">
             <label>Chọn máy in:</label>
@@ -174,14 +178,14 @@
         </div>
 
         <div class="printer-status">
-            <span class="status-label">Trạng thái máy in hiện tại:</span>
+            <span class="status-label">Trạng thái:</span>
             <span id="statusValue" class="status-value status-active">Hoạt động</span>
         </div>
 
         <button id="stateButton" class="state-btn btn-disable">Vô hiệu hóa</button>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 
     <script>
         const statusValue = document.getElementById('statusValue');
