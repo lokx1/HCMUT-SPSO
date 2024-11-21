@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
-        body {
+       body {
             /* position: relative;
             width: 100%;
             min-height: 100vh; */
@@ -87,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .paper-a4 {
             background: rgba(0, 0, 0, 0.8);
             right: 441px; /* Align with right side of info sidebar */
-   
         }
 
         .paper-a3 {
@@ -252,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <?php include 'background.php'; ?>
+    <?php include '..\background.php'; ?>
     <!-- Navigation bar editing script -->
     <script>
         const printBtn = document.querySelector(".nav-buttons .nav-btn-purchase");
@@ -264,7 +263,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         hcmutBtn.style.cursor = "pointer";
         hcmutBtn.style.background = "transparent";
     </script>
-
     <div class="paper-options">
         <div class="info-sidebar">
             <div class="info-label">Giá:</div>
@@ -315,8 +313,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
                 <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
                 <!-- <button type="submit" class="buy-btn">Mua</button> -->
+                <button type="submit" class="buy-btn">Mua</button>
             </form>
-            <button type="submit" class="buy-btn">Mua</button>
         </div>
         <?php endforeach; ?>
 

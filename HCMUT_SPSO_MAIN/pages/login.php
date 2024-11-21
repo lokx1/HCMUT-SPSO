@@ -5,13 +5,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($username === "admin" && $password === "password") {
         $_SESSION['loggedin'] = true;
-        header("Location: ./pages/SPSO/home.php");
+        header("Location: /pages/SPSO/home.php");
         exit();
     }
 
     if ($username === "student" && $password === "password") {
         $_SESSION['loggedin'] = true;
-        header("Location: ./pages/Student/home.php");
+        header("Location: /pages/Student/home.php");
         exit();
     }
 }

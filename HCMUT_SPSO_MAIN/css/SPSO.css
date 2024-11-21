@@ -40,7 +40,7 @@ body {
     object-fit: cover;
 }
 
-.advertisement  {
+.advertisement {
     position: absolute;
     width: 874px;
     height: 307px;
@@ -165,4 +165,3 @@ body {
     text-align: center;
     color: #000000;
 }
-

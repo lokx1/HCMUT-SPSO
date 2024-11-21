@@ -109,9 +109,6 @@
     width:205px;
 }
 
-.xem .dropdown-content {
-    width:205px;
-}
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -171,4 +168,3 @@
     object-fit: cover;
     cursor:pointer;
 }
-
