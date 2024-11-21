@@ -37,11 +37,13 @@ $printHistory = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch sử in - Student</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
-       body {
-            /* position: relative;
+        body {
+             position: relative;
             width: 100%;
             min-height: 100vh;
             background: #FFFFFF;
@@ -49,7 +51,7 @@ $printHistory = [
             padding-top: 100px;
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh + 1200px); */
+            min-height: calc(100vh + 1200px); 
         }
 
         .history-container {
@@ -73,10 +75,13 @@ $printHistory = [
 
         .page-count-display img {
             
+            
             width: 65px;
             height: 64px;
         }
 
+        .page-count-display span {
+            width: 198px;
         .page-count-display span {
             width: 198px;
             font-family: 'Inter';
@@ -84,7 +89,10 @@ $printHistory = [
             font-weight: 700;
             font-size: 24px;
             line-height: 24px;
+            line-height: 24px;
             color: #F31260;
+            text-align: left;
+            padding-top: 7px;
             text-align: left;
             padding-top: 7px;
         }
@@ -125,6 +133,7 @@ $printHistory = [
         .filter-group span {
             margin: 0px 9.5px 0px 9.5px;
         }
+
 
 
         .log-table {
@@ -211,9 +220,12 @@ $printHistory = [
         /* .content-wrapper {
             margin-top: 131px;
         } */
+        /* .content-wrapper {
+            margin-top: 131px;
+        } */
     </style>
-</head>
-<body>
+    </head>
+    <body>
     <?php include 'header.php'; ?>
     <?php include 'background.php'; ?>
     <script>
@@ -225,32 +237,34 @@ $printHistory = [
         hcmutBtn.style.pointerEvents = "auto";
         hcmutBtn.style.cursor = "pointer";
         hcmutBtn.style.background = "transparent";
+    </script>    <?php include 'background.php'; ?>
+    <script>
+        const printBtn = document.querySelector(".nav-buttons .nav-btn-history");
+        printBtn.style.background = "#004787";
+        printBtn.style.pointerEvents = "none";
+        printBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
     </script>
-    <div class="decoration decoration-top"></div>
-    <div class="decoration decoration-bottom"></div>
 
     <div class="history-container">
-        <button onclick="window.location.href='home.php'" class="back-to-home">
-            <span>←</span>
-            <span>Back to home</span>
-        </button>
-
         <div class="content-wrapper">
-            <div class="page-count-display">
-                <img src="../../css/assets/availablePaper.png" alt="Paper">
-                <p>Tổng số trang đã sử dụng: 25</p>
-            </div>
-
             <div class="search-filters">
-                <div class="filter-group">
-                    <label>Mã số máy in:</label>
-                    <input type="text" placeholder="MSMI">
+                <div class="page-count-display">
+                    <img src="../../css/assets/availablePaper.png" alt="Paper">
+                    <span>Tổng số trang đã sử dụng: 25</span>
                 </div>
                 <div class="filter-group">
-                    <label>Phạm vi thời gian:</label>
-                    <input type="text" placeholder="DD/MM/YYYY">
+                    <label>Mã số máy in:</label>
+                    <input class="MSMI" type="text" placeholder="MSMI">
+                </div>
+                <div class="filter-group">
+                    <label class="time-label">Phạm vi thời gian:</label>
+                    <input class="time" type="text" placeholder="DD/MM/YYYY">
                     <span>-</span>
-                    <input type="text" placeholder="DD/MM/YYYY">
+                    <input class="time"type="text" placeholder="DD/MM/YYYY">
                 </div>
             </div>
 
@@ -292,7 +306,6 @@ $printHistory = [
             </div>
         </div>
     </div>
-
 
     <?php include 'footer.php'; ?>
 </body>

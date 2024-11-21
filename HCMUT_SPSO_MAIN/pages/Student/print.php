@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/background.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             padding-top: 100px;
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh + 800px); /* Increase minimum height */
+            min-height: calc(100vh + 800px);
         }
 
         .print-form {
@@ -142,11 +143,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .option-group select {
             width: 100%;
             height: 55px;
-       /*     background: #FFFFFF;
+            /* background: #FFFFFF;
             border: 1px solid #D9D9D9;
             border-radius: 10px;
             padding: 0 20px;
-            font-size: 21.98px;*/
+            font-size: 21.98px; */
         }
 
         .print-btn {
@@ -163,14 +164,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #000000;
             cursor: pointer;
         }
-
-      
-
     </style>
-</head>
+    </head>
 <body>
     <?php include 'header.php'; ?>
-    <?php include 'background.php'; ?>
+    <?php include '../background.php'; ?>
     <script>
         const printBtn = document.querySelector(".nav-buttons .nav-btn-print");
         printBtn.style.background = "#004787";
@@ -182,14 +180,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         hcmutBtn.style.background = "transparent";
     </script>
 
- 
-
     <form class="print-form">
         <div class="file-select">
             <div class="file-select-container">
             <form class="print-form">
         <div class="file-select">
             <div class="file-select-container">
+            <input type="file" id="fileSelector" style="display: none;" accept=".pdf">
+            <button type="button" class="select-btn" onclick="document.getElementById('fileSelector').click();">Chọn tài liệu</button>
+            <span class="file-name">Chưa có tài liệu được chọn</span>
+            <script>
+                document.getElementById('fileSelector').addEventListener('change', function() {
+                const fileInput = this;
+                const filePath = fileInput.value;
+                const allowedExtensions = /(\.pdf)$/i;
+                if (!allowedExtensions.exec(filePath)) {
+                    alert('Vui lòng chọn tệp PDF.');
+                    fileInput.value = '';
+                } else {
+                    const fileName = fileInput.files[0].name;
+                    document.querySelector('.file-name').textContent = fileName;
+                }
+                });
+            </script>
             <input type="file" id="fileSelector" style="display: none;" accept=".pdf">
             <button type="button" class="select-btn" onclick="document.getElementById('fileSelector').click();">Chọn tài liệu</button>
             <span class="file-name">Chưa có tài liệu được chọn</span>
@@ -286,5 +299,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             });
         });
     </script>
+    <?php include '../footer.php'; ?>
 </body>
 </html>

@@ -80,6 +80,7 @@
     padding: 35px 20px;
     display: flex;
 }
+
 .dropdown-btn .icon {
     position: absolute;
     width: 13px;
@@ -91,6 +92,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -98,8 +100,13 @@
     z-index: 1;
     border: 1px solid #8A8A8A;
 }
+
 .chinh-sua .dropdown-content {
     width:280px;
+}
+
+.xem .dropdown-content {
+    width:205px;
 }
 
 .xem .dropdown-content {
@@ -123,6 +130,7 @@
 .dropdown-content a:hover {
     background: rgba(217, 217, 217, 0.1);
 }
+
 .dropdown-content a span {
     position: absolute;
     right: 15px;
@@ -133,6 +141,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .user-info {
     position: absolute;
     right: 33px;

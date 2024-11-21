@@ -11,6 +11,7 @@ include '../../js/controller.php';
     <title>Student Homepage</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
@@ -113,7 +114,7 @@ include '../../js/controller.php';
             font-weight: 400;
             font-size: 24px;
             line-height: 29px;
-           text-align: center; 
+            text-align: center;
             color: #000000;
             margin-top: auto;
         }

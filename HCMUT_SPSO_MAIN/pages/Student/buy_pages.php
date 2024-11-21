@@ -77,8 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             flex-direction: column;
             align-items: center;
             color: #FFFFFF;
-         
-            
             /*padding-bottom: 41px; /* Add padding to fit button */
         }
 
@@ -301,34 +299,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="total">8.000 VND</p>
             <button class="buy-btn">Mua</button>
         </div> -->
-
-
-<?php foreach ($papers as $paper): ?>
-    
-    <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
-        <span class="paper-size"><?php echo $paper->size; ?></span>
-        <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-        <p class="price">Giá: <?php echo number_format($paper->pricePerPage, 0, ',', '.'); ?> VND</p>
-        <div class="quantity-control">
-            <button type="button" class="quantity-btn left"></button>
-            <div class="quantity-display"><?php echo $paper->quantity; ?></div>
-            <button type="button" class="quantity-btn right"></button>
-        </div>
-        <p class="total">Tổng: <?php echo number_format($paper->totalPrice, 0, ',', '.'); ?> VND</p>
-        <form action="buy_pages.php" method="post">
-            <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
-            <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
-            <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
+        <?php foreach ($papers as $paper): ?>
+        <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
+            <span class="paper-size"><?php echo $paper->size; ?></span>
+            <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
+            <p class="price"><?php echo number_format($paper->pricePerPage, 0, ',', '.'); ?> VND</p>
+            <div class="quantity-control">
+                <button type="button" class="quantity-btn left"></button>
+                <div class="quantity-display"><?php echo $paper->quantity; ?></div>
+                <button type="button" class="quantity-btn right"></button>
+            </div>
+            <p class="total"><?php echo number_format($paper->totalPrice, 0, ',', '.'); ?> VND</p>
+            <form action="buy_pages.php" method="post">
+                <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
+                <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
+                <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
+                <!-- <button type="submit" class="buy-btn">Mua</button> -->
+            </form>
             <button type="submit" class="buy-btn">Mua</button>
-        </form>
-    </div>
-<?php endforeach; ?>
+        </div>
+        <?php endforeach; ?>
 
         <div class="divider divider-top"></div>
         <div class="divider divider-bottom"></div>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 
     <!-- <script>
         // Add quantity control functionality
@@ -389,7 +385,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 function updateDisplay(quantity) {
                     quantityDisplay.textContent = quantity;
                     const totalPrice = pricePerPage * quantity;
-                    totalDisplay.textContent = `Tổng: ${totalPrice.toLocaleString()} VND`;
+                    totalDisplay.textContent = `${totalPrice.toLocaleString()} VND`;
                     quantityInput.value = quantity;
                     totalInput.value = totalPrice;
                 }

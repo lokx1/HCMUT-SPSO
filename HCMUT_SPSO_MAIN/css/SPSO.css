@@ -4,7 +4,7 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow-y: scroll;
-    overflow-x: hidden ;
+    overflow-x: hidden;
     margin: 0;
     padding-top: 100px;
     background: #FFFFFF;
@@ -14,12 +14,12 @@ body {
 }
 
 .main-content {
-   /* position: relative;
+    /* position: relative;
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
-    flex: 1;*/
+    flex: 1; */
     min-height: calc(100vh - 556px); /* 100vh - (header + footer height) */
 }
 
@@ -28,14 +28,13 @@ body {
     position: relative;
     width: 100%;
     height: 622px;
-    margin-top: 100px;
     margin-top: 0px;
     background: url('../../css/assets/hero_3_cropped.webp');
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
-.hero-imgage {
+.hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -139,6 +138,7 @@ body {
     align-items: center;
     padding: 27px;
     cursor: pointer;
+    
 }
 
 .action-card .card-title {
@@ -166,67 +166,3 @@ body {
     color: #000000;
 }
 
-/* Back Button */
-.back-to-home {
-    box-sizing: border-box;
-    position: relative;
-    width: 224px;
-    height: 57px;
-    margin: 40px 0 0 37px;
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 30px;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-/* Footer
-.footer {
-    position: relative;
-    width: 100%;
-    margin-top: auto;
-    background: #000000;
-    min-height: 456px; /* 400px content + 56px copyright 
-}
-
-.footer-content {
-    min-height: 400px;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 76px 69px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.contact-info {
-    width: 532px;
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 24px;
-}
-
-.footer-logo {
-    width: 251.39px;
-    height: 240.08px;
-}
-
-.footer-copyright {
-    width: 100%;
-    height: 56px;
-    background: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    line-height: 24px;
-} */

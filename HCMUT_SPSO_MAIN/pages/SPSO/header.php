@@ -10,12 +10,12 @@
             <span class="icon"></span>
         </button>
         <div class="dropdown-content">
-        <a href="printer_info.php">Thông tin máy in
+            <a href="printer_info.php">Thông tin máy in
                 <span></span>
             </a>
             <a href="printer_config.php">Tùy chọn in
                 <span></span>
-            </a>  
+            </a>
         </div>
     </div>
 

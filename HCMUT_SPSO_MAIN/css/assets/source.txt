@@ -13,3 +13,6 @@ report icon: https://www.freepik.com/icon/report_11176291#fromView=keyword&page=
 plus black symbol icon: https://www.flaticon.com/free-icon/plus-black-symbol_25304
 setting icon: https://www.pngegg.com/en/png-fbvvv/download
 left down right up double arrow icon: https://www.flaticon.com/search?author_id=42&style_id=1182&type=standard&word=arrow
+white-down-arrow icon: https://commons.wikimedia.org/wiki/File:Chevron-icon-drop-down-menu-WHITE.png 
+gray-right-arrow icon: https://icons8.com/icons/set/arrow
+printer-state-icon: https://www.freepik.com/free-vector/printer-with-paper-illustration_11645830.htm#fromView=keyword&page=1&position=8&uuid=ab81aa54-1d64-4c26-aa8a-13db2177d66e
