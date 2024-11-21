@@ -25,7 +25,7 @@
             <div class="advertisement">
                 <span>Dịch vụ in ấn thông minh, tiện lợi, nhanh chóng và dễ dàng</span>
             </div>
-            <button class="view-report-btn">Xem báo cáo</button>
+            <button class="view-report-btn" onclick="window.location.href='reports.php'">Xem báo cáo</button>
         </section>
 
         <!-- Edit Section -->

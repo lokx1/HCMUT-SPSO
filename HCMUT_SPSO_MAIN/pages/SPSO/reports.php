@@ -7,9 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Báo cáo - SPSO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/background.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
         body {
@@ -21,39 +25,39 @@
             padding-top: 100px;
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh + 800px); /* Increase minimum height */
+            /*min-height: calc(100vh + 800px); /* Increase minimum height */
         }
 
         .report-container {
             position: relative;
             width: 1244px;
-            height: 900px; /* Increase height to fit all content */
+            height: 682px; /* Increase height to fit all content */
             left: calc(50% - 1244px/2);
-            top: 286px;
+            top: 186px;
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid #000000;
-            margin-bottom: 400px; /* Increase margin to push content down */
+            margin-bottom: 200px; /* Increase margin to push content down */
         }
 
         .time-option {
             position: absolute;
             width: 220px;
             height: 55px;
-            left: 147px;
-            top: -56px;
+            top: 56px;
+            left: 49px;
+            /* background: #0F6CBF; */
+            /* left: 147px; */
+            /* top: -56px; */
         }
 
         .time-select {
             width: 220px;
             height: 55px;
-            background: #0F6CBF;
             border: 1px solid #000000;
-            border-radius: 10px;
+            background-color: #0F6CBF;
             color: #FFFFFF;
-            font-family: 'Inter';
-            font-size: 21.98px;
-            padding: 0 20px;
-            cursor: pointer;
+            appearance: none;
+            background-image: url("../../css/assets/white-down-arrow.png");
         }
 
         .chart-container {
@@ -64,12 +68,12 @@
 
         .stats-container {
             position: absolute;
-            right: 147px;
+            right: 49px;
             top: 140px;
             display: flex;
             flex-direction: column;
             gap: 46px;
-            padding-bottom: 40px; /* Add padding to prevent overlap with container border */
+            padding-bottom: 0px; /* Add padding to prevent overlap with container border */
         }
 
         .stat-card {
@@ -78,7 +82,7 @@
             background: #FFBF00;
             opacity: 0.8;
             border: 0.7px solid #FFBF00;
-            padding: 20px;
+            /* padding: 20px; */
             color: #FFFFFF;
             text-align: center;
         }
@@ -86,64 +90,33 @@
         .stat-title {
             font-family: 'Roboto';
             font-size: 16.96px;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
+            margin-top: 19.79px;
         }
 
         .stat-value {
             font-family: 'Roboto';
             font-weight: 700;
             font-size: 33.93px;
-        }
-
-        .decoration {
-            position: fixed;
-            width: 320px;
-            height: 320px;
-            background: #0F6CBF;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .decoration-top {
-            right: -160px;
-            top: 185px;
-        }
-
-        .decoration-bottom {
-            left: -160px;
-            top: 648px;
-        }
-
-        .back-to-home {
-            position: absolute;
-            width: 224px;
-            height: 57px;
-            left: 37px;
-            top: 153px;
-            background: #FFFFFF;
-            border: 1px solid #000000;
-            border-radius: 30px;
-            font-family: 'Inter';
-            font-weight: 400;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 20px;
-            cursor: pointer;
+            margin-top: 18.17px;
         }
     </style>
 </head>
 <body>
+    <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
     <?php include 'header.php'; ?>
+    <?php include '../background.php'; ?>
 
-    <div class="decoration decoration-top"></div>
-    <div class="decoration decoration-bottom"></div>
-
-    <button onclick="window.location.href='home.php'" class="back-to-home">
-        <span>←</span>
-        <span>Back to home</span>
-    </button>
+    <script>
+        const editBtn = document.querySelector(".xem .dropdown-btn");
+        editBtn.style.background = "#004787";
+        editBtn.style.pointerEvents = "none";
+        editBtn.style.cursor = "default";
+        const hcmutBtn = document.querySelector(".hcmut-spss");
+        hcmutBtn.style.pointerEvents = "auto";
+        hcmutBtn.style.cursor = "pointer";
+        hcmutBtn.style.background = "transparent";
+    </script>
 
     <div class="report-container">
         <div class="time-option">
@@ -173,7 +146,7 @@
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../footer.php'; ?>
 
     <script>
         document.getElementById('reportType').addEventListener('change', function() {
@@ -181,6 +154,35 @@
             const reportType = this.value;
             // Update chart data and display
         });
+        
+        
+        // const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+        // new Chart("myChart", {
+        // type: "line",
+        // data: {
+        //     labels: xValues,
+        //     datasets: [{ 
+        //     // data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+        //     // borderColor: "red",
+        //     // fill: false
+        //     // }, { 
+        //     // data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+        //     // borderColor: "green",
+        //     // fill: false
+        //     // }, { 
+        //     data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+        //     borderColor: "#032B91",
+        //     fill: false
+        //     }]
+        // },
+        // options: {
+        //     legend: {
+        //         display: true,
+        //         position: "bottom"
+        //     }
+        // }
+        // });
     </script>
 </body>
 </html>
