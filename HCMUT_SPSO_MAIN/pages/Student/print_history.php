@@ -1,7 +1,12 @@
 <?php
 /* Session checks here */
 session_start();
+
+
 include '../../js/controller.php';
+include '../../js/data.php';
+$student = initializeSessionVariables();
+
 $printHistory = [
     [
         'time' => '12:58:03 01/11/2024',

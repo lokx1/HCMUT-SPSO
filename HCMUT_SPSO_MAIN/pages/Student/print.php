@@ -1,27 +1,35 @@
 <?php
 /* Session checks here */
 session_start();
+// Initialize student pages if not already set
 include '../../js/controller.php';
-
+include '../../js/data.php';
+$student = initializeSessionVariables();
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ensure all form fields have 'name' attributes
     $copies = intval($_POST['copies']);
     $pages = intval($_POST['pages']);
-    $printer = $_POST['printer'];
     $paperSize = $_POST['paper_size'];
-    $quantity = intval($_POST['quantity']);
+    $printSide = $_POST['print_side'];
+    $totalPagesNeeded = intval($_POST['total_pages_needed']);
 
     // Validate inputs
-    if ($copies <= 0 || $pages <= 0 || $printer == '0' || empty($paperSize)) {
+    if ($copies <= 0 || $pages <= 0 || empty($paperSize) || empty($printSide)) {
         $message = "Please enter valid values for all fields.";
     } else {
-        if (storePrintJob($copies, $pages, $printer)) {
-            $message = "Print job stored successfully!";
-            $remainingPages = getRemainingPages(); // Update remaining pages
-        } else {
+        // Check if there are enough pages
+        $remainingPages = getRemainingPages();
+        if ($totalPagesNeeded > $remainingPages) {
             $message = "Not enough pages. Please buy more pages.";
+        } else {
+            // Subtract the pages and update the session
+            $remainingPages -= $totalPagesNeeded;
+            setRemainingPages($remainingPages);
+            $student->pages = $remainingPages;
+            $student->save();
+            $message = "Print job stored successfully!";
         }
     }
 }
@@ -217,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <option value="6">Máy in tòa nhà B1-410</option>
             </select>
         </div>
-
+     <form method="POST" action="">
         <div class="option-row">
             <div class="option-group">
                 <label>Số bản</label>
@@ -231,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select>
             </div>
         </div>
-
+       
         <div class="option-row">
             <div class="option-group">
                 <label>Số trang in</label>
@@ -245,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select>
             </div>
         </div>
-
+        <input type="hidden" name="total_pages_needed" class="total-pages-needed">
         <button type="submit" class="print-btn">In</button>
     </form>
     <?php if (isset($message)): ?>
@@ -255,30 +263,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php include '../footer.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const quantityControls = document.querySelectorAll('.quantity-control');
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const quantityButtons = document.querySelectorAll('.quantity-btn');
+            const paperSizeSelect = document.querySelector('.paper-size');
+            const printSideSelect = document.querySelector('.print-side');
+            const totalPagesNeededInput = document.querySelector('.total-pages-needed');
 
-            quantityControls.forEach(control => {
-                const display = control.querySelector('.quantity-display');
-                const minusButton = control.querySelector('.quantity-btn.left');
-                const plusButton = control.querySelector('.quantity-btn.right');
-                let quantity = parseInt(display.textContent);
+            function updateTotalPagesNeeded() {
+                const copies = parseInt(document.querySelector('input[name="copies"]').value);
+                const pages = parseInt(document.querySelector('input[name="pages"]').value);
+                const paperSize = paperSizeSelect.value;
+                const printSide = printSideSelect.value;
 
-                minusButton.addEventListener('click', () => {
-                    if (quantity > 1) {
-                        quantity--;
-                        updateDisplay(quantity);
-                    }
-                });
-
-                plusButton.addEventListener('click', () => {
-                    quantity++;
-                    updateDisplay(quantity);
-                });
-
-                function updateDisplay(quantity) {
-                    display.textContent = quantity;
+                let totalPagesNeeded = copies * pages;
+                if (printSide === 'two_side') {
+                    totalPagesNeeded = Math.ceil(totalPagesNeeded / 2);
                 }
+
+                if (paperSize === 'A3') {
+                    totalPagesNeeded *= 2;
+                }
+
+                totalPagesNeededInput.value = totalPagesNeeded;
+            }
+
+            quantityButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const input = button.parentElement.querySelector('.quantity-input');
+                    let quantity = parseInt(input.value);
+
+                    if (button.classList.contains('left')) {
+                        if (quantity > 0) {
+                            quantity--;
+                        }
+                    } else if (button.classList.contains('right')) {
+                        quantity++;
+                    }
+
+                    input.value = quantity;
+                    updateTotalPagesNeeded();
+                });
             });
+
+            paperSizeSelect.addEventListener('change', updateTotalPagesNeeded);
+            printSideSelect.addEventListener('change', updateTotalPagesNeeded);
+            quantityInputs.forEach(input => input.addEventListener('input', updateTotalPagesNeeded));
         });
     </script>
 </body>

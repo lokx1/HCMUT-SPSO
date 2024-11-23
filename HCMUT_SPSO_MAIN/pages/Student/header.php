@@ -19,7 +19,7 @@
     </div>
 
     <div class="user-info">
-        <span class="username">Bảo Lê</span>
+        <span class="username"><?php echo htmlspecialchars($student->username); ?></span>
         <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
     </div>
 </nav>

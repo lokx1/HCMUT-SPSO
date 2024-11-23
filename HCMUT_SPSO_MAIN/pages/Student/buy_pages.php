@@ -2,11 +2,8 @@
 /* Session checks here */
 session_start();
 include '../../js/controller.php';
-
-if (!isset($_SESSION['remaining_pages'])) {
-    $_SESSION['remaining_pages'] = 0;
-    resetRemainingPages();
-}
+include '../../js/data.php';
+$student = initializeSessionVariables();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $size = $_POST['size'];
@@ -28,7 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $remainingPages += $quantity;
     }
 
+    
     setRemainingPages($remainingPages);
+    $student->pages = $remainingPages;
+    $student->save();
 }
 
 
@@ -314,8 +314,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
                 <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
                 <!-- <button type="submit" class="buy-btn">Mua</button> -->
+                <button type="submit" class="buy-btn">Mua</button>
             </form>
-            <button type="submit" class="buy-btn">Mua</button>
         </div>
         <?php endforeach; ?>
 

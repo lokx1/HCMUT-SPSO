@@ -49,9 +49,7 @@ class Student {
         $this->printHistory = [];
     }
 
-    public function updatePages($pages) {
-        $this->pages = $pages;
-    }
+
 
     public function addPrintHistory($print) {
         $this->printHistory[] = $print;
@@ -72,42 +70,41 @@ class Student {
         file_put_contents($systemHistoryFile, $data, FILE_APPEND);
     }
     public function resetPages() {
+        setRemainingPages(0);
         $this->pages = 0;
         $this->save();
     }
 
     public function save() {
         // Implement saving student data to storage (e.g., database or file)
-        global $students;
-        $students[$this->id] = $this;
+        $_SESSION['student_pages'] = $this->pages;
+
+
     }
 
 
 
 }
 
-// Initialize students (Example)
-$students = [
-    new Student(1, 'bao.le', 'password123'),
-    new Student(2, 'john.doe', 'securepass')
-];
-
+// Initialize a student with 10 pages if not already set
 
 function getRemainingPages() {
-    $file = 'remaining_pages.txt';
-    if (file_exists($file)) {
-        return intval(file_get_contents($file));
+    if (isset($_SESSION['remaining_pages'])) {
+        return intval($_SESSION['remaining_pages']);
     }
-    return 0;
+    return 10;
 }
 
 function setRemainingPages($pages) {
-    $file = 'remaining_pages.txt';
-    file_put_contents($file, $pages);
+    $_SESSION['remaining_pages'] = $pages;
 }
 function resetRemainingPages() {
     setRemainingPages(0);
 }
+
+
+
+
 function storePrintJob($copies, $pages, $printer) {
     $remainingPages = getRemainingPages();
     $totalPagesNeeded = $copies * $pages;
