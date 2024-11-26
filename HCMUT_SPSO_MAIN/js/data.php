@@ -9,11 +9,11 @@ function initializeSessionVariables() {
         $_SESSION['student_pages'] = 10;
 
         // Create a new Student object with 10 pages
-        $student = new Student(1, 'Bảo Lê', 'password', 10);
+        $student = new Student(2252442, 'Bảo Lê', 'password', 10);
         $student->save();
     } else {
         // Session has already been initialized; retrieve existing student pages
-        $student = new Student(1, 'Bảo Lê', 'password', $_SESSION['student_pages']);
+        $student = new Student(2252442, 'Bảo Lê', 'password', $_SESSION['student_pages']);
     }
 
     return $student;

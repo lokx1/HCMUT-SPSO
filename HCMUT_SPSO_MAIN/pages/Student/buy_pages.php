@@ -4,31 +4,29 @@ session_start();
 include '../../js/controller.php';
 include '../../js/data.php';
 $student = initializeSessionVariables();
-
+$pages = $student->pages;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $size = $_POST['size'];
     $quantity = intval($_POST['quantity']);
 
-    foreach ($papers as $paper) {
-        if ($paper->size == $size) {
-            $paper->setQuantity($quantity);
-            break;
-        }
-    }
-
     // Update remaining pages based on paper size
-    $remainingPages = getRemainingPages();
-    
+    $remainingPages = $student->pages;
+
     if ($size == 'A3') {
         $remainingPages += 2 * $quantity;
     } else if ($size == 'A4') {
         $remainingPages += $quantity;
     }
 
-    
-    setRemainingPages($remainingPages);
     $student->pages = $remainingPages;
     $student->save();
+
+    // Update session variable if necessary
+    $_SESSION['remaining_pages'] = $remainingPages;
+
+    // Redirect to refresh the page and update the header
+    header("Location: buy_pages.php");
+    exit();
 }
 
 
@@ -273,31 +271,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="info-label">Tổng:</div>
         </div>
         
-        <!-- <div class="paper-card paper-a4">
-            <span class="paper-size">A4</span>
-            <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-            <p class="price">1.000 VND</p>
-            <div class="quantity-control">
-                <button class="quantity-btn left"></button>
-                <div class="quantity-display">4</div>
-                <button class="quantity-btn right"></button>
-            </div>
-            <p class="total">4.000 VND</p>
-            <button class="buy-btn">Mua</button>
-        </div>
-
-        <div class="paper-card paper-a3">
-            <span class="paper-size">A3</span>
-            <img src="../../css/assets/shopping-cart-white.png" alt="Cart" class="cart-icon">
-            <p class="price">2.000 VND</p>
-            <div class="quantity-control">
-                <button class="quantity-btn left"></button>
-                <div class="quantity-display">4</div>
-                <button class="quantity-btn right"></button>
-            </div>
-            <p class="total">8.000 VND</p>
-            <button class="buy-btn">Mua</button>
-        </div> -->
         <?php foreach ($papers as $paper): ?>
         <div class="paper-card paper-<?php echo strtolower($paper->size); ?>" data-price="<?php echo $paper->pricePerPage; ?>">
             <span class="paper-size"><?php echo $paper->size; ?></span>
@@ -313,7 +286,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="hidden" name="size" value="<?php echo $paper->size; ?>">
                 <input type="hidden" name="quantity" value="<?php echo $paper->quantity; ?>" class="quantity-input">
                 <input type="hidden" name="total_price" value="<?php echo $paper->totalPrice; ?>" class="total-input">
-                <!-- <button type="submit" class="buy-btn">Mua</button> -->
                 <button type="submit" class="buy-btn">Mua</button>
             </form>
         </div>
@@ -325,35 +297,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php include '../footer.php'; ?>
 
-    <!-- <script>
-        // Add quantity control functionality
-        const quantityControls = document.querySelectorAll('.quantity-control');
-        quantityControls.forEach(control => {
-            const display = control.querySelector('.quantity-display');
-            const [decBtn, incBtn] = control.querySelectorAll('.quantity-btn');
-            let quantity = 4;
-
-            decBtn.onclick = () => {
-                if (quantity > 0) {
-                    quantity--;
-                    display.textContent = quantity;
-                    updateTotal(control.closest('.paper-card'), quantity);
-                }
-            };
-
-            incBtn.onclick = () => {
-                quantity++;
-                display.textContent = quantity;
-                updateTotal(control.closest('.paper-card'), quantity);
-            };
-        });
-
-        function updateTotal(card, quantity) {
-            const price = card.classList.contains('paper-a4') ? 1000 : 2000;
-            const total = price * quantity;
-            card.querySelector('.total').textContent = `Tổng: ${total.toLocaleString()} VND`;
-        }
-    </script> -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const paperCards = document.querySelectorAll('.paper-card');

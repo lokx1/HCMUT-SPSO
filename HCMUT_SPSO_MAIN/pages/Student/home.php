@@ -6,6 +6,7 @@ session_start();
 include '../../js/controller.php';
 include '../../js/data.php';
 $student=initializeSessionVariables() ;
+$pages = $student->pages;
 ?>
 <!DOCTYPE html>
 <html lang="en">

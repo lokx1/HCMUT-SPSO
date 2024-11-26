@@ -1,35 +1,82 @@
 <?php
-/* Session checks here */
 session_start();
-// Initialize student pages if not already set
+
+// Include necessary files
 include '../../js/controller.php';
 include '../../js/data.php';
-$student = initializeSessionVariables();
+include '../../js/printer_config.php';
+include '../../js/logAll.php'; // Include the print history
 
+// Initialize student session and pages
+$student = initializeSessionVariables();
+$pages = $student->pages; // Initialize the global $pages variable
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Ensure all form fields have 'name' attributes
+    // Handle file upload
+    if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = 'uploads/';
+        $uploadedFilePath = $uploadDir . basename($_FILES['file']['name']);
+        move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFilePath);
+    }
+
+    // Collect form inputs
     $copies = intval($_POST['copies']);
-    $pages = intval($_POST['pages']);
+    $pagesInput = intval($_POST['pages']);
     $paperSize = $_POST['paper_size'];
     $printSide = $_POST['print_side'];
     $totalPagesNeeded = intval($_POST['total_pages_needed']);
+    $printerIndex = intval($_POST['printer']);
+    $uploadedFileName = $_FILES['file']['name'];
 
-    // Validate inputs
-    if ($copies <= 0 || $pages <= 0 || empty($paperSize) || empty($printSide)) {
+    if ($copies <= 0 || $pagesInput <= 0 || empty($paperSize) || empty($printSide)) {
         $message = "Please enter valid values for all fields.";
     } else {
         // Check if there are enough pages
-        $remainingPages = getRemainingPages();
+        $remainingPages = $pages;
         if ($totalPagesNeeded > $remainingPages) {
             $message = "Not enough pages. Please buy more pages.";
         } else {
-            // Subtract the pages and update the session
+            // Subtract the pages and update the student's remaining pages
             $remainingPages -= $totalPagesNeeded;
-            setRemainingPages($remainingPages);
+            $pages = $remainingPages;
             $student->pages = $remainingPages;
             $student->save();
-            $message = "Print job stored successfully!";
+
+            // Get printer configuration
+            $printer = $printerConfigurations[$printerIndex];
+            $printerBuilding = $printer['building'];
+            $printerRoom = $printer['room'];
+            $printerMSMI = $printer['msmi'];
+
+            // Create the print history entry
+            $printHistoryEntry = [
+                'id' => $student->id,
+                'name' => $student->username,
+                'time' => date('H:i:s d/m/Y'),
+                'building' => $printerBuilding,
+                'room' => $printerRoom,
+                'total_pages' => "{$totalPagesNeeded} x {$paperSize}",
+                'msmi' => $printerMSMI,
+                'docname' => $uploadedFileName
+            ];
+
+            // Add the new entry to the existing print history
+            $printHistory[] = $printHistoryEntry;
+
+            // Sort the print history by time
+            usort($printHistory, function($a, $b) {
+                $timeA = DateTime::createFromFormat('H:i:s d/m/Y', $a['time']);
+                $timeB = DateTime::createFromFormat('H:i:s d/m/Y', $b['time']);
+                return $timeB <=> $timeA;
+            });
+
+            // Write the updated printHistory back to logAll.php
+            $phpCode = "<?php\n\$printHistory = " . var_export($printHistory, true) . ";\n?>";
+            file_put_contents('../../js/logAll.php', $phpCode);
+
+            // Redirect to refresh the page and update the header
+            header("Location: print.php");
+            exit();
         }
     }
 }
@@ -188,12 +235,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         hcmutBtn.style.background = "transparent";
     </script>
 
-    <form class="print-form">
+    <form method="POST" action="" class="print-form" enctype="multipart/form-data">
         <div class="file-select">
             <div class="file-select-container">
 
 
-            <input type="file" id="fileSelector" style="display: none;" accept=".pdf">
+            <input type="file" name="file" id="fileSelector" style="display: none;" accept=".pdf">
             <button type="button" class="select-btn" onclick="document.getElementById('fileSelector').click();">Chọn tài liệu</button>
             <span class="file-name">Chưa có tài liệu được chọn</span>
             <script>
@@ -215,44 +262,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="form-row">
             <label>Chọn máy in</label>
-            <select>
-                <option value="0" selected disabled hidden>Máy in...</option>
-                <option value="1">Máy in tòa nhà A1-302</option>
-                <option value="2">Máy in tòa nhà A2-209</option>
-                <option value="3">Máy in tòa nhà A3-208</option>
-                <option value="4">Máy in tòa nhà A4-101</option>
-                <option value="5">Máy in tòa nhà A5-212</option>
-                <option value="6">Máy in tòa nhà B1-410</option>
+            <select name="printer">
+                <option value="" selected disabled hidden>Máy in...</option>
+                <option value="0">Máy in tòa nhà A1-302</option>
+                <option value="1">Máy in tòa nhà A2-209</option>
+                <option value="2">Máy in tòa nhà A3-208</option>
+                <option value="3">Máy in tòa nhà A4-101</option>
+                <option value="4">Máy in tòa nhà A5-212</option>
+                <option value="5">Máy in tòa nhà B1-410</option>
             </select>
         </div>
-     <form method="POST" action="">
+
         <div class="option-row">
             <div class="option-group">
                 <label>Số bản</label>
-                <input type="number" value="0" min="0">
+                <input type="number" name="copies" value="0" min="0">
             </div>
             <div class="option-group">
                 <label>Kích thước giấy</label>
-                <select>
-                    <option>A4</option>
-                    <option>A3</option>
+                <select name="paper_size">
+                    <option value="A4">A4</option>
+                    <option value="A3">A3</option>
                 </select>
             </div>
         </div>
-       
+
         <div class="option-row">
             <div class="option-group">
                 <label>Số trang in</label>
-                <input type="number" value="0" min="0">
+                <input type="number" name="pages" value="0" min="0">
             </div>
             <div class="option-group">
                 <label>Trang</label>
-                <select>
-                    <option>Một mặt</option>
-                    <option>Hai mặt</option>
+                <select name="print_side">
+                    <option value="Một mặt">Một mặt</option>
+                    <option value="Hai mặt">Hai mặt</option>
                 </select>
             </div>
         </div>
+
         <input type="hidden" name="total_pages_needed" class="total-pages-needed">
         <button type="submit" class="print-btn">In</button>
     </form>
@@ -263,20 +311,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php include '../footer.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const quantityInputs = document.querySelectorAll('.quantity-input');
-            const quantityButtons = document.querySelectorAll('.quantity-btn');
-            const paperSizeSelect = document.querySelector('.paper-size');
-            const printSideSelect = document.querySelector('.print-side');
-            const totalPagesNeededInput = document.querySelector('.total-pages-needed');
+            const paperSizeSelect = document.querySelector('select[name="paper_size"]');
+            const printSideSelect = document.querySelector('select[name="print_side"]');
+            const totalPagesNeededInput = document.querySelector('input[name="total_pages_needed"]');
 
             function updateTotalPagesNeeded() {
-                const copies = parseInt(document.querySelector('input[name="copies"]').value);
-                const pages = parseInt(document.querySelector('input[name="pages"]').value);
+                const copies = parseInt(document.querySelector('input[name="copies"]').value) || 0;
+                const pages = parseInt(document.querySelector('input[name="pages"]').value) || 0;
                 const paperSize = paperSizeSelect.value;
                 const printSide = printSideSelect.value;
 
                 let totalPagesNeeded = copies * pages;
-                if (printSide === 'two_side') {
+
+                if (printSide === 'Hai mặt') {
                     totalPagesNeeded = Math.ceil(totalPagesNeeded / 2);
                 }
 
@@ -287,27 +334,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 totalPagesNeededInput.value = totalPagesNeeded;
             }
 
-            quantityButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const input = button.parentElement.querySelector('.quantity-input');
-                    let quantity = parseInt(input.value);
-
-                    if (button.classList.contains('left')) {
-                        if (quantity > 0) {
-                            quantity--;
-                        }
-                    } else if (button.classList.contains('right')) {
-                        quantity++;
-                    }
-
-                    input.value = quantity;
-                    updateTotalPagesNeeded();
-                });
-            });
-
             paperSizeSelect.addEventListener('change', updateTotalPagesNeeded);
             printSideSelect.addEventListener('change', updateTotalPagesNeeded);
-            quantityInputs.forEach(input => input.addEventListener('input', updateTotalPagesNeeded));
+            document.querySelector('input[name="copies"]').addEventListener('input', updateTotalPagesNeeded);
+            document.querySelector('input[name="pages"]').addEventListener('input', updateTotalPagesNeeded);
+
+            // Initial calculation
+            updateTotalPagesNeeded();
         });
     </script>
 </body>

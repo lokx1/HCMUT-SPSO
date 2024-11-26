@@ -89,10 +89,8 @@ class Student {
 // Initialize a student with 10 pages if not already set
 
 function getRemainingPages() {
-    if (isset($_SESSION['remaining_pages'])) {
-        return intval($_SESSION['remaining_pages']);
-    }
-    return 10;
+    global $pages;
+    return $pages;
 }
 
 function setRemainingPages($pages) {

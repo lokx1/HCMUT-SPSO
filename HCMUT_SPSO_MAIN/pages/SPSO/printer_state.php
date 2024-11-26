@@ -1,5 +1,41 @@
 <?php
 /* Session checks here */
+include '../../Testcase SPSO/printer_config.php';
+
+$selectedPrinter = null;
+$currentStatus = 'active';
+
+// Handle POST request for status change
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $selectedPrinter = $_POST['printer'];
+    $newStatus = $_POST['status'];
+
+    foreach ($printerConfigurations as &$printer) {
+        if ($printer['model'] === $selectedPrinter) {
+            $printer['status'] = $newStatus;
+            $currentStatus = $newStatus;
+            break;
+        }
+    }
+
+    // Save the updated array to the file
+    file_put_contents('../../Testcase SPSO/printer_config.php', '<?php $printerConfigurations = ' . var_export($printerConfigurations, true) . '; ?>');
+    
+    // Redirect to GET request with the same printer selected
+    header("Location: printer_state.php?printer=" . urlencode($selectedPrinter));
+    exit();
+}
+
+// Handle GET request for printer selection
+if (isset($_GET['printer'])) {
+    $selectedPrinter = $_GET['printer'];
+    foreach ($printerConfigurations as $printer) {
+        if ($printer['model'] === $selectedPrinter) {
+            $currentStatus = $printer['status'];
+            break;
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +65,6 @@
             border: 1px solid #000000;
             box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            /* padding: 40px; */
             margin-bottom: 400px; /* Increase margin to prevent footer overlap */
             display: flex;
             flex-direction: column;
@@ -39,13 +74,11 @@
         .printer-image {
             width: 400px;
             height: 400px;
-            /* margin: 37px auto */
         }
 
         .printer-select {
             width: 696px;
             gap: 25px;
-            /* margin: 40px auto; */
             margin-top: 40px;
             display: flex;
             align-items: center;
@@ -62,12 +95,6 @@
         .printer-select select {
             width: 540px;
             height: 55px;
-            /* margin-left: 25px;
-            background: #FFFFFF;
-            border: 1px solid #D9D9D9;
-            border-radius: 10px;
-            padding: 0 20px;
-            font-size: 21.98px; */
         }
 
         .printer-status {
@@ -80,7 +107,6 @@
 
         .status-label {
             font-family: 'Inter';
-            /* font-style: italic; */
             font-weight: 400;
             font-size: 21.98px;
             color: #000000;
@@ -105,7 +131,6 @@
         .state-btn {
             width: 696px;
             height: 92px;
-            /* margin: 126px auto 0; */
             margin-top: 34px;
             border-radius: 50px;
             border: none;
@@ -162,7 +187,6 @@
     <div class="decoration decoration-bottom"></div>
 
     <button onclick="window.location.href='printer_info.php'" class="back-to-home">
-        <!-- <span>←</span> -->
         <img src="../../css/assets/left-arrow.png" alt="go back arrow">
         <span>Back</span>
     </button>
@@ -170,42 +194,39 @@
     <div class="printer-state-form">
         <img src="../../css/assets/printer-state.png" alt="Printer" class="printer-image">
         
-        <div class="printer-select">
-            <label>Chọn máy in:</label>
-            <select id="printerSelect">
-                <option>Máy in tòa nhà A1-302</option>
-            </select>
-        </div>
+        <form method="GET" action="printer_state.php">
+            <div class="printer-select">
+                <label>Chọn máy in:</label>
+                <select id="printerSelect" name="printer" onchange="this.form.submit()">
+                    <option value="" disabled <?php echo !$selectedPrinter ? 'selected' : ''; ?>>Chọn máy in...</option>
+                    <?php foreach ($printerConfigurations as $printer): ?>
+                        <option value="<?php echo htmlspecialchars($printer['model']); ?>" 
+                                <?php echo ($printer['model'] === $selectedPrinter) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($printer['model']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </form>
 
-        <div class="printer-status">
-            <span class="status-label">Trạng thái:</span>
-            <span id="statusValue" class="status-value status-active">Hoạt động</span>
-        </div>
+        <?php if ($selectedPrinter): ?>
+        <form method="POST" action="printer_state.php">
+            <input type="hidden" name="printer" value="<?php echo htmlspecialchars($selectedPrinter); ?>">
+            <div class="printer-status">
+                <span class="status-label">Trạng thái:</span>
+                <span class="status-value <?php echo ($currentStatus === 'active') ? 'status-active' : 'status-inactive'; ?>">
+                    <?php echo ($currentStatus === 'active') ? 'Hoạt động' : 'Tạm dừng'; ?>
+                </span>
+            </div>
 
-        <button id="stateButton" class="state-btn btn-disable">Vô hiệu hóa</button>
+            <input type="hidden" name="status" value="<?php echo ($currentStatus === 'active') ? 'inactive' : 'active'; ?>">
+            <button type="submit" class="state-btn <?php echo ($currentStatus === 'active') ? 'btn-disable' : 'btn-enable'; ?>">
+                <?php echo ($currentStatus === 'active') ? 'Vô hiệu hóa' : 'Kích hoạt'; ?>
+            </button>
+        </form>
+        <?php endif; ?>
     </div>
 
     <?php include '../footer.php'; ?>
-
-    <script>
-        const statusValue = document.getElementById('statusValue');
-        const stateButton = document.getElementById('stateButton');
-        let isActive = true;
-
-        stateButton.addEventListener('click', function() {
-            isActive = !isActive;
-            if (isActive) {
-                statusValue.textContent = 'Hoạt động';
-                statusValue.className = 'status-value status-active';
-                stateButton.textContent = 'Vô hiệu hóa';
-                stateButton.className = 'state-btn btn-disable';
-            } else {
-                statusValue.textContent = 'Tạm dừng';
-                statusValue.className = 'status-value status-inactive';
-                stateButton.textContent = 'Kích hoạt';
-                stateButton.className = 'state-btn btn-enable';
-            }
-        });
-    </script>
 </body>
 </html>

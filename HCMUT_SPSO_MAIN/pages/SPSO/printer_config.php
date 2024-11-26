@@ -1,5 +1,31 @@
 <?php
 /* Session checks here */
+
+// Include settings file or create default settings
+$settingsFile = '../../Testcase SPSO/printer_settings.php';
+
+if (file_exists($settingsFile)) {
+    include $settingsFile;
+} else {
+    $printerSettings = array(
+        'allowed_formats' => 'PDF;DOCX;DOC;PNG',
+        'page_limit' => 0,
+        'distribution_date' => ''
+    );
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $printerSettings = array(
+        'allowed_formats' => $_POST['formats'],
+        'page_limit' => intval($_POST['page_limit']),
+        'distribution_date' => $_POST['distribution_date']
+    );
+
+    // Save settings to file
+    $settingsContent = '<?php $printerSettings = ' . var_export($printerSettings, true) . '; ?>';
+    file_put_contents($settingsFile, $settingsContent);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,26 +140,54 @@
         hcmutBtn.style.background = "transparent";
     </script>
 
-    <form class="config-form">
+    <form class="config-form" method="POST">
         <div class="form-group">
             <label>Định dạng tập tin cho phép</label>
-            <!-- <input type="text" value="PDF;DOCX;DOC;PNG" placeholder="Nhập định dạng tập tin"> -->
-            <input type="text" placeholder="PDF;DOCX;DOC;PNG">
+            <input type="text" name="formats" 
+                   value="<?php echo htmlspecialchars($printerSettings['allowed_formats']); ?>"
+                   placeholder="PDF;DOCX;DOC;PNG">
         </div>
         <div class="form-row">
             <div class="form-col">
                 <label>Số trang giới hạn mặc định</label>
-                <!-- <input type="number" value="0" placeholder="Nhập số trang"> -->
-                <input type="number" placeholder="0">
+                <input type="number" name="page_limit"
+                       value="<?php echo htmlspecialchars($printerSettings['page_limit']); ?>"
+                       placeholder="0">
             </div>
             <div class="form-col">
                 <label>Thời điểm phân phát</label>
-                <input type="text" placeholder="DD/MM/YYYY">
+                <input type="text" name="distribution_date"
+                       value="<?php echo htmlspecialchars($printerSettings['distribution_date']); ?>"
+                       placeholder="DD/MM/YYYY">
             </div>
         </div>
         <button type="submit" class="save-btn">Lưu</button>
     </form>
 
     <?php include '../footer.php'; ?>
+
+    <script>
+        // Add date picker functionality
+        const dateInput = document.querySelector('input[name="distribution_date"]');
+        dateInput.addEventListener('input', function(e) {
+            let value = e.target.value;
+            value = value.replace(/\D/g, '');
+            if (value.length >= 8) {
+                const day = value.substr(0,2);
+                const month = value.substr(2,2);
+                const year = value.substr(4,4);
+                value = `${day}/${month}/${year}`;
+            }
+            e.target.value = value;
+        });
+
+        // Enable save button when form is changed
+        const form = document.querySelector('.config-form');
+        const saveBtn = document.querySelector('.save-btn');
+        
+        form.addEventListener('input', function() {
+            saveBtn.style.background = '#FFBF00';
+        });
+    </script>
 </body>
 </html>

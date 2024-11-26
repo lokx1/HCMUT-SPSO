@@ -1,5 +1,34 @@
 <?php
 /* Session checks here */
+include '../../Testcase SPSO/logAll.php';
+
+// Pagination logic
+$entriesPerPage = 10;
+$totalEntries = count($printHistory);
+$totalPages = ceil($totalEntries / $entriesPerPage);
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$startIndex = ($currentPage - 1) * $entriesPerPage;
+$endIndex = min($startIndex + $entriesPerPage, $totalEntries);
+$currentEntries = array_slice($printHistory, $startIndex, $entriesPerPage);
+
+// Search functionality
+$searchMSSV = isset($_GET['mssv']) ? $_GET['mssv'] : '';
+$searchMSMI = isset($_GET['msmi']) ? $_GET['msmi'] : '';
+$searchStartDate = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+$searchEndDate = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+
+if ($searchMSSV || $searchMSMI || $searchStartDate || $searchEndDate) {
+    $filteredEntries = array_filter($printHistory, function($entry) use ($searchMSSV, $searchMSMI, $searchStartDate, $searchEndDate) {
+        $matchMSSV = !$searchMSSV || strpos($entry['id'], $searchMSSV) !== false;
+        $matchMSMI = !$searchMSMI || strpos($entry['msmi'], $searchMSMI) !== false;
+        $matchStartDate = !$searchStartDate || strtotime($entry['time']) >= strtotime($searchStartDate);
+        $matchEndDate = !$searchEndDate || strtotime($entry['time']) <= strtotime($searchEndDate);
+        return $matchMSSV && $matchMSMI && $matchStartDate && $matchEndDate;
+    });
+    $totalEntries = count($filteredEntries);
+    $totalPages = ceil($totalEntries / $entriesPerPage);
+    $currentEntries = array_slice($filteredEntries, $startIndex, $entriesPerPage);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,29 +44,19 @@
     <link rel="stylesheet" href="../../css/SPSO.css">
     <style>
         .history-container {
-            /* position: relative; */
             width: 100%;
             max-width: 1308px;
-            /* margin: 183px 0px 0px 66px; */
             margin: 176px auto;
             margin-bottom: 0px;
-            text-align: center
-            /* padding-top: 0px; */
+            text-align: center;
         }
 
         .search-filters {
             display: flex;
-            /* justify-content: space-between;
-            width: 1307px; 
-            margin: 133px auto 36px;
-            padding: 0 20px; */
             margin-bottom: 16px;
         }
 
         .filter-group {
-            /* display: flex;
-            align-items: center;
-            gap: 25px; */
             margin-left: auto;
         }
 
@@ -51,25 +70,13 @@
         }
 
         .filter-group input {
-            /* height: 55px;
-            background: #FFFFFF;
-            border: 1px solid #D9D9D9;
-            border-radius: 10px;
-            padding: 0 20px;
-            font-size: 21.98px; */
-        }
-
-        /* MSSV filter */
-        .filter-group:nth-child(1) input {
             width: 97px;
         }
 
-        /* MSMI filter */
         .filter-group:nth-child(2) input {
             width: 61px;
         }
 
-        /* Date range filter */
         .filter-group:nth-child(3) {
             gap: 10px;
         }
@@ -85,18 +92,13 @@
             border: 1px solid #000000;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            /* padding: 44px; */
         }
 
         .table-header {
             display: grid;
             grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr;
-            /* padding-left: 51px; */
-            /* margin-bottom: 44px; */
-            /* padding-left: 51px; */
             border-bottom: 1px solid #D9D9D9;
             text-align: center;
-            /* padding-bottom: 20px; */
             padding: 40px 20px 40px 20px;
         }
 
@@ -131,21 +133,20 @@
             margin-bottom: 0px;
         }
 
-        .pagination button {
+        .pagination a {
             width: 31.15px;
             height: 26.98px;
-            /* background: #FFBF00; */
             background: transparent;
             transition-duration: 0.3s;
             border: none;
             cursor: pointer;
         }
 
-        .pagination button:hover {
+        .pagination a:hover {
             background-color: #FFBF00;
         }
 
-        .pagination button img {
+        .pagination a img {
             display: block;
             width: 17px;
             height: 17px;
@@ -183,22 +184,23 @@
     </script>
 
     <div class="history-container">
-        <div class="search-filters">
+        <form method="GET" class="search-filters">
             <div class="filter-group">
                 <label>Mã số sinh viên:</label>
-                <input type="text" placeholder="MSSV">
+                <input type="text" name="mssv" placeholder="MSSV" value="<?php echo htmlspecialchars($searchMSSV); ?>">
             </div>
             <div class="filter-group">
                 <label>Mã số máy in:</label>
-                <input type="text" placeholder="MSMI">
+                <input type="text" name="msmi" placeholder="MSMI" value="<?php echo htmlspecialchars($searchMSMI); ?>">
             </div>
             <div class="filter-group">
                 <label>Phạm vi thời gian:</label>
-                <input type="text" placeholder="DD/MM/YYYY">
+                <input type="text" name="start_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchStartDate); ?>">
                 <span>-</span>
-                <input type="text" placeholder="DD/MM/YYYY">
+                <input type="text" name="end_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchEndDate); ?>">
             </div>
-        </div>
+            <button type="submit">Tìm kiếm</button>
+        </form>
 
         <div class="log-table">
             <div class="table-header">
@@ -209,107 +211,39 @@
                 <span>MSMI</span>
                 <span>Tên tệp</span>
             </div>
-            <!-- Sample data rows -->
+            <?php foreach ($currentEntries as $entry): ?>
             <div class="table-row">
-                <span>12:58:03 01/11/2024</span>
-                <span>2252416</span>
-                <span>Lionel Messi</span>
-                <span>8 x A4</span>
-                <span>0650</span>
-                <span>AnkaraMessi.docx</span>
+                <span><?php echo $entry['time']; ?></span>
+                <span><?php echo $entry['id']; ?></span>
+                <span><?php echo $entry['name']; ?></span>
+                <span><?php echo $entry['total_pages']; ?></span>
+                <span><?php echo $entry['msmi']; ?></span>
+                <span><?php echo $entry['docname']; ?></span>
             </div>
-            <div class="table-row">
-                <span>13:02:46 29/10/2024</span>
-                <span>2252932</span>
-                <span>Cristiano Ronaldo</span>
-                <span>5 x A4</span>
-                <span>0953</span>
-                <span>Siuuuuuuuuuuu.pdf</span>
-            </div>
-            <div class="table-row">
-                <span>12:58:03 01/11/2024</span>
-                <span>2252416</span>
-                <span>Lionel Messi</span>
-                <span>8 x A4</span>
-                <span>0650</span>
-                <span>AnkaraMessi.docx</span>
-            </div>
-            <div class="table-row">
-                <span>13:02:46 29/10/2024</span>
-                <span>2252932</span>
-                <span>Cristiano Ronaldo</span>
-                <span>5 x A4</span>
-                <span>0953</span>
-                <span>Siuuuuuuuuuuu.pdf</span>
-            </div>
-            <div class="table-row">
-                <span>12:58:03 01/11/2024</span>
-                <span>2252416</span>
-                <span>Lionel Messi</span>
-                <span>8 x A4</span>
-                <span>0650</span>
-                <span>AnkaraMessi.docx</span>
-            </div>
-            <div class="table-row">
-                <span>13:02:46 29/10/2024</span>
-                <span>2252932</span>
-                <span>Cristiano Ronaldo</span>
-                <span>5 x A4</span>
-                <span>0953</span>
-                <span>Siuuuuuuuuuuu.pdf</span>
-            </div>
-            <div class="table-row">
-                <span>12:58:03 01/11/2024</span>
-                <span>2252416</span>
-                <span>Lionel Messi</span>
-                <span>8 x A4</span>
-                <span>0650</span>
-                <span>AnkaraMessi.docx</span>
-            </div>
-            <div class="table-row">
-                <span>13:02:46 29/10/2024</span>
-                <span>2252932</span>
-                <span>Cristiano Ronaldo</span>
-                <span>5 x A4</span>
-                <span>0953</span>
-                <span>Siuuuuuuuuuuu.pdf</span>
-            </div>
-            <div class="table-row">
-                <span>12:58:03 01/11/2024</span>
-                <span>2252416</span>
-                <span>Lionel Messi</span>
-                <span>8 x A4</span>
-                <span>0650</span>
-                <span>AnkaraMessi.docx</span>
-            </div>
-            <div class="table-row">
-                <span>13:02:46 29/10/2024</span>
-                <span>2252932</span>
-                <span>Cristiano Ronaldo</span>
-                <span>5 x A4</span>
-                <span>0953</span>
-                <span>Siuuuuuuuuuuu.pdf</span>
-            </div>
-            <!-- Add more rows as needed -->
+            <?php endforeach; ?>
         </div>
 
         <div class="pagination">
-                <button class="first-page">
-                    <img src="../../css/assets/left-two-arrows.png" alt="first page">
-                </button>
-                <button class="prev-page">
-                    <img src="../../css/assets/left-arrow.png" alt="prev page">
-                </button>
-                <div class="page-number">1 / 3</div>
-                <button class="next-page">
-                    <img src="../../css/assets/right-arrow.png" alt="next page">
-                </button>
-                <button class="last-page">
-                    <img src="../../css/assets/right-two-arrows.png" alt="last page">
-                </button>
-            </div>
+            <?php if ($currentPage > 1): ?>
+            <a href="?page=1" class="first-page">
+                <img src="../../css/assets/left-two-arrows.png" alt="first page">
+            </a>
+            <a href="?page=<?php echo $currentPage - 1; ?>" class="prev-page">
+                <img src="../../css/assets/left-arrow.png" alt="prev page">
+            </a>
+            <?php endif; ?>
+            <div class="page-number"><?php echo $currentPage; ?> / <?php echo $totalPages; ?></div>
+            <?php if ($currentPage < $totalPages): ?>
+            <a href="?page=<?php echo $currentPage + 1; ?>" class="next-page">
+                <img src="../../css/assets/right-arrow.png" alt="next page">
+            </a>
+            <a href="?page=<?php echo $totalPages; ?>" class="last-page">
+                <img src="../../css/assets/right-two-arrows.png" alt="last page">
+            </a>
+            <?php endif; ?>
+        </div>
     </div>
 
     <?php include '../footer.php'; ?>
 </body>
-</html>
+</html> 

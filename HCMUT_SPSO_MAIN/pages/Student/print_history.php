@@ -1,95 +1,27 @@
 <?php
-/* Session checks here */
 session_start();
 
-
+/* Include necessary files */
 include '../../js/controller.php';
 include '../../js/data.php';
-$student = initializeSessionVariables();
+include '../../js/logAll.php'; // Include the print history
 
-$printHistory = [
-    [
-        'time' => '12:58:03 01/11/2024',
-        'building' => 'A3',
-        'room' => '208',
-        'pages' => '8 x A4',
-        'printerId' => '0650',
-        'fileName' => 'AnkaraMessi.docx'
-    ],
-    [
-        'time' => '13:02:46 29/10/2024',
-        'building' => 'A5',
-        'room' => '212',
-        'pages' => '5 x A4',
-        'printerId' => '0953',
-        'fileName' => 'Siuuuuuuuuuuu.pdf'
-    ],
-    [
-        'time' => '14:30:15 18/10/2024',
-        'building' => 'B5',
-        'room' => '306',
-        'pages' => '2 x A4 & 5 x A3',
-        'printerId' => '0470',
-        'fileName' => 'OhYeah.doc'
-    ],
-    [
-        'time' => '12:58:03 01/11/2024',
-        'building' => 'A3',
-        'room' => '208',
-        'pages' => '8 x A4',
-        'printerId' => '0650',
-        'fileName' => 'AnkaraMessi.docx'
-    ],
-    [
-        'time' => '13:02:46 29/10/2024',
-        'building' => 'A5',
-        'room' => '212',
-        'pages' => '5 x A4',
-        'printerId' => '0953',
-        'fileName' => 'Siuuuuuuuuuuu.pdf'
-    ],
-    [
-        'time' => '14:30:15 18/10/2024',
-        'building' => 'B5',
-        'room' => '306',
-        'pages' => '2 x A4 & 5 x A3',
-        'printerId' => '0470',
-        'fileName' => 'OhYeah.doc'
-    ],
-    [
-        'time' => '12:58:03 01/11/2024',
-        'building' => 'A3',
-        'room' => '208',
-        'pages' => '8 x A4',
-        'printerId' => '0650',
-        'fileName' => 'AnkaraMessi.docx'
-    ],
-    [
-        'time' => '13:02:46 29/10/2024',
-        'building' => 'A5',
-        'room' => '212',
-        'pages' => '5 x A4',
-        'printerId' => '0953',
-        'fileName' => 'Siuuuuuuuuuuu.pdf'
-    ],
-    [
-        'time' => '14:30:15 18/10/2024',
-        'building' => 'B5',
-        'room' => '306',
-        'pages' => '2 x A4 & 5 x A3',
-        'printerId' => '0470',
-        'fileName' => 'OhYeah.doc'
-    ],
-    [
-        'time' => '14:30:15 18/10/2024',
-        'building' => 'B5',
-        'room' => '306',
-        'pages' => '2 x A4 & 5 x A3',
-        'printerId' => '0470',
-        'fileName' => 'OhYeah.doc'
-    ]
-    // Add more entries as needed
-];
+$student = initializeSessionVariables();
+$pages = $student->pages; // Remaining pages
+
+// Filter print history for the current student
+$userPrintHistory = array_filter($printHistory, function($entry) use ($student) {
+    return $entry['id'] == $student->id;
+});
+
+// Calculate total pages used by the student
+$totalPagesUsed = 0;
+foreach ($userPrintHistory as $entry) {
+    if (preg_match('/(\d+)\s*x\s*(A[3-4])/', $entry['total_pages'], $matches)) {
+        $pagesUsed = intval($matches[1]);
+        $totalPagesUsed += $pagesUsed;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +29,7 @@ $printHistory = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch sử in - Student</title>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/background.css">
     <link rel="stylesheet" href="../../css/style.css">
@@ -136,7 +68,6 @@ $printHistory = [
         }
 
         .page-count-display img {
-            
             width: 65px;
             height: 64px;
         }
@@ -304,7 +235,8 @@ $printHistory = [
             <div class="search-filters">
                 <div class="page-count-display">
                     <img src="../../css/assets/availablePaper.png" alt="Paper">
-                    <span>Tổng số trang đã sử dụng: 25</span>
+                    <span>Tổng số trang đã sử dụng: <?php echo $totalPagesUsed; ?></span>
+                    
                 </div>
                 <div class="filter-group">
                     <label>Mã số máy in:</label>
@@ -327,14 +259,14 @@ $printHistory = [
                     <span>MSMI</span>
                     <span>Tên tệp</span>
                 </div>
-                <?php foreach ($printHistory as $entry): ?>
+                <?php foreach ($userPrintHistory as $entry): ?>
                     <div class="table-row">
-                        <span><?php echo $entry['time']; ?></span>
-                        <span><?php echo $entry['building']; ?></span>
-                        <span><?php echo $entry['room']; ?></span>
-                        <span><?php echo $entry['pages']; ?></span>
-                        <span><?php echo $entry['printerId']; ?></span>
-                        <span><?php echo $entry['fileName']; ?></span>  
+                        <span><?php echo htmlspecialchars($entry['time']); ?></span>
+                        <span><?php echo htmlspecialchars($entry['building']); ?></span>
+                        <span><?php echo htmlspecialchars($entry['room']); ?></span>
+                        <span><?php echo htmlspecialchars($entry['total_pages']); ?></span>
+                        <span><?php echo htmlspecialchars($entry['msmi']); ?></span>
+                        <span><?php echo htmlspecialchars($entry['docname']); ?></span>
                     </div>
                 <?php endforeach; ?>
             </div>

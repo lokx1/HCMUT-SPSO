@@ -1,3 +1,7 @@
+<?php
+// At the beginning of header.php
+global $pages;
+?>
 
 <nav class="header">
     <a href="home.php" class="hcmut-spss">
@@ -13,7 +17,7 @@
 
     <div class="page-count">
         <div class="count-box">
-        <span>Trang còn lại: <?php echo getRemainingPages(); ?></span>
+        <span>Trang còn lại: <?php echo $pages; ?></span>
             <img src="../../css/assets/availablePaper.png" alt="Paper Icon">
         </div>
     </div>
