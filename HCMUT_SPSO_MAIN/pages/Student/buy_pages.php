@@ -1,9 +1,10 @@
 <?php
 /* Session checks here */
-session_start();
+
 include '../../js/controller.php';
 include '../../js/data.php';
-$student = initializeSessionVariables();
+session_start();
+$student =  getSessionVariables('student');
 $pages = $student->pages;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $size = $_POST['size'];

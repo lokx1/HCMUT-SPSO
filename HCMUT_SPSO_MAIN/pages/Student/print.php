@@ -1,14 +1,14 @@
 <?php
-session_start();
 
 // Include necessary files
 include '../../js/controller.php';
 include '../../js/data.php';
 include '../../js/printer_config.php';
 include '../../js/logAll.php'; // Include the print history
+session_start();
 
 // Initialize student session and pages
-$student = initializeSessionVariables();
+$student =  getSessionVariables('student');
 $pages = $student->pages; // Initialize the global $pages variable
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -1,4 +1,7 @@
 <?php
+include 'js/controller.php';
+include 'js/data.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -11,6 +14,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($username === "student" && $password === "password") {
         $_SESSION['loggedin'] = true;
+        $student = initializeSessionVariables(2252442, 'Bảo Lê', 'password');
+        $_SESSION['student'] = $student;
+        header("Location: ./pages/Student/home.php");
+        exit();
+    }
+
+    if ($username === "baolong" && $password === "password") {
+        $_SESSION['loggedin'] = true;
+        // Create a new Student object with new data
+        $student = initializeSessionVariables(123456, 'Baolong', 'password');
+        $_SESSION['student'] = $student;
         header("Location: ./pages/Student/home.php");
         exit();
     }

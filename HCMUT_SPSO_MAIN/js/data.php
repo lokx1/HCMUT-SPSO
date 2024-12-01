@@ -1,5 +1,5 @@
 <?php
-function initializeSessionVariables() {
+function initializeSessionVariables($id, $username, $password) {
     // Check if the session is new
     if (!isset($_SESSION['initialized'])) {
         $_SESSION['initialized'] = true;
@@ -9,13 +9,19 @@ function initializeSessionVariables() {
         $_SESSION['student_pages'] = 10;
 
         // Create a new Student object with 10 pages
-        $student = new Student(2252442, 'Bảo Lê', 'password', 10);
+        $student = new Student($id, $username, $password, 10);
         $student->save();
     } else {
         // Session has already been initialized; retrieve existing student pages
-        $student = new Student(2252442, 'Bảo Lê', 'password', $_SESSION['student_pages']);
+        $student = new Student($id, $username, $password, $_SESSION['student_pages']);
     }
 
     return $student;
+}
+function getSessionVariables($key) {
+    if (isset($_SESSION[$key])) {
+        return $_SESSION[$key];
+    }
+    return null;
 }
 ?>
