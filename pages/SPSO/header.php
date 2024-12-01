@@ -1,8 +1,8 @@
 <nav class="header">
-<div class="hcmut-spss">
+    <a href="home.php" class="hcmut-spss">
         <div class="logo"></div>
         <div class="hcmut-title">HCMUT_SPSS</div>
-    </div>
+    </a>
     
     <div class="dropdown chinh-sua">
         <button class="dropdown-btn">

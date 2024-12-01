@@ -167,8 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-size: 36px;
             color: #FFFFFF;
             cursor: pointer;
-            position: absolute; /* Position button absolutely */
-            bottom: 41px; /* Move up from bottom */
+            position: relative; /* Position button relative */
+            top: -3.5px;
         }
 
         .paper-a4 .buy-btn {
