@@ -1,0 +1,167 @@
+/* Base Layout */
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0;
+    padding-top: 100px;
+    background: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    /* position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex: 1; */
+    min-height: calc(100vh - 556px); /* 100vh - (header + footer height) */
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 622px;
+    margin-top: 0px;
+    background: url('../../css/assets/hero_3_cropped.webp');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.advertisement {
+    position: absolute;
+    width: 874px;
+    height: 307px;
+    left: 53px;
+    top: 73px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.advertisement span {
+    position: absolute;
+    margin-top: 38px;
+    margin-left: 14px;
+    width: 845px;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    color: #FFFFFF;
+    /* border: 1px solid #000000; */
+}
+
+.view-report-btn {
+    position: absolute;
+    width: 305px;
+    height: 69px;
+    left: 53px;
+    top: 453px;
+    background: #0F6CBF;
+    border-radius: 30px;
+    border: none;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Section Titles */
+.section-title {
+    position: relative;
+    width: 100%;
+    height: 77px;
+    margin-top: 161px;
+    margin-bottom: 161px;
+    text-align: center;
+}
+
+.section-title h2 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #000000;
+    margin: 0;
+}
+
+.line-left, .line-right {
+    position: absolute;
+    height: 11px;
+    top: 50%;
+    background: #000000;
+    transform: translateY(-50%);
+}
+
+.line-left {
+    left: 0;
+    width: 541px;
+}
+
+.line-right {
+    right: 0;
+    width: 540px;
+}
+
+/* Action Cards */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 518px);
+    /* gap: 100px; */
+    justify-content: center;
+    /* margin: 50px auto; */
+}
+
+.action-card {
+    box-sizing: border-box;
+    width: 518px;
+    height: 389px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 27px;
+    cursor: pointer;
+    
+}
+
+.action-card .card-title {
+    font-weight: 700;
+    font-size: 36.1046px;
+    line-height: 44px;
+    color: #000000;
+    /* cursor: pointer;
+    margin-bottom: 28px; */
+}
+
+.action-card img {
+    width: 127px;
+    height: 127px;
+    margin: 28px 0;
+}
+
+.action-card p {
+    width: 466px;
+    /* margin-top: auto; */
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}

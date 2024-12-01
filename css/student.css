@@ -1,0 +1,95 @@
+/* Base Layout */
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0;
+    padding-top: 100px;
+    background: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+/* .header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    top: 0;
+    background: #0F6CBF;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.hcmut-spss {
+    width: 340px;
+    height: 100px;
+    background: #004787;
+    display: flex;
+    align-items: center;
+} */
+
+.nav-buttons {
+    display: flex;
+    height: 100px;
+    margin-left: 340px; /* Move entire nav-buttons section to start after HCMUT_SPSS */
+}
+
+.nav-buttons a {
+    width: 167px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 24px;
+    background: transparent;
+}
+/* Remove individual margin from first button since parent is now positioned */
+.nav-btn:nth-child(1) { margin-left: 0; }
+.nav-btn:nth-child(2) { margin-left: 0; }
+.nav-btn:nth-child(3) { margin-left: 0; }
+
+.page-count {
+    margin-left: 880px; /* Position page count directly after nav buttons */
+    position: absolute;
+}
+
+.count-box {
+    width: 210px;
+    height: 38.61px;
+    background: #FFFFFF;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 20px;
+}
+
+.count-box img {
+    width: 30px;
+    height: 30px;
+}
+
+.user-info {
+    position: absolute;
+    right: 33px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 33px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Inter';
+    color:#FFFFFF;
+}

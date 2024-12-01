@@ -1,0 +1,50 @@
+/* Footer Styles */
+.footer {
+    width: 100%;
+    height: 400px;
+    background: #000000;
+    margin-top: 200px;
+}
+
+.footer-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    /* padding: 76px 69px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 400px;
+}
+
+.contact-info {
+    margin: 76px 69px;
+    width: 533px;
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 24px;
+    font-family: 'Inter';
+}
+
+.contact-info span {
+    font-weight: 700;
+}
+.contact-info p {
+    font-weight: 400;
+}
+
+.footer-logo {
+    margin: 76px 69px;
+    width: 251.39px;
+    height: 240.08px;
+}
+
+.footer-copyright {
+    width: 100%;
+    height: 56px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 24px;
+}

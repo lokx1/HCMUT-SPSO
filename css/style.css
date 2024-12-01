@@ -1,0 +1,34 @@
+/* Pop-up Box Styles */
+.popup-box {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #000;
+    box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-box.active {
+    display: block;
+}
+
+.popup-box .popup-message {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.popup-box .popup-button {
+    padding: 10px 20px;
+    background: #0F6CBF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

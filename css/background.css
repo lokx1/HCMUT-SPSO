@@ -1,0 +1,43 @@
+/* Background */
+.decoration {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: #0F6CBF;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.decoration-top {
+    right: -160px;
+    top: 185px;
+}
+
+.decoration-bottom {
+    left: -160px;
+    top: 648px;
+}
+
+.back-to-home {
+    position: absolute;
+    width: 224px;
+    height: 57px;
+    left: 37px;
+    top: 153px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.back-to-home img {
+    width: 17px;
+    height: 17px;
+}

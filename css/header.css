@@ -1,0 +1,170 @@
+.header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    top: 0;
+    background: #0F6CBF;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.hcmut-spss {
+    position: absolute;
+    width: 340px;
+    height: 100px;
+    left: 0;
+    top: 0;
+    background: #004787;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    pointer-events: none;
+}
+
+.hcmut-spss .logo {
+    position: absolute;
+    width: 75.39px;
+    height: 71.29px;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url('assets/logoBKsmall.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.hcmut-spss .hcmut-title {
+    position: absolute;
+    width: 202px;
+    margin: 0 auto;
+    left: 108px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 29.4545px;
+    line-height: 35.64px;
+    color: #FFFFFF;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    /* text-align: center; */
+}
+
+.dropdown {
+    position: absolute;
+    width: 205px;
+    height: 100px;
+}
+
+.chinh-sua {
+    left: 340px;
+}
+
+.xem {
+    left: 545px;
+}
+
+.dropdown-btn {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 35px 20px;
+    display: flex;
+}
+
+.dropdown-btn .icon {
+    position: absolute;
+    width: 13px;
+    height: 8px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url('assets/white-down-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #FFFFFF;
+    z-index: 1;
+    border: 1px solid #8A8A8A;
+}
+
+.chinh-sua .dropdown-content {
+    width:280px;
+}
+
+.xem .dropdown-content {
+    width:205px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: flex;
+    padding: 36px 30px;
+    color: #8A8A8A;
+    text-decoration: none;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.dropdown-content a:hover {
+    background: rgba(217, 217, 217, 0.1);
+}
+
+.dropdown-content a span {
+    position: absolute;
+    right: 15px;
+    transform: translateY(20%);
+    width: 20px;
+    height: 20px;
+    background: url('assets/gray-right-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.user-info {
+    position: absolute;
+    right: 33px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 33px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Inter';
+    color:#FFFFFF;
+}
+
+.spso {
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.profile-pic {
+    width: 64px;
+    height: 64px;
+    /* background: #DDDDDD; */
+    border-radius: 50%;
+    object-fit: cover;
+    cursor:pointer;
+}
