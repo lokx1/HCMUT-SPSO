@@ -36,6 +36,8 @@
 
     <div class="user-info">
         <span class="spso">SPSO</span>
-        <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
+        <a href="../../index.php">
+            <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
+        </a>
     </div>
 </nav>
