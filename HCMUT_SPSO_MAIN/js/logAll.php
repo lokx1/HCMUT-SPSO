@@ -4,6 +4,50 @@ $printHistory = array (
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
+    'time' => '16:49:31 29/11/2024',
+    'building' => NULL,
+    'room' => NULL,
+    'total_pages' => '6 x A4',
+    'msmi' => NULL,
+    'docname' => '',
+  ),
+  1 => 
+  array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
+    'time' => '16:48:31 29/11/2024',
+    'building' => 'A2',
+    'room' => '101',
+    'total_pages' => '1 x A4',
+    'msmi' => '0658',
+    'docname' => '',
+  ),
+  2 => 
+  array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
+    'time' => '16:48:24 29/11/2024',
+    'building' => 'A2',
+    'room' => '101',
+    'total_pages' => '14 x A3',
+    'msmi' => '0658',
+    'docname' => '',
+  ),
+  3 => 
+  array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
+    'time' => '18:16:24 26/11/2024',
+    'building' => 'A2',
+    'room' => '101',
+    'total_pages' => '10 x A4',
+    'msmi' => '0658',
+    'docname' => '10a-tutorial.pdf',
+  ),
+  4 => 
+  array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
     'time' => '18:09:33 26/11/2024',
     'building' => NULL,
     'room' => NULL,
@@ -11,7 +55,7 @@ $printHistory = array (
     'msmi' => NULL,
     'docname' => '232 final CC_thi.pdf',
   ),
-  1 => 
+  5 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -22,7 +66,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => '33410-Article Text-112052-1-10-20180404.pdf',
   ),
-  2 => 
+  6 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -33,7 +77,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => 'Quiz11.1-Testing-Evolution_-Attempt-review-_-BK-LMS.pdf',
   ),
-  3 => 
+  7 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -44,7 +88,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => 'Microcontroller__1_ (7).pdf',
   ),
-  4 => 
+  8 => 
   array (
     'id' => '2252416',
     'name' => 'Lionel Messi',
@@ -55,7 +99,7 @@ $printHistory = array (
     'msmi' => '0650',
     'docname' => 'AnkaraMessi.docx',
   ),
-  5 => 
+  9 => 
   array (
     'id' => '2252932',
     'name' => 'Cristiano Ronaldo',
@@ -66,7 +110,7 @@ $printHistory = array (
     'msmi' => '0953',
     'docname' => 'Siuuuuuuuuuuu.pdf',
   ),
-  6 => 
+  10 => 
   array (
     'id' => '2253001',
     'name' => 'Neymar Jr',
@@ -77,7 +121,7 @@ $printHistory = array (
     'msmi' => '0470',
     'docname' => 'OhYeah.doc',
   ),
-  7 => 
+  11 => 
   array (
     'id' => '2253100',
     'name' => 'Kylian Mbappe',
@@ -88,7 +132,7 @@ $printHistory = array (
     'msmi' => '0651',
     'docname' => 'FastAndFurious.pdf',
   ),
-  8 => 
+  12 => 
   array (
     'id' => '2253200',
     'name' => 'Zlatan Ibrahimovic',
@@ -99,7 +143,7 @@ $printHistory = array (
     'msmi' => '0954',
     'docname' => 'IAmZlatan.docx',
   ),
-  9 => 
+  13 => 
   array (
     'id' => '2253300',
     'name' => 'Robert Lewandowski',
@@ -110,7 +154,7 @@ $printHistory = array (
     'msmi' => '0652',
     'docname' => 'GoalMachine.pdf',
   ),
-  10 => 
+  14 => 
   array (
     'id' => '2253400',
     'name' => 'Kevin De Bruyne',
@@ -121,7 +165,7 @@ $printHistory = array (
     'msmi' => '0653',
     'docname' => 'AssistKing.docx',
   ),
-  11 => 
+  15 => 
   array (
     'id' => '2253500',
     'name' => 'Sergio Ramos',
@@ -132,7 +176,7 @@ $printHistory = array (
     'msmi' => '0955',
     'docname' => 'Defender.pdf',
   ),
-  12 => 
+  16 => 
   array (
     'id' => '2253600',
     'name' => 'Luka Modric',
@@ -143,7 +187,7 @@ $printHistory = array (
     'msmi' => '0654',
     'docname' => 'MidfieldMaestro.doc',
   ),
-  13 => 
+  17 => 
   array (
     'id' => '2253700',
     'name' => 'Virgil van Dijk',
@@ -154,7 +198,7 @@ $printHistory = array (
     'msmi' => '0655',
     'docname' => 'RockSolid.pdf',
   ),
-  14 => 
+  18 => 
   array (
     'id' => '2253800',
     'name' => 'Mohamed Salah',
@@ -165,7 +209,7 @@ $printHistory = array (
     'msmi' => '0956',
     'docname' => 'EgyptianKing.docx',
   ),
-  15 => 
+  19 => 
   array (
     'id' => '2253900',
     'name' => 'Sadio Mane',
@@ -176,7 +220,7 @@ $printHistory = array (
     'msmi' => '0656',
     'docname' => 'Speedster.pdf',
   ),
-  16 => 
+  20 => 
   array (
     'id' => '2254000',
     'name' => 'Eden Hazard',
@@ -187,7 +231,7 @@ $printHistory = array (
     'msmi' => '0657',
     'docname' => 'Dribbler.docx',
   ),
-  17 => 
+  21 => 
   array (
     'id' => '2254100',
     'name' => 'Harry Kane',
@@ -198,7 +242,7 @@ $printHistory = array (
     'msmi' => '0957',
     'docname' => 'Striker.pdf',
   ),
-  18 => 
+  22 => 
   array (
     'id' => '2254200',
     'name' => 'Raheem Sterling',
