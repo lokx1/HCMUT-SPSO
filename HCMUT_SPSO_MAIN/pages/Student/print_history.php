@@ -1,17 +1,48 @@
 <?php
 
-/* Include necessary files */
+// Include necessary files
 include '../../js/controller.php';
 include '../../js/data.php';
 include '../../js/logAll.php'; // Include the print history
-
 session_start();
-$student =  getSessionVariables('student');
+
+// Retrieve the current student's print history
+$student = getSessionVariables('student');
 $pages = $student->pages; // Remaining pages
 
 // Filter print history for the current student
 $userPrintHistory = array_filter($printHistory, function($entry) use ($student) {
     return $entry['id'] == $student->id;
+});
+
+// Retrieve search inputs
+$msmi = isset($_GET['msmi']) ? trim($_GET['msmi']) : '';
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+
+// Convert dates to timestamps if provided
+$start_timestamp = $start_date ? strtotime($start_date . ' 00:00:00') : null;
+$end_timestamp = $end_date ? strtotime($end_date . ' 23:59:59') : null;
+
+// Filter the print history based on inputs
+$filteredHistory = array_filter($userPrintHistory, function($entry) use ($msmi, $start_timestamp, $end_timestamp) {
+    $match = true;
+
+    // Filter by MSMI
+    if ($msmi !== '' && stripos($entry['msmi'], $msmi) === false) {
+        $match = false;
+    }
+
+    // Filter by date range
+    $entryTimestamp = strtotime($entry['time']); // Assuming 'time' holds the date and time of the print job
+    if ($start_timestamp && $entryTimestamp < $start_timestamp) {
+        $match = false;
+    }
+    if ($end_timestamp && $entryTimestamp > $end_timestamp) {
+        $match = false;
+    }
+
+    return $match;
 });
 
 // Calculate total pages used by the student
@@ -238,16 +269,19 @@ foreach ($userPrintHistory as $entry) {
                     <span>Tổng số trang đã sử dụng: <?php echo $totalPagesUsed; ?></span>
                     
                 </div>
-                <div class="filter-group">
-                    <label>Mã số máy in:</label>
-                    <input class="MSMI" type="text" placeholder="MSMI">
-                </div>
-                <div class="filter-group">
-                    <label class="time-label">Phạm vi thời gian:</label>
-                    <input class="time" type="text" placeholder="DD/MM/YYYY">
-                    <span>-</span>
-                    <input class="time"type="text" placeholder="DD/MM/YYYY">
-                </div>
+                <form method="GET" action="">
+                    <div class="filter-group">
+                        <label>Mã số máy in:</label>
+                        <input class="MSMI" type="text" name="msmi" placeholder="MSMI" value="<?php echo isset($_GET['msmi']) ? htmlspecialchars($_GET['msmi']) : ''; ?>">
+                    </div>
+                    <div class="filter-group">
+                        <label class="time-label">Phạm vi thời gian:</label>
+                        <input class="time" type="date" name="start_date" value="<?php echo isset($_GET['start_date']) ? htmlspecialchars($_GET['start_date']) : ''; ?>">
+                        <span>-</span>
+                        <input class="time" type="date" name="end_date" value="<?php echo isset($_GET['end_date']) ? htmlspecialchars($_GET['end_date']) : ''; ?>">
+                    </div>
+                    <button type="submit">Tìm kiếm</button>
+                </form>
             </div>
 
             <div class="log-table">
@@ -259,16 +293,22 @@ foreach ($userPrintHistory as $entry) {
                     <span>MSMI</span>
                     <span>Tên tệp</span>
                 </div>
-                <?php foreach ($userPrintHistory as $entry): ?>
+                <?php if (!empty($filteredHistory)): ?>
+                    <?php foreach ($filteredHistory as $entry): ?>
+                        <div class="table-row">
+                            <span><?php echo htmlspecialchars($entry['time']); ?></span>
+                            <span><?php echo htmlspecialchars($entry['building']); ?></span>
+                            <span><?php echo htmlspecialchars($entry['room']); ?></span>
+                            <span><?php echo htmlspecialchars($entry['total_pages']); ?></span>
+                            <span><?php echo htmlspecialchars($entry['msmi']); ?></span>
+                            <span><?php echo htmlspecialchars($entry['docname']); ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <div class="table-row">
-                        <span><?php echo htmlspecialchars($entry['time']); ?></span>
-                        <span><?php echo htmlspecialchars($entry['building']); ?></span>
-                        <span><?php echo htmlspecialchars($entry['room']); ?></span>
-                        <span><?php echo htmlspecialchars($entry['total_pages']); ?></span>
-                        <span><?php echo htmlspecialchars($entry['msmi']); ?></span>
-                        <span><?php echo htmlspecialchars($entry['docname']); ?></span>
+                        <span colspan="6">Không có dữ liệu phù hợp.</span>
                     </div>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
 
             <div class="pagination">
