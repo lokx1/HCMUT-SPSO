@@ -1,8 +1,8 @@
 <nav class="header">
-<div class="hcmut-spss">
+    <a href="home.php" class="hcmut-spss">
         <div class="logo"></div>
         <div class="hcmut-title">HCMUT_SPSS</div>
-    </div>
+    </a>
     
     <div class="dropdown chinh-sua">
         <button class="dropdown-btn">
@@ -36,6 +36,8 @@
 
     <div class="user-info">
         <span class="spso">SPSO</span>
-        <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
+        <a href="../../index.php">
+            <img src="../../css/assets/Default_pfp.svg" alt="Profile" class="profile-pic">
+        </a>
     </div>
 </nav>

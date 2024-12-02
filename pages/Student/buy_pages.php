@@ -1,9 +1,9 @@
 <?php
 /* Session checks here */
-session_start();
 include '../../js/controller.php';
 include '../../js/data.php';
-$student = initializeSessionVariables();
+session_start();
+$student =  getSessionVariables('student');
 $pages = $student->pages;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $size = $_POST['size'];
@@ -167,8 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-size: 36px;
             color: #FFFFFF;
             cursor: pointer;
-            position: absolute; /* Position button absolutely */
-            bottom: 41px; /* Move up from bottom */
+            position: relative; /* Position button relative */
+            top: -3.5px;
         }
 
         .paper-a4 .buy-btn {

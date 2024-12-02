@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Check if session is new and initialize pages to 10
+
 
 
 

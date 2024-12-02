@@ -1,3 +1,26 @@
+/* Input box Styles */
+select {
+    position: relative;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    padding: 0 21px;
+    font-size: 21.98px; 
+    appearance: none;
+    background-image: url("assets/down-arrow.png");
+    background-repeat: no-repeat;
+    background-position: right 21px top 50%;
+    background-size: 11px auto;
+    cursor: pointer;
+}
+
+input {
+    height: 55px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 21.98px;
+}
+
 /* Pop-up Box Styles */
 .popup-box {
     display: none;
