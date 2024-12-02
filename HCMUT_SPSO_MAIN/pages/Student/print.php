@@ -10,74 +10,69 @@ session_start();
 // Initialize student session and pages
 $student =  getSessionVariables('student');
 $pages = $student->pages; // Initialize the global $pages variable
+$message = ''; // Initialize message variable
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Handle file upload
-    if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/';
-        $uploadedFilePath = $uploadDir . basename($_FILES['file']['name']);
-        move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFilePath);
-    }
-
-    // Collect form inputs
-    $copies = intval($_POST['copies']);
-    $pagesInput = intval($_POST['pages']);
-    $paperSize = $_POST['paper_size'];
-    $printSide = $_POST['print_side'];
-    $totalPagesNeeded = intval($_POST['total_pages_needed']);
-    $printerIndex = intval($_POST['printer']);
-    $uploadedFileName = $_FILES['file']['name'];
-
-    if ($copies <= 0 || $pagesInput <= 0 || empty($paperSize) || empty($printSide)) {
-        $message = "Please enter valid values for all fields.";
+    if (!isset($_FILES['file']) || $_FILES['file']['error'] === UPLOAD_ERR_NO_FILE) {
+        $message = 'Vui lòng chọn tệp để in';
     } else {
-        // Check if there are enough pages
-        $remainingPages = $pages;
-        if ($totalPagesNeeded > $remainingPages) {
-            $message = "Not enough pages. Please buy more pages.";
+        $uploadedFileName = $_FILES['file']['name'];
+        $copies = intval($_POST['copies']);
+        $pagesInput = intval($_POST['pages']);
+        $paperSize = $_POST['paper_size'];
+        $printSide = $_POST['print_side'];
+        $totalPagesNeeded = intval($_POST['total_pages_needed']);
+        $printerIndex = intval($_POST['printer']);
+
+        if ($copies <= 0 || $pagesInput <= 0 || empty($paperSize) || empty($printSide)) {
+            $message = 'Vui lòng điền đầy đủ thông tin in';
+        } else if ($totalPagesNeeded > $pages) {
+            $message = 'Không đủ số trang. Vui lòng mua thêm trang.';
         } else {
-            // Subtract the pages and update the student's remaining pages
-            $remainingPages -= $totalPagesNeeded;
-            $pages = $remainingPages;
-            $student->pages = $remainingPages;
-            $student->save();
-
-            // Get printer configuration
             $printer = $printerConfigurations[$printerIndex];
-            $printerBuilding = $printer['building'];
-            $printerRoom = $printer['room'];
-            $printerMSMI = $printer['msmi'];
+            if ($printer['status'] !== 'active') {
+                $message = 'Máy in không hoạt động. Vui lòng chọn máy in khác.';
+            } else {
+                // Process successful print job
+                $remainingPages = $pages - $totalPagesNeeded;
+                $student->pages = $remainingPages;
+                $student->save();
 
-            // Create the print history entry
-            $printHistoryEntry = [
-                'id' => $student->id,
-                'name' => $student->username,
-                'time' => date('H:i:s d/m/Y'),
-                'building' => $printerBuilding,
-                'room' => $printerRoom,
-                'total_pages' => "{$totalPagesNeeded} x {$paperSize}",
-                'msmi' => $printerMSMI,
-                'docname' => $uploadedFileName
-            ];
+                // Calculate actual number of physical pages for the log
+                $actualPages = $copies * $pagesInput;
+                if ($printSide === 'Hai mặt' ) {
+                    $actualPages = ceil($actualPages / 2);
+                }
+                if ($paperSize === 'A3') {
+                    $actualPages = ceil($actualPages / 2);
+                }
+                $printHistoryEntry = [
+                    'id' => $student->id,
+                    'name' => $student->username,
+                    'time' => date('H:i:s d/m/Y'),
+                    'building' => $printer['building'],
+                    'room' => $printer['room'],
+                    'total_pages' => "{$actualPages} x {$paperSize}",
+                    'msmi' => $printerIndex + 1,
+                    'docname' => $uploadedFileName
+                ];
 
-            // Add the new entry to the existing print history
-            $printHistory[] = $printHistoryEntry;
+                array_unshift($printHistory, $printHistoryEntry);
 
-            // Sort the print history by time
-            usort($printHistory, function($a, $b) {
-                $timeA = DateTime::createFromFormat('H:i:s d/m/Y', $a['time']);
-                $timeB = DateTime::createFromFormat('H:i:s d/m/Y', $b['time']);
-                return $timeB <=> $timeA;
-            });
+                // Save updated print history
+                $phpCode = "<?php\n\$printHistory = " . var_export($printHistory, true) . ";\n?>";
+                file_put_contents('../../js/logAll.php', $phpCode);
 
-            // Write the updated printHistory back to logAll.php
-            $phpCode = "<?php\n\$printHistory = " . var_export($printHistory, true) . ";\n?>";
-            file_put_contents('../../js/logAll.php', $phpCode);
-
-            // Redirect to refresh the page and update the header
-            header("Location: print.php");
-            exit();
+                $message = 'In thành công!';
+            }
         }
+    }
+    
+    // Return JSON response for AJAX requests
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        header('Content-Type: application/json');
+        echo json_encode(['message' => $message]);
+        exit;
     }
 }
 ?>
@@ -247,9 +242,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 document.getElementById('fileSelector').addEventListener('change', function() {
                 const fileInput = this;
                 const filePath = fileInput.value;
-                const allowedExtensions = /(\.pdf)$/i;
+                const allowedExtensions = /(\.pdf)$/i; // allow extension
                 if (!allowedExtensions.exec(filePath)) {
-                    alert('Vui lòng chọn tệp PDF.');
+                    document.querySelector('.popup-box .popup-message').textContent = 'Vui lòng chọn tệp PDF.';
+                    document.querySelector('.popup-box').classList.add('active');
                     fileInput.value = '';
                 } else {
                     const fileName = fileInput.files[0].name;
@@ -261,17 +257,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="form-row">
-            <label>Chọn máy in</label>
-            <select name="printer">
-                <option value="" selected disabled hidden>Máy in...</option>
-                <option value="0">Máy in tòa nhà A1-302</option>
-                <option value="1">Máy in tòa nhà A2-209</option>
-                <option value="2">Máy in tòa nhà A3-208</option>
-                <option value="3">Máy in tòa nhà A4-101</option>
-                <option value="4">Máy in tòa nhà A5-212</option>
-                <option value="5">Máy in tòa nhà B1-410</option>
-            </select>
-        </div>
+    <label>Chọn máy in</label>
+    <select name="printer">
+        <option value="" selected disabled hidden>Máy in...</option>
+        <?php foreach ($printerConfigurations as $index => $printer): ?>
+            <option value="<?php echo $index; ?>">
+                <?php echo "{$printer['brand']} {$printer['model']} - {$printer['room']} {$printer['building']}"; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
 
         <div class="option-row">
             <div class="option-group">
@@ -321,19 +316,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 const paperSize = paperSizeSelect.value;
                 const printSide = printSideSelect.value;
 
+                // Calculate total pages for cost
                 let totalPagesNeeded = copies * pages;
 
-                if (printSide === 'Hai mặt') {
-                    totalPagesNeeded = Math.ceil(totalPagesNeeded / 2);
-                }
-
+                // For A3, each page counts as 2 pages for cost calculation
                 if (paperSize === 'A3') {
                     totalPagesNeeded *= 2;
+                }
+
+                // Apply double-sided printing reduction after A3 calculation
+                if (printSide === 'Hai mặt') {
+                    totalPagesNeeded = Math.ceil(totalPagesNeeded / 2);
                 }
 
                 totalPagesNeededInput.value = totalPagesNeeded;
             }
 
+            // Update the print history entry creation in PHP:
             paperSizeSelect.addEventListener('change', updateTotalPagesNeeded);
             printSideSelect.addEventListener('change', updateTotalPagesNeeded);
             document.querySelector('input[name="copies"]').addEventListener('input', updateTotalPagesNeeded);
@@ -343,5 +342,135 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             updateTotalPagesNeeded();
         });
     </script>
+    <div class="popup-box">
+        <div class="popup-message"></div>
+        <button class="popup-button" onclick="handlePopupConfirm()">Xác nhận</button>
+    </div>
+    <script>
+function handlePopupConfirm() {
+    const popup = document.querySelector('.popup-box');
+    const message = popup.querySelector('.popup-message').textContent;
+    
+    popup.classList.remove('active');
+    
+    // If it was a success message, refresh the page
+    if (message === 'In thành công!') {
+        window.location.href = 'print.php';
+    }
+}
+
+// Replace file selector alert with popup
+document.getElementById('fileSelector').addEventListener('change', function() {
+    const fileInput = this;
+    const filePath = fileInput.value;
+    const allowedExtensions = /(\.pdf)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        document.querySelector('.popup-box .popup-message').textContent = 'Vui lòng chọn tệp PDF.';
+        document.querySelector('.popup-box').classList.add('active');
+        fileInput.value = '';
+    } else {
+        const fileName = fileInput.files[0].name;
+        document.querySelector('.file-name').textContent = fileName;
+    }
+});
+
+// Show popup if there's a message from PHP
+<?php if (!empty($message)): ?>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.popup-box .popup-message').textContent = <?php echo json_encode($message); ?>;
+    document.querySelector('.popup-box').classList.add('active');
+});
+<?php endif; ?>
+
+// Add this JavaScript after your existing scripts
+document.querySelector('.print-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('print.php', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        const popup = document.querySelector('.popup-box');
+        popup.querySelector('.popup-message').textContent = data.message;
+        popup.classList.add('active'); // Show popup
+        
+        if (data.message === 'In thành công!') {
+            // Don't auto refresh - let user confirm first
+            document.querySelector('.popup-button').onclick = function() {
+                window.location.reload();
+            };
+        } else {
+            document.querySelector('.popup-button').onclick = function() {
+                popup.classList.remove('active');
+            };
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const popup = document.querySelector('.popup-box');
+        popup.querySelector('.popup-message').textContent = 'Có lỗi xảy ra';
+        popup.classList.add('active');
+    });
+});
+
+// Modify your handlePopupConfirm function
+function handlePopupConfirm() {
+    const popup = document.querySelector('.popup-box');
+    const message = popup.querySelector('.popup-message').textContent;
+    
+    popup.classList.remove('active');
+    
+    if (message === 'In thành công!') {
+        window.location.reload();
+    }
+}
+
+// Add CSS for popup styling
+const style = document.createElement('style');
+style.textContent = `
+    .popup-box {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #000;
+        box-shadow: 0px 4px 50px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .popup-box.active {
+        display: block;
+    }
+
+    .popup-message {
+        margin-bottom: 20px;
+        font-family: 'Inter';
+        font-size: 18px;
+    }
+
+    .popup-button {
+        padding: 10px 20px;
+        background: #0F6CBF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Inter';
+    }
+`;
+document.head.appendChild(style);
+</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 /* Session checks here */
-include '../../Testcase SPSO/printer_config.php';
+include '../../js/printer_config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $brand = $_POST['brand'];
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $printerConfigurations[] = $newPrinter;
 
     // Save the updated array to the file
-    file_put_contents('../../Testcase SPSO/printer_config.php', '<?php $printerConfigurations = ' . var_export($printerConfigurations, true) . '; ?>');
+    file_put_contents('../../js/printer_config.php', '<?php $printerConfigurations = ' . var_export($printerConfigurations, true) . '; ?>');
 }
 ?>
 <!DOCTYPE html>

@@ -1,12 +1,11 @@
 <?php
 /* Session checks here */
-
 // Initialize student pages if not already set
 
 include '../../js/controller.php';
 include '../../js/data.php';
 session_start();
-$student= getSessionVariables('student');
+$student =  getSessionVariables('student');
 $pages = $student->pages;
 ?>
 <!DOCTYPE html>

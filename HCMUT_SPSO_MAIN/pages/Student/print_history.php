@@ -1,12 +1,12 @@
 <?php
 
-
 /* Include necessary files */
 include '../../js/controller.php';
 include '../../js/data.php';
 include '../../js/logAll.php'; // Include the print history
+
 session_start();
-$student = getSessionVariables('student');
+$student =  getSessionVariables('student');
 $pages = $student->pages; // Remaining pages
 
 // Filter print history for the current student

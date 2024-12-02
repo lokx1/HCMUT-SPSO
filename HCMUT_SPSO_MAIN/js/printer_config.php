@@ -1,7 +1,3 @@
-<?php
-// printer_config.php
-// $printerConfigurations = [];
-?>
 <?php $printerConfigurations = array (
   0 => 
   array (
@@ -11,8 +7,26 @@
     'building' => 'A2',
     'room' => '101',
     'description' => 'No',
-    'status' => 'active', // Add status field
-    'msmi' => '0658'
+    'status' => 'active',
   ),
-
+  1 => 
+  array (
+    'brand' => 'Sonny',
+    'model' => 'Nitro',
+    'campus' => 'Trường Đại học Bách khoa cơ sở 2',
+    'building' => 'A2',
+    'room' => '102',
+    'description' => 'No',
+    'status' => 'inactive',
+  ),
+  2 => 
+  array (
+    'brand' => 'Sega',
+    'model' => 'Alba',
+    'campus' => 'Trường Đại học Bách khoa cơ sở 2',
+    'building' => 'A4',
+    'room' => '104',
+    'description' => 'NO',
+    'status' => 'inactive',
+  ),
 ); ?>

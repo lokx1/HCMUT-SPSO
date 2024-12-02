@@ -2,7 +2,7 @@
 /* Session checks here */
 
 // Include settings file or create default settings
-$settingsFile = '../../Testcase SPSO/printer_settings.php';
+$settingsFile = '../../js/printer_settings.php';
 
 if (file_exists($settingsFile)) {
     include $settingsFile;

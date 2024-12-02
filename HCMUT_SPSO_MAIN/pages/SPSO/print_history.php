@@ -1,6 +1,6 @@
 <?php
 /* Session checks here */
-include '../../Testcase SPSO/logAll.php';
+include '../../js/logAll.php';
 
 // Pagination logic
 $entriesPerPage = 10;
@@ -187,20 +187,20 @@ if ($searchMSSV || $searchMSMI || $searchStartDate || $searchEndDate) {
         <form method="GET" class="search-filters">
             <div class="filter-group">
                 <label>Mã số sinh viên:</label>
-                <input type="text" name="mssv" placeholder="MSSV" value="<?php echo htmlspecialchars($searchMSSV); ?>">
+                <input type="text" name="mssv" placeholder="MSSV" value="<?php echo htmlspecialchars($searchMSSV); ?>" onchange="this.form.submit()">
             </div>
             <div class="filter-group">
                 <label>Mã số máy in:</label>
-                <input type="text" name="msmi" placeholder="MSMI" value="<?php echo htmlspecialchars($searchMSMI); ?>">
+                <input type="text" name="msmi" placeholder="MSMI" value="<?php echo htmlspecialchars($searchMSMI); ?>" onchange="this.form.submit()">
             </div>
             <div class="filter-group">
                 <label>Phạm vi thời gian:</label>
-                <input type="text" name="start_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchStartDate); ?>">
+                <input type="text" name="start_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchStartDate); ?>" onchange="this.form.submit()">
                 <span>-</span>
-                <input type="text" name="end_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchEndDate); ?>">
+                <input type="text" name="end_date" placeholder="DD/MM/YYYY" value="<?php echo htmlspecialchars($searchEndDate); ?>" onchange="this.form.submit()">
             </div>
-            <button type="submit">Tìm kiếm</button>
         </form>
+
 
         <div class="log-table">
             <div class="table-header">
