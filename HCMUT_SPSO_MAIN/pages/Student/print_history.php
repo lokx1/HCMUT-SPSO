@@ -45,6 +45,15 @@ $filteredHistory = array_filter($userPrintHistory, function($entry) use ($msmi, 
     return $match;
 });
 
+// Pagination logic
+$entriesPerPage = 10;
+$totalEntries = count($filteredHistory);
+$totalPages = ceil($totalEntries / $entriesPerPage);
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$startIndex = ($currentPage - 1) * $entriesPerPage;
+$endIndex = min($startIndex + $entriesPerPage, $totalEntries);
+$currentEntries = array_slice($filteredHistory, $startIndex, $entriesPerPage);
+
 // Calculate total pages used by the student
 $totalPagesUsed = 0;
 foreach ($userPrintHistory as $entry) {
@@ -67,67 +76,25 @@ foreach ($userPrintHistory as $entry) {
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/student.css">
     <style>
-        body {
-            /* position: relative;
-            width: 100%;
-            min-height: 100vh;
-            background: #FFFFFF;
-            overflow-x: hidden;
-            padding-top: 100px;
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh + 1200px); */
-        }
-
         .history-container {
-            /* position: relative; */
             width: 100%;
             max-width: 1308px;
-            /* margin: 183px 0px 0px 66px; */
-            margin: 183px auto;
+            margin: 176px auto;
             margin-bottom: 0px;
-            text-align: center
-            /* padding-top: 0px; */
-        }
-
-        .page-count-display {
-            /* position: absolute; */
-            display: flex;
-            /* align-items: center; */
-            /* gap: 0px; */
-            /* margin-bottom: 20px; */
-        }
-
-        .page-count-display img {
-            width: 65px;
-            height: 64px;
-        }
-
-        .page-count-display span {
-            width: 198px;
-            font-family: 'Inter';
-            font-style: italic;
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 24px;
-            color: #F31260;
-            text-align: left;
-            padding-top: 7px;
+            text-align: center;
         }
 
         .search-filters {
-            display: flex; 
-            /* justify-content: space-between; */
-            /* width: 100%; */
-            /* margin: 40px 0px 0px 20px; */
-            /* padding: 0 20px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
         .filter-group {
-            /* display: flex; */
-            margin-left: auto;
-            /* align-items: center; */
-            /* gap: 25px; */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .filter-group label {
@@ -138,20 +105,30 @@ foreach ($userPrintHistory as $entry) {
             white-space: nowrap;
             margin-right: 25px;
         }
-        
+
+        .filter-group input {
+            width: 97px;
+        }
+
+        .filter-group:nth-child(2) input {
+            width: 61px;
+        }
+
+        .filter-group:nth-child(3) input {
+            width: 146px;
+        }
 
         .filter-group .MSMI {
-            width: 60px; /* width is already 41px when set to 0px */
+            width: 60px;
         }
 
         .filter-group .time {
-            width: 145px; /* width is already 41px when set to 0px */
+            width: 145px;
         }
 
         .filter-group span {
             margin: 0px 9.5px 0px 9.5px;
         }
-
 
         .log-table {
             width: 100%;
@@ -160,21 +137,14 @@ foreach ($userPrintHistory as $entry) {
             border: 1px solid #000000;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
-            /* padding: 44px; */
-            
         }
 
         .table-header {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
-            /* padding-left: 51px; */
-            /* margin-bottom: 44px; */
-            /* padding-left: 51px; */
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr;
             border-bottom: 1px solid #D9D9D9;
             text-align: center;
-            /* padding-bottom: 20px; */
             padding: 40px 20px 40px 20px;
-            
         }
 
         .table-header span {
@@ -186,7 +156,7 @@ foreach ($userPrintHistory as $entry) {
 
         .table-row {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr;
             padding: 20px;
             border-bottom: 1px solid #D9D9D9;
         }
@@ -211,7 +181,6 @@ foreach ($userPrintHistory as $entry) {
         .pagination button {
             width: 31.15px;
             height: 26.98px;
-            /* background: #FFBF00; */
             background: transparent;
             transition-duration: 0.3s;
             border: none;
@@ -242,14 +211,19 @@ foreach ($userPrintHistory as $entry) {
             line-height: 31px;
         }
 
-        /* .content-wrapper {
-            margin-top: 131px;
-        } */
+        .total-pages-used {
+            font-family: 'Inter';
+            font-weight: 700;
+            font-size: 21.36px;
+            color: #000000;
+            margin-bottom: 16px;
+        }
     </style>
-    </head>
-    <body>
+</head>
+<body>
     <?php include 'header.php'; ?>
-    <?php include '..\background.php'; ?>
+    <?php include '../background.php'; ?>
+
     <script>
         const printBtn = document.querySelector(".nav-buttons .nav-btn-history");
         printBtn.style.background = "#004787";
@@ -262,73 +236,65 @@ foreach ($userPrintHistory as $entry) {
     </script>
 
     <div class="history-container">
-        <div class="content-wrapper">
-            <div class="search-filters">
-                <div class="page-count-display">
-                    <img src="../../css/assets/availablePaper.png" alt="Paper">
-                    <span>Tổng số trang đã sử dụng: <?php echo $totalPagesUsed; ?></span>
-                    
-                </div>
-                <form method="GET" action="">
-                    <div class="filter-group">
-                        <label>Mã số máy in:</label>
-                        <input class="MSMI" type="text" name="msmi" placeholder="MSMI" value="<?php echo isset($_GET['msmi']) ? htmlspecialchars($_GET['msmi']) : ''; ?>">
-                    </div>
-                    <div class="filter-group">
-                        <label class="time-label">Phạm vi thời gian:</label>
-                        <input class="time" type="date" name="start_date" value="<?php echo isset($_GET['start_date']) ? htmlspecialchars($_GET['start_date']) : ''; ?>">
-                        <span>-</span>
-                        <input class="time" type="date" name="end_date" value="<?php echo isset($_GET['end_date']) ? htmlspecialchars($_GET['end_date']) : ''; ?>">
-                    </div>
-                    <button type="submit">Tìm kiếm</button>
-                </form>
+        <div class="total-pages-used">
+            
+            Tổng số trang đã sử dụng: <?php echo $totalPagesUsed; ?>
+        </div>
+        <form method="GET" class="search-filters">
+            <div class="filter-group">
+                <label>Phạm vi thời gian:</label>
+                <input type="text" name="start_date" value="<?php echo htmlspecialchars($start_date); ?>" onchange="this.form.submit()">
+                <span>-</span>
+                <input type="text" name="end_date" value="<?php echo htmlspecialchars($end_date); ?>" onchange="this.form.submit()">
+            </div>   
+            <div class="filter-group">
+                <label>Mã số máy in:</label>
+                <input type="text" name="msmi" placeholder="MSMI" value="<?php echo htmlspecialchars($msmi); ?>" onchange="this.form.submit()">
             </div>
+        </form>
 
-            <div class="log-table">
-                <div class="table-header">
-                    <span>Thời gian</span>
-                    <span>Tòa nhà</span>
-                    <span>Phòng</span>
-                    <span>Số trang</span>
-                    <span>MSMI</span>
-                    <span>Tên tệp</span>
-                </div>
-                <?php if (!empty($filteredHistory)): ?>
-                    <?php foreach ($filteredHistory as $entry): ?>
-                        <div class="table-row">
-                            <span><?php echo htmlspecialchars($entry['time']); ?></span>
-                            <span><?php echo htmlspecialchars($entry['building']); ?></span>
-                            <span><?php echo htmlspecialchars($entry['room']); ?></span>
-                            <span><?php echo htmlspecialchars($entry['total_pages']); ?></span>
-                            <span><?php echo htmlspecialchars($entry['msmi']); ?></span>
-                            <span><?php echo htmlspecialchars($entry['docname']); ?></span>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="table-row">
-                        <span colspan="6">Không có dữ liệu phù hợp.</span>
-                    </div>
-                <?php endif; ?>
+        <div class="log-table">
+            <div class="table-header">
+                <span>Thời gian</span>
+                <span>MSSV</span>
+                <span>Tên</span>
+                <span>Số trang</span>
+                <span>MSMI</span>
+                <span>Tên tệp</span>
             </div>
+            <?php foreach ($currentEntries as $entry): ?>
+            <div class="table-row">
+                <span><?php echo $entry['time']; ?></span>
+                <span><?php echo $entry['id']; ?></span>
+                <span><?php echo $entry['name']; ?></span>
+                <span><?php echo $entry['total_pages']; ?></span>
+                <span><?php echo $entry['msmi']; ?></span>
+                <span><?php echo $entry['docname']; ?></span>
+            </div>
+            <?php endforeach; ?>
+        </div>
 
-            <div class="pagination">
-                <button class="first-page">
-                    <img src="../../css/assets/left-two-arrows.png" alt="first page">
-                </button>
-                <button class="prev-page">
-                    <img src="../../css/assets/left-arrow.png" alt="prev page">
-                </button>
-                <div class="page-number">1 / 3</div>
-                <button class="next-page">
-                    <img src="../../css/assets/right-arrow.png" alt="next page">
-                </button>
-                <button class="last-page">
-                    <img src="../../css/assets/right-two-arrows.png" alt="last page">
-                </button>
-            </div>
+        <div class="pagination">
+            <?php if ($currentPage > 1): ?>
+            <a href="?page=1" class="first-page">
+                <img src="../../css/assets/left-two-arrows.png" alt="first page">
+            </a>
+            <a href="?page=<?php echo $currentPage - 1; ?>" class="prev-page">
+                <img src="../../css/assets/left-arrow.png" alt="prev page">
+            </a>
+            <?php endif; ?>
+            <div class="page-number"><?php echo $currentPage; ?> / <?php echo $totalPages; ?></div>
+            <?php if ($currentPage < $totalPages): ?>
+            <a href="?page=<?php echo $currentPage + 1; ?>" class="next-page">
+                <img src="../../css/assets/right-arrow.png" alt="next page">
+            </a>
+            <a href="?page=<?php echo $totalPages; ?>" class="last-page">
+                <img src="../../css/assets/right-two-arrows.png" alt="last page">
+            </a>
+            <?php endif; ?>
         </div>
     </div>
 
-    <?php include '..\footer.php'; ?>
+    <?php include '../footer.php'; ?>
 </body>
 </html>
