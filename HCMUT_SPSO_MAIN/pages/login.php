@@ -1,11 +1,4 @@
-<?php
-include 'js/controller.php';
-include 'js/data.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    if ($username === "admin" && $password === "password") {
+") {
         $_SESSION['loggedin'] = true;
         header("Location: ./pages/SPSO/home.php");
         exit();
