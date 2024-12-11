@@ -373,10 +373,13 @@ function handlePopupConfirm() {
 // Replace file selector alert with popup
 document.getElementById('fileSelector').addEventListener('change', function() {
     const fileInput = this;
-    const filePath = fileInput.value;
-    const allowedExtensions = /(\.pdf)$/i;
+    const filePath = fileInput.value.toLowerCase();
+    const allowedExtensions = new RegExp('(' + <?php echo json_encode($allowedFormats); ?>.join('|').replace(/\./g, '\\.') + ')$', 'i');
+    
     if (!allowedExtensions.exec(filePath)) {
-        document.querySelector('.popup-box .popup-message').textContent = 'Vui lòng chọn tệp PDF.';
+        const allowedFormatsMsg = <?php echo json_encode($printerSettings['allowed_formats']); ?>;
+        document.querySelector('.popup-box .popup-message').textContent = 
+            'Vui lòng chọn tệp có định dạng: ' + allowedFormatsMsg.replace(/;/g, ', ');
         document.querySelector('.popup-box').classList.add('active');
         fileInput.value = '';
     } else {
