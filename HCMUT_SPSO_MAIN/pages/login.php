@@ -1,9 +1,16 @@
-") {
+<?php
+include 'js/controller.php';
+include 'js/data.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    if ($username === "admin" && $password === "password" && isset($_POST['admin_login'])) {
         $_SESSION['loggedin'] = true;
         header("Location: ./pages/SPSO/home.php");
         exit();
     }
-
 
     if ($username === "student" && $password === "password") {
         $_SESSION['loggedin'] = true;
@@ -15,7 +22,6 @@
 
     if ($username === "baolong" && $password === "password") {
         $_SESSION['loggedin'] = true;
-        // Create a new Student object with new data
         $student = initializeSessionVariables(223456, 'Baolong', 'password');
         $_SESSION['student'] = $student;
         header("Location: ./pages/Student/home.php");
@@ -40,20 +46,30 @@
         <div class="logo"></div>
         <h1 class="title">Dịch vụ in thông minh</h1>
         
-        <form method="POST">
+        <form method="POST" id="loginForm">
             <input type="text" class="input-field" id="username" name="username" placeholder="Tên đăng nhập" required>
             <input type="password" class="input-field" id="password" name="password" placeholder="Mật khẩu" required>
             
             <button type="submit" class="button login-btn">
                 <span>Đăng nhập</span>
             </button>
-            <button type="button" class="button admin-btn">
+            <button type="button" class="button admin-btn" id="adminBtn">
                 <span>Admin</span>
             </button>
             <a href="#" class="forgot-password">Thay đổi mật khẩu?</a>
         </form>
     </div>
 
-    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('adminBtn').addEventListener('click', function() {
+            const form = document.getElementById('loginForm');
+            const adminInput = document.createElement('input');
+            adminInput.type = 'hidden';
+            adminInput.name = 'admin_login';
+            adminInput.value = '1';
+            form.appendChild(adminInput);
+            form.submit();
+        });
+    </script>
 </body>
 </html>
