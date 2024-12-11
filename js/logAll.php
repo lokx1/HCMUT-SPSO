@@ -2,6 +2,17 @@
 $printHistory = array (
   0 => 
   array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
+    'time' => '16:00:51 05/12/2024',
+    'building' => 'A2',
+    'room' => '102',
+    'total_pages' => '1 x A3',
+    'msmi' => 2,
+    'docname' => 'MaiHoangPhuc.pdf',
+  ),
+  1 => 
+  array (
     'id' => 223456,
     'name' => 'Baolong',
     'time' => '10:01:22 02/12/2024',
@@ -11,7 +22,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'MIDTERM-REPORT.pdf',
   ),
-  1 => 
+  2 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -22,7 +33,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  2 => 
+  3 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -33,7 +44,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'W5_RelationalAlgebra.pdf',
   ),
-  3 => 
+  4 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -44,7 +55,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'W5_RelationalAlgebra.pdf',
   ),
-  4 => 
+  5 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -55,7 +66,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  5 => 
+  6 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -66,7 +77,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  6 => 
+  7 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -77,7 +88,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'CC06_Gr2_As1.pdf',
   ),
-  7 => 
+  8 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -88,7 +99,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  8 => 
+  9 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -99,7 +110,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  9 => 
+  10 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -110,7 +121,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'CC06_Gr2_As1.pdf',
   ),
-  10 => 
+  11 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -121,7 +132,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => '_241_CO2003__Assignment_3_TASK_1_VN.pdf',
   ),
-  11 => 
+  12 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -132,7 +143,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  12 => 
+  13 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -143,7 +154,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  13 => 
+  14 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -154,7 +165,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => '_241_CO2003__Assignment_3_TASK_1_VN.pdf',
   ),
-  14 => 
+  15 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -164,17 +175,6 @@ $printHistory = array (
     'total_pages' => '1 x A4',
     'msmi' => 1,
     'docname' => 'W5_RelationalAlgebra.pdf',
-  ),
-  15 => 
-  array (
-    'id' => 2252442,
-    'name' => 'Bảo Lê',
-    'time' => '17:50:29 29/11/2024',
-    'building' => 'A2',
-    'room' => '101',
-    'total_pages' => '1 x A4',
-    'msmi' => 1,
-    'docname' => 'W7_SQL_v1.pdf',
   ),
   16 => 
   array (
@@ -191,6 +191,17 @@ $printHistory = array (
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
+    'time' => '17:50:29 29/11/2024',
+    'building' => 'A2',
+    'room' => '101',
+    'total_pages' => '1 x A4',
+    'msmi' => 1,
+    'docname' => 'W7_SQL_v1.pdf',
+  ),
+  18 => 
+  array (
+    'id' => 2252442,
+    'name' => 'Bảo Lê',
     'time' => '17:44:27 29/11/2024',
     'building' => 'A2',
     'room' => '101',
@@ -198,7 +209,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'CC06_Gr2_As2.pdf',
   ),
-  18 => 
+  19 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -209,7 +220,7 @@ $printHistory = array (
     'msmi' => 1,
     'docname' => 'W5_RelationalAlgebra.pdf',
   ),
-  19 => 
+  20 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -220,7 +231,7 @@ $printHistory = array (
     'msmi' => NULL,
     'docname' => 'Đề_Ktra.pdf',
   ),
-  20 => 
+  21 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -231,7 +242,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => 'Đề_Ktra.pdf',
   ),
-  21 => 
+  22 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -242,7 +253,7 @@ $printHistory = array (
     'msmi' => NULL,
     'docname' => '232 final CC_thi.pdf',
   ),
-  22 => 
+  23 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -253,7 +264,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => '33410-Article Text-112052-1-10-20180404.pdf',
   ),
-  23 => 
+  24 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -264,7 +275,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => 'Quiz11.1-Testing-Evolution_-Attempt-review-_-BK-LMS.pdf',
   ),
-  24 => 
+  25 => 
   array (
     'id' => 2252442,
     'name' => 'Bảo Lê',
@@ -275,7 +286,7 @@ $printHistory = array (
     'msmi' => '0658',
     'docname' => 'Microcontroller__1_ (7).pdf',
   ),
-  25 => 
+  26 => 
   array (
     'id' => '2252416',
     'name' => 'Lionel Messi',
@@ -286,7 +297,7 @@ $printHistory = array (
     'msmi' => '0650',
     'docname' => 'AnkaraMessi.docx',
   ),
-  26 => 
+  27 => 
   array (
     'id' => '2252932',
     'name' => 'Cristiano Ronaldo',
@@ -297,7 +308,7 @@ $printHistory = array (
     'msmi' => '0953',
     'docname' => 'Siuuuuuuuuuuu.pdf',
   ),
-  27 => 
+  28 => 
   array (
     'id' => '2253001',
     'name' => 'Neymar Jr',
@@ -308,7 +319,7 @@ $printHistory = array (
     'msmi' => '0470',
     'docname' => 'OhYeah.doc',
   ),
-  28 => 
+  29 => 
   array (
     'id' => '2253100',
     'name' => 'Kylian Mbappe',
@@ -319,7 +330,7 @@ $printHistory = array (
     'msmi' => '0651',
     'docname' => 'FastAndFurious.pdf',
   ),
-  29 => 
+  30 => 
   array (
     'id' => '2253200',
     'name' => 'Zlatan Ibrahimovic',
@@ -330,7 +341,7 @@ $printHistory = array (
     'msmi' => '0954',
     'docname' => 'IAmZlatan.docx',
   ),
-  30 => 
+  31 => 
   array (
     'id' => '2253300',
     'name' => 'Robert Lewandowski',
@@ -341,7 +352,7 @@ $printHistory = array (
     'msmi' => '0652',
     'docname' => 'GoalMachine.pdf',
   ),
-  31 => 
+  32 => 
   array (
     'id' => '2253400',
     'name' => 'Kevin De Bruyne',
@@ -352,7 +363,7 @@ $printHistory = array (
     'msmi' => '0653',
     'docname' => 'AssistKing.docx',
   ),
-  32 => 
+  33 => 
   array (
     'id' => '2253500',
     'name' => 'Sergio Ramos',
@@ -363,7 +374,7 @@ $printHistory = array (
     'msmi' => '0955',
     'docname' => 'Defender.pdf',
   ),
-  33 => 
+  34 => 
   array (
     'id' => '2253600',
     'name' => 'Luka Modric',
@@ -374,7 +385,7 @@ $printHistory = array (
     'msmi' => '0654',
     'docname' => 'MidfieldMaestro.doc',
   ),
-  34 => 
+  35 => 
   array (
     'id' => '2253700',
     'name' => 'Virgil van Dijk',
@@ -385,7 +396,7 @@ $printHistory = array (
     'msmi' => '0655',
     'docname' => 'RockSolid.pdf',
   ),
-  35 => 
+  36 => 
   array (
     'id' => '2253800',
     'name' => 'Mohamed Salah',
@@ -396,7 +407,7 @@ $printHistory = array (
     'msmi' => '0956',
     'docname' => 'EgyptianKing.docx',
   ),
-  36 => 
+  37 => 
   array (
     'id' => '2253900',
     'name' => 'Sadio Mane',
@@ -407,7 +418,7 @@ $printHistory = array (
     'msmi' => '0656',
     'docname' => 'Speedster.pdf',
   ),
-  37 => 
+  38 => 
   array (
     'id' => '2254000',
     'name' => 'Eden Hazard',
@@ -418,7 +429,7 @@ $printHistory = array (
     'msmi' => '0657',
     'docname' => 'Dribbler.docx',
   ),
-  38 => 
+  39 => 
   array (
     'id' => '2254100',
     'name' => 'Harry Kane',
@@ -429,7 +440,7 @@ $printHistory = array (
     'msmi' => '0957',
     'docname' => 'Striker.pdf',
   ),
-  39 => 
+  40 => 
   array (
     'id' => '2254200',
     'name' => 'Raheem Sterling',

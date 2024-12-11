@@ -17,7 +17,7 @@
     'building' => 'A2',
     'room' => '102',
     'description' => 'No',
-    'status' => 'inactive',
+    'status' => 'active',
   ),
   2 => 
   array (
@@ -27,6 +27,16 @@
     'building' => 'A4',
     'room' => '104',
     'description' => 'NO',
+    'status' => 'inactive',
+  ),
+  3 => 
+  array (
+    'brand' => 'Gay',
+    'model' => 'Nigga',
+    'campus' => 'Trường Đại học Bách khoa cơ sở 2',
+    'building' => 'A4',
+    'room' => '104',
+    'description' => 'Niga Nae Niga Nae',
     'status' => 'inactive',
   ),
 ); ?>
